@@ -41,7 +41,7 @@ const jsonld = [
     about: { '@id': url + '#procedure' }, lastReviewed: p.reviewed_at !== 'TODO' ? p.reviewed_at : undefined, dateModified: builtAt,
     // reviewedBy → Physician — TODO: врач-рецензент
   },
-  { '@context': 'https://schema.org', '@type': 'MedicalProcedure', '@id': url + '#procedure', name: p.name,
+  { '@context': 'https://schema.org', '@type': ['MedicalProcedure', 'Service'], '@id': url + '#procedure', name: p.name, provider: { '@id': site() + '#org' }, areaServed: 'Москва',
     alternateName: [...goals.flatMap(g => g.terms)].slice(0, 8), procedureType: p.direction === 'inekcii' ? 'https://schema.org/PercutaneousProcedure' : 'https://schema.org/NoninvasiveProcedure',
     bodyLocation: zones.map(z => z.name).join(', ') || undefined, offers: offersLD(p) },
   faqLD(faq),
