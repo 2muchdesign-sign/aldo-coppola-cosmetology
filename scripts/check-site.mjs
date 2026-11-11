@@ -15,7 +15,7 @@ const visible = html => html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(
   .replace(/<[^>]+>/g, ' ').replace(/&nbsp;|&#160;/g, ' ').replace(/&[a-z#0-9]+;/g, ' ').replace(/\s+/g, ' ');
 const UNCONFIRMED = ['Harmony XL', 'MERMAID', 'Gezatone', 'Skin Master', 'Friendly Light', 'Medozons', 'Ксенонотерапия', 'LumiCell'];
 const NEED = { // тип страницы → обязательные типы JSON-LD (ТЗ 10.3)
-  procedure: ['MedicalWebPage', 'MedicalProcedure', 'FAQPage', 'Offer'], goal: ['MedicalWebPage', 'ItemList', 'FAQPage'],
+  procedure: ['MedicalWebPage', 'MedicalProcedure', 'Service', 'FAQPage', 'Offer'], goal: ['MedicalWebPage', 'ItemList', 'FAQPage'],
   device: ['Product'], salon: ['MedicalClinic', 'BeautySalon'], price: ['OfferCatalog'],
 };
 const kind = r => /^\/procedury\/./.test(r) ? 'procedure' : /^\/celi\/./.test(r) ? 'goal' : /^\/apparaty\/./.test(r) ? 'device' : /^\/salony\/./.test(r) ? 'salon' : r === '/ceny' ? 'price' : 'other';

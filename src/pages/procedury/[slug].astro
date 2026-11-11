@@ -41,9 +41,12 @@ const jsonld = [
     about: { '@id': url + '#procedure' }, lastReviewed: p.reviewed_at !== 'TODO' ? p.reviewed_at : undefined, dateModified: builtAt,
     // reviewedBy → Physician — TODO: врач-рецензент
   },
-  { '@context': 'https://schema.org', '@type': ['MedicalProcedure', 'Service'], '@id': url + '#procedure', name: p.name, provider: { '@id': site() + '#org' }, areaServed: 'Москва',
+  { '@context': 'https://schema.org', '@type': 'MedicalProcedure', '@id': url + '#procedure', name: p.name,
     alternateName: [...goals.flatMap(g => g.terms)].slice(0, 8), procedureType: p.direction === 'inekcii' ? 'https://schema.org/PercutaneousProcedure' : 'https://schema.org/NoninvasiveProcedure',
-    bodyLocation: zones.map(z => z.name).join(', ') || undefined, offers: offersLD(p) },
+    bodyLocation: zones.map(z => z.name).join(', ') || undefined },
+  // Цены по салонам (Offer) — через Service: у MedicalProcedure по схеме нет свойства offers
+  { '@context': 'https://schema.org', '@type': 'Service', '@id': url + '#service', name: `${p.name} в Aldo Coppola`, serviceType: p.name,
+    provider: { '@id': site() + '#org' }, areaServed: 'Москва', url, offers: offersLD(p) },
   faqLD(faq),
 ];
 ---
