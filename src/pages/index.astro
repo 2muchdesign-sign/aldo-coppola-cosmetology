@@ -1,0 +1,157 @@
+---
+// 7.1. Хаб
+import Base from '../layouts/Base.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Media from '../components/Media.astro';
+import Carousel from '../components/Carousel.astro';
+import CarouselNav from '../components/CarouselNav.astro';
+import ProcedureCard from '../components/ProcedureCard.astro';
+import SalonCards from '../components/SalonCards.astro';
+import Faq from '../components/Faq.astro';
+import ZoneMap from '../components/ZoneMap.astro';
+import { PROCEDURE, PROCEDURES, DEVICES, GOALS, GOAL_GROUPS, ZONES, COSMO_SALONS, METHOD_LABEL, rub, u } from '../lib/data.js';
+import { MEDIA } from '../lib/media.js';
+import { CONFIG } from '../config.js';
+import { faqLD, listAnd, salonLD } from '../lib/pages.js';
+
+const popular = ['apparatnoe-ochishchenie', 'smas-lifting-hifu', 'mikroigolchatyy-rf-lifting', 'lazernaya-epilyaciya', 'fotoomolozhenie', 'botulinoterapiya',
+  'biorevitalizaciya-i-mezoterapiya', 'kriolipoliz', 'konturnaya-plastika', 'mikrotoki-i-miostimulyaciya'].map(s => PROCEDURE[s]).filter(Boolean);
+const LAYOUT = { 'molodost-i-tonus': 'big ph', 'rovnyy-ton-i-siyanie': '', 'chistaya-kozha': 'ph', 'kontury-tela': 'ph', 'gladkaya-kozha': '',
+  'energiya-i-vosstanovlenie': 'wide', 'k-vazhnomu-sobytiyu': 'red', 'profilaktika-i-uhod': '' };
+const HINT = { 'molodost-i-tonus': 'видео 10 с: макро кожи, мягкий свет', 'chistaya-kozha': 'фото: текстура кожи', 'kontury-tela': 'видео: силуэт, свет' };
+const devs = [...DEVICES].sort((a, b) => a.name.localeCompare(b.name, 'en'));
+const nCenters = COSMO_SALONS.length;
+const faceZones = ZONES.filter(z => z.body === 'face' && PROCEDURES.some(p => p.zones.includes(z.slug)));
+const bodyZones = ZONES.filter(z => z.body === 'body' && PROCEDURES.some(p => p.zones.includes(z.slug)));
+const hifu = PROCEDURE['smas-lifting-hifu'], hydra = PROCEDURE['apparatnoe-ochishchenie'];
+const faq = [
+  ['Где сделать косметологию Aldo Coppola в Москве?', `В ${nCenters} центрах косметологии: ${listAnd(COSMO_SALONS.map(s => `${s.name} (${s.address})`))}. В салоне Лотте Отель косметологии нет.`],
+  ['Сколько стоит SMAS-лифтинг HIFU?', `От ${rub(hifu.price_from)} — на аппаратах Ultraformer и Liftera-A, в зависимости от зоны, объёма и салона. Все цены — на странице процедуры.`],
+  ['Сколько стоит HydraFacial?', `От ${rub(hydra.price_from)} — во всех ${nCenters} центрах косметологии.`],
+  ['Какие аппараты есть в салонах?', `${devs.length} аппаратов, среди них ${listAnd(['Ultraformer', 'InMode Morpheus8', 'Fotona', 'BBL', 'HydraFacial', 'CoolSculpting'])}. Список и цены — в разделе «Аппараты».`],
+  ['Нужна ли консультация?', 'Для инъекций, нитей, HIFU, лазерных процедур и капельниц первый шаг — консультация врача-косметолога. Имеются противопоказания, необходима консультация специалиста.'],
+];
+---
+<Base title="Косметология Aldo Coppola в Москве — процедуры, аппараты, цены" description={`Аппаратная, инъекционная и эстетическая косметология Aldo Coppola в ${nCenters} центрах Москвы и Рублёвки: ${PROCEDURES.length} процедур, ${devs.length} аппаратов, цены из прайсов салонов, запись онлайн.`} jsonld={[faqLD(faq)]}>
+  <section class="acc-wrap acc-hero">
+    <div class="acc-hero__l">
+      <span class="acc-mono">Косметология Aldo Coppola в Москве · {nCenters} центров</span>
+      <h1 class="acc-h1">Медицина красоты <span class="acc-it acc-it--red">по‑итальянски</span></h1>
+      <p class="acc-lead">Аппаратная, инъекционная и эстетическая косметология. Найдите процедуру по задаче, зоне или аппарату — и запишитесь в удобный салон.</p>
+      <form class="acc-hsearch2" role="search" data-acc-search-input>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <label class="acc-sr" for="acc-hero-q">Что вы ищете</label>
+        <input id="acc-hero-q" type="search" autocomplete="off" placeholder="Например: Morpheus8" data-acc-typing={JSON.stringify(['Morpheus8', 'пигментные пятна', 'эпиляция в Жуковке', 'брыли', 'HydraFacial', 'ботокс'])} />
+        <button type="submit" class="acc-btn acc-btn--dark">Найти</button>
+      </form>
+      <nav class="acc-chips" aria-label="Входы">
+        <a class="acc-chip" href={u('celi/')}>По цели</a>
+        <a class="acc-chip" href={u('zony/')}>По зоне</a>
+        <a class="acc-chip" href={u('procedury/')}>По процедуре</a>
+        <a class="acc-chip" href={u('apparaty/')}>По аппарату</a>
+        <a class="acc-chip" href={u('salony/')}>По салону</a>
+      </nav>
+    </div>
+    <div class="acc-hero__r">
+      <div class="acc-hero__media">
+        <Media item={MEDIA.hero[0]} eager sizes="(max-width: 899px) 100vw, 40vw" />
+        <div class="acc-hero__cap"><span class="acc-mono">Кабинет · Aldo Coppola</span><span class="acc-mono">ТЦ Времена года</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between"><span class="acc-mono">с {CONFIG.brandSince} года в России</span><span class="acc-mono">Милан — Москва</span></div>
+    </div>
+  </section>
+
+  <div class="acc-wrap">
+    <div class="acc-trust acc-reveal">
+      <div><b>Врачи</b><span class="acc-mono">косметологи ведут приём</span></div>
+      <div><b>{nCenters}</b><span class="acc-mono">центров с косметологией</span></div>
+      <div><b>{devs.length}</b><span class="acc-mono">аппаратов в салонах сети</span></div>
+      <div><b>{CONFIG.brandSince}</b><span class="acc-mono">с этого года в России</span></div>
+    </div>
+  </div>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="01" label="Цели">Начните с <span class="acc-it">результата</span><a slot="aside" class="acc-link" href={u('celi/')}>Все цели</a></SectionHead>
+      <div class="acc-bento">
+        {GOAL_GROUPS.map((g, i) => { const l = (LAYOUT[g.slug] || '').split(' ').filter(Boolean); const gs = GOALS.filter(x => x.group === g.slug); return (
+          <article class={`acc-bento__i ${l.map(c => 'acc-bento__i--' + c).join(' ')}`}>
+            <span class={`acc-mono${l.includes('red') ? ' acc-mono--red' : ''}`}>{String.fromCharCode(65 + i)}{HINT[g.slug] ? ` · ${HINT[g.slug]}` : ''}</span>
+            <div>
+              <h3 class="acc-bento__t"><a class="acc-bento__a" href={u(`celi/#${g.slug}`)}>{g.name}</a></h3>
+              <p class="acc-bento__l">{gs.map((x, j) => <>{j > 0 && ' · '}<a href={u(`celi/${x.slug}/`)} style="position:relative;z-index:2">{x.name}</a></>)}</p>
+            </div>
+          </article>
+        ); })}
+      </div>
+      <p class="acc-muted" style="font-size:14px;margin-top:24px;max-width:820px">Мы говорим о цели, а не о «проблеме»: косметология — это и коррекция, и эстетическое совершенствование. Привычные слова («брыли», «пигментация», «постакне») поиск понимает и ведёт к нужной цели.</p>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--mist">
+    <div class="acc-wrap">
+      <SectionHead num="02" label="Зоны">Выберите <span class="acc-it">зону</span> на схеме<a slot="aside" class="acc-link" href={u('zony/')}>Все зоны</a></SectionHead>
+      <ZoneMap />
+    </div>
+  </section>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="03" label="Процедуры">Выбирают <span class="acc-it">чаще всего</span><CarouselNav slot="aside" for="acc-pop" total={popular.length} /></SectionHead>
+      <Carousel id="acc-pop" media={false} label="Популярные процедуры">{popular.map(p => <ProcedureCard p={p} />)}</Carousel>
+      <div class="acc-chips" style="margin-top:32px">{['apparatnaya', 'inekcii', 'uhody', 'lazernaya-epilyaciya', 'telo', 'kapelnicy'].map(d => { const l = PROCEDURES.filter(p => p.direction === d); return <a class="acc-chip" href={u(d + '/')}>{({ apparatnaya: 'Аппаратная', inekcii: 'Инъекции', uhody: 'Уходы', 'lazernaya-epilyaciya': 'Эпиляция', telo: 'Тело', kapelnicy: 'Капельницы' })[d]} <span class="acc-chip__n">{l.length}</span></a>; })}</div>
+    </div>
+  </section>
+
+  <section class="acc-marq" aria-labelledby="acc-dev-h">
+    <div class="acc-wrap" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px">
+      <h2 class="acc-mono acc-mono--ink" id="acc-dev-h" style="font-weight:400">04 / Аппараты</h2>
+      <a class="acc-link" href={u('apparaty/')}>Все аппараты</a>
+    </div>
+    <div class="acc-marq__track">
+      {[...devs, ...devs].map((d, i) => (
+        <a class="acc-marq__i" href={u(`apparaty/${d.slug}/`)} aria-hidden={i >= devs.length ? 'true' : undefined} tabindex={i >= devs.length ? -1 : undefined}>
+          <span>{d.name}</span><span class="acc-mono">{METHOD_LABEL[d.technology]}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="05" label="Салоны">{nCenters === 6 ? 'Шесть' : nCenters} центров <span class="acc-it">косметологии</span></SectionHead>
+      <SalonCards />
+    </div>
+  </section>
+
+  <section class="acc-wrap" style="padding-bottom:var(--acc-sec)">
+    <div class="acc-fork">
+      <div>
+        <span class="acc-mono acc-mono--red">06 / Подбор</span>
+        <h2 class="acc-h3">Не знаете, <span class="acc-it">что выбрать?</span></h2>
+        <p class="acc-muted">Четыре вопроса: зона, желаемый результат, что для вас важно и где удобно. В конце — 2–3 варианта для обсуждения с врачом.</p>
+        <div class="acc-fork__steps"><i></i><i></i><i></i><i></i><span class="acc-mono" style="margin-left:8px">4 шага · 1 минута</span></div>
+        <a class="acc-btn acc-btn--secondary" href={u('podbor/')}>Начать подбор</a>
+      </div>
+      <div>
+        <span class="acc-mono">Консультация</span>
+        <h2 class="acc-h3">Решение — <span class="acc-it">вместе с врачом</span></h2>
+        <p class="acc-muted">Врач-косметолог осмотрит кожу, ответит на вопросы и составит план процедур. Для инъекций и HIFU консультация — первый шаг.</p>
+        <button type="button" class="acc-btn acc-btn--primary" data-book data-consult="1" data-name="Консультация косметолога">Записаться на консультацию</button>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} num="07" />
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap">
+      <SectionHead num="08" label="Блог">Читайте в <span class="acc-it">блоге</span><a slot="aside" class="acc-link" href={CONFIG.blog} rel="noopener">aldocoppola.ru</a></SectionHead>
+      <div class="acc-salons" data-todo="blog">
+        {['Аппаратная косметология', 'Инъекции', 'Уход за кожей'].map(t => (
+          <a class="acc-salon" href={CONFIG.blog} rel="noopener"><div class="acc-ph" style="aspect-ratio:16/10"><div class="acc-ph__hint"><span class="acc-mono">{t}</span></div></div><span class="acc-salon__n">[статья блога — ссылка уточняется]</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

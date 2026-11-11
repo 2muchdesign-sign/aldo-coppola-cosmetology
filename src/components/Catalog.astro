@@ -1,0 +1,74 @@
+---
+// Каталог процедур с фильтрами. Фильтры — в параметрах адреса (?zona=lico&metod=hifu&salon=zhukovka), «назад» работает.
+// Все карточки в HTML (видны без JS); скрипт только скрывает несовпадающие и считает числа у значений.
+import ProcedureCard from './ProcedureCard.astro';
+import { ZONES, GOALS, GOAL_GROUPS, METHOD_LABEL, DIRECTIONS, COSMO_SALONS, procedurePrices, durationRange, C, VISIBLE_OFFERS } from '../lib/data.js';
+const { procedures = [], fixed = {}, title = 'Процедуры', hide = [] } = Astro.props;
+const zonesUsed = ZONES.filter(z => procedures.some(p => p.zones.includes(z.slug)));
+const methods = [...new Set(procedures.map(p => p.method))];
+const dirs = DIRECTIONS.filter(d => procedures.some(p => p.direction === d.slug));
+const goals = GOALS.filter(g => procedures.some(p => g.procedures.includes(p.slug)));
+const durOf = p => {
+  const ds = C.services.filter(s => s.procedure === p.slug).flatMap(s => VISIBLE_OFFERS.filter(o => o.service === s.id).map(o => o.duration_min)).filter(Boolean);
+  return ds.length ? Math.min(...ds) : 0;
+};
+const show = k => !hide.includes(k) && !fixed[k];
+const groups = [
+  show('napr') && dirs.length > 1 && { key: 'napr', label: 'Направление', opts: dirs.map(d => [d.slug, d.short]) },
+  show('zona') && zonesUsed.length > 1 && { key: 'zona', label: 'Зона', opts: zonesUsed.map(z => [z.slug, z.name]) },
+  show('metod') && methods.length > 1 && { key: 'metod', label: 'Метод', opts: methods.map(m => [m, METHOD_LABEL[m]]) },
+  show('dlit') && { key: 'dlit', label: 'Длительность', opts: [['30', 'до 30 мин'], ['60', 'до 60 мин'], ['90', 'больше часа']] },
+].filter(Boolean);
+---
+<div class="acc-cat" data-acc-cat data-fixed={JSON.stringify(fixed)}>
+  <div class="acc-cat__bar">
+    <p class="acc-cat__count" aria-live="polite"><span data-cat-n>{procedures.length}</span> <span data-cat-w>процедур</span></p>
+    <button type="button" class="acc-btn acc-btn--secondary acc-cat__open" data-cat-open aria-controls="acc-cat-f">Фильтры <span data-cat-fn></span></button>
+    <label class="acc-cat__sort"><span class="acc-mono">Порядок</span>
+      <select data-cat-sort><option value="">Популярные</option><option value="price">Сначала дешевле</option><option value="price-desc">Сначала дороже</option><option value="name">По алфавиту</option></select>
+    </label>
+  </div>
+  <div class="acc-cat__body">
+    <aside class="acc-cat__f" id="acc-cat-f" data-cat-panel aria-label="Фильтры">
+      <div class="acc-cat__fhead"><span class="acc-h4">Фильтры</span><button type="button" class="acc-link" data-cat-reset>Сбросить</button></div>
+      {!fixed.salon && (
+        <fieldset class="acc-cat__g"><legend class="acc-mono">Салон</legend>
+          <div class="acc-chips">{COSMO_SALONS.map(s => <button type="button" class="acc-chip" data-f="salon" data-v={s.slug} aria-pressed="false">{s.name} <span class="acc-chip__n" data-n></span></button>)}</div>
+          <p class="acc-mono acc-cat__note">Салон выбирается сразу для всего сайта</p>
+        </fieldset>
+      )}
+      {groups.map(g => (
+        <fieldset class="acc-cat__g"><legend class="acc-mono">{g.label}</legend>
+          <div class="acc-chips">{g.opts.map(([v, t]) => <button type="button" class="acc-chip" data-f={g.key} data-v={v} aria-pressed="false">{t} <span class="acc-chip__n" data-n></span></button>)}</div>
+        </fieldset>
+      ))}
+      {show('cel') && goals.length > 1 && (
+        <fieldset class="acc-cat__g"><legend class="acc-mono">Цель</legend>
+          <select class="acc-select" data-f-select="cel"><option value="">Любая</option>
+            {GOAL_GROUPS.map(gr => <optgroup label={gr.name}>{goals.filter(g => g.group === gr.slug).map(g => <option value={g.slug}>{g.name}</option>)}</optgroup>)}
+          </select>
+        </fieldset>
+      )}
+      <fieldset class="acc-cat__g"><legend class="acc-mono">Цена «от», ₽</legend>
+        <div class="acc-cat__price"><input type="number" inputmode="numeric" min="0" step="1000" placeholder="от" data-f-num="ot" aria-label="Цена от" /><span>—</span><input type="number" inputmode="numeric" min="0" step="1000" placeholder="до" data-f-num="do" aria-label="Цена до" /></div>
+      </fieldset>
+      <p class="acc-mono acc-cat__note">Восстановление и обезболивание — фильтры появятся, когда врач заполнит паспорта процедур</p>
+      <button type="button" class="acc-btn acc-btn--dark acc-btn--block acc-cat__apply" data-cat-close>Показать <span data-cat-n2>{procedures.length}</span></button>
+    </aside>
+    <div class="acc-cat__grid" data-cat-grid>
+      {procedures.map((p, i) => (
+        <div class="acc-cat__item" data-i={i} data-napr={p.direction} data-metod={p.method} data-zona={p.zones.join(' ')}
+          data-cel={GOALS.filter(g => g.procedures.includes(p.slug)).map(g => g.slug).join(' ')}
+          data-salon={Object.keys(procedurePrices(p.slug)).join(' ')} data-price={fixed.salon && procedurePrices(p.slug)[fixed.salon] != null ? procedurePrices(p.slug)[fixed.salon] : Math.min(...Object.values(procedurePrices(p.slug)))}
+          data-dlit={durOf(p)} data-name={p.name}>
+          <ProcedureCard p={p} onlySalon={fixed.salon} />
+        </div>
+      ))}
+      <div class="acc-cat__empty" data-cat-empty hidden>
+        <h3 class="acc-h4">Под эти условия процедур нет</h3>
+        <p class="acc-muted" data-cat-hint></p>
+        <button type="button" class="acc-btn acc-btn--secondary" data-cat-reset>Сбросить фильтры</button>
+      </div>
+    </div>
+  </div>
+</div>

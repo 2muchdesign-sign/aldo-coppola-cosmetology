@@ -1,0 +1,43 @@
+# Аппараты. Ведёт маркетинг.
+# technology: hifu | rf | rf-microneedle | laser | ipl | microcurrent | ems | vacuum | cryo | plasma | pressotherapy | magnetic | led-pdt | hydrodermabrasion | infrared
+# status: active — есть в прайсах; unconfirmed — только на старом сайте, на сайт НЕ выводится до подтверждения заказчиком.
+# travels: true — перевозится между салонами по графику; null — не уточнено (TODO у заказчика).
+# manufacturer/country: TODO — заполнить по документам аппарата (не брать с сайтов производителей без проверки).
+# text: тексты «Принцип работы»/«Показания» — черновик со старого сайта (этап 3) или TODO.
+- {slug: ultraformer, name: Ultraformer, brand: Classys, model: Ultraformer MPT, manufacturer: Classys, country: Южная Корея, technology: hifu, synonyms: [ультраформер, ультраформер мпт, ultraformer mpt, ultraformer мрт, smas], status: active, travels: null}
+- {slug: liftera-a, name: Liftera-A, brand: Liftera, model: Liftera-A, manufacturer: TODO, country: Южная Корея, technology: hifu, synonyms: [liftera, лифтера], status: active, travels: null}
+- {slug: ulfit, name: Ulfit, brand: Ulfit, model: TODO, manufacturer: Classys, country: Южная Корея, technology: hifu, synonyms: [улфит, ульфит], status: active, travels: null}
+- {slug: inmode-morpheus8, name: InMode Morpheus8, brand: InMode, model: Morpheus8, manufacturer: InMode, country: Израиль, technology: rf-microneedle, synonyms: [morpheus, morpheus 8, морфеус, морфеус 8], status: active, travels: null}
+- {slug: inmode-forma, name: InMode Forma, brand: InMode, model: Forma, manufacturer: InMode, country: Израиль, technology: rf, synonyms: [forma, форма, инмод форма], status: active, travels: null}
+- {slug: inmode-lumecca, name: InMode Lumecca, brand: InMode, model: Lumecca, manufacturer: InMode, country: Израиль, technology: ipl, synonyms: [lumecca, люмекка], status: active, travels: null}
+- {slug: scarlet-rf, name: Scarlet RF, brand: Scarlet, model: Scarlet RF, manufacturer: TODO, country: Южная Корея, technology: rf-microneedle, synonyms: [scarlet, скарлет], status: active, travels: null}
+- {slug: endymed, name: EndyMed, brand: EndyMed, model: TODO, manufacturer: TODO, country: Израиль, technology: rf, technologies: [rf, rf-microneedle], synonyms: [endymed, эндимед], status: active, travels: null}
+- {slug: maximus, name: Maximus, brand: TODO, model: Maximus, manufacturer: TODO, country: Израиль, technology: rf, synonyms: [максимус], status: active, travels: null}
+- {slug: volnewmer, name: Volnewmer, brand: TODO, model: Volnewmer, manufacturer: TODO, country: TODO, technology: rf, synonyms: [волньюмер, вольньюмер], status: active, travels: null}
+- {slug: so-up, name: So Up, brand: TODO, model: So Up, manufacturer: TODO, country: TODO, technology: rf, synonyms: [soup, со ап, соуп], status: active, travels: null}
+- {slug: innofill, name: Innofill, brand: TODO, model: Innofill, manufacturer: TODO, country: TODO, technology: rf, synonyms: [иннофил, иннофилл], status: active, travels: null}
+- {slug: bbl, name: BBL, brand: TODO, model: BBL (Forever Young, Forever Clear, HERO, SkinTyte), manufacturer: Sciton, country: США, technology: ipl, technologies: [ipl, infrared], synonyms: [ббл, bbl forever young, форевер янг, skintyte, скинтайт, bbl hero], status: active, travels: null}
+- {slug: fotona, name: Fotona, brand: Fotona, model: TODO, manufacturer: Fotona, country: Словения) с системой Cryo 6 (Германия, technology: laser, synonyms: [фотона, smooth eye, piano], status: active, travels: null}
+- {slug: neogen, name: NeoGen, brand: TODO, model: NeoGen, manufacturer: TODO, country: TODO, technology: plasma, synonyms: [неоген], status: active, travels: null}
+- {slug: biogenie, name: Biogenie, brand: Biogenie, model: TODO, manufacturer: TODO, country: Франция, technology: microcurrent, synonyms: [биоджени, биожени], status: active, travels: null}
+- {slug: vip-line, name: Vip Line, brand: Vip Line, model: MICROGEI · ISOGEI · Transion, manufacturer: TODO, country: Италия, technology: microcurrent, technologies: [microcurrent, ems], synonyms: [вип лайн, microgei, isogei, transion, изогей, микрогей, трансион], status: active, travels: null}
+- {slug: hydrafacial, name: HydraFacial, brand: HydraFacial, model: TODO, manufacturer: TODO, country: США, technology: hydrodermabrasion, synonyms: [гидрафейшл, гидрофейшл, гидрафешл, хайдрафейшл, гидропилинг], status: active, travels: null}
+- {slug: endospheres, name: Endospheres Therapy, brand: TODO, model: Endospheres, manufacturer: TODO, country: Италия, technology: vacuum, synonyms: [эндосферы, эндосфера, эндосферс, компрессионная микровибрация], status: active, travels: null}
+- {slug: icoone, name: ICoone, brand: TODO, model: ICoone, manufacturer: TODO, country: Италия, technology: vacuum, synonyms: [айкун, икун, механовакуумный массаж], status: active, travels: null}
+- {slug: heleo-4, name: Heleo-4, brand: TODO, model: Heleo-4, manufacturer: TODO, country: TODO, technology: led-pdt, synonyms: [хелео, гелео, фотодинамическая терапия], status: active, travels: null}
+- {slug: coolsculpting, name: CoolSculpting, brand: CoolSculpting, model: TODO, manufacturer: Zeltiq, country: США, technology: cryo, synonyms: [кулскалптинг, кулскульптинг, криолиполиз], status: active, travels: null}
+- {slug: mantis, name: Mantis, brand: TODO, model: Mantis, manufacturer: TODO, country: Италия, technology: magnetic, synonyms: [мантис], status: active, travels: null}
+- {slug: bollani-new-dinamica, name: Bollani New Dinamica, brand: Bollani, model: New Dinamica, manufacturer: TODO, country: TODO, technology: pressotherapy, synonyms: [боллани, прессотерапия], status: active, travels: null}
+- {slug: deka, name: DEKA, brand: DEKA, model: TODO, manufacturer: DEKA, country: Италия, technology: laser, synonyms: [дека], status: active, travels: null}
+- {slug: lightsheer-duet, name: LightSheer Duet, brand: LightSheer, model: Duet, manufacturer: Lumenis, country: Израиль, technology: laser, synonyms: [light sheer, лайтшир, лайт шир], status: active, travels: null}
+- {slug: soprano, name: Soprano, brand: TODO, model: Soprano, manufacturer: Alma Lasers, country: Израиль, technology: laser, synonyms: [сопрано], status: active, travels: null}
+
+# --- Нет в прайсах ноября 2026: только на старом сайте. НЕ показывать до подтверждения (ТЗ, раздел 2). ---
+- {slug: harmony-xl, name: Harmony XL, technology: TODO, status: unconfirmed}
+- {slug: mermaid, name: MERMAID, technology: TODO, status: unconfirmed}
+- {slug: gezatone, name: Gezatone, technology: TODO, status: unconfirmed}
+- {slug: skin-master, name: Skin Master, technology: TODO, status: unconfirmed}
+- {slug: friendly-light, name: Friendly Light, technology: TODO, status: unconfirmed}
+- {slug: medozons, name: Medozons (озонотерапия), technology: TODO, status: unconfirmed}
+- {slug: ksenonoterapiya, name: Ксенонотерапия, technology: TODO, status: unconfirmed}
+- {slug: lumicell-wave-6, name: LumiCell Wave 6, technology: TODO, status: unconfirmed}

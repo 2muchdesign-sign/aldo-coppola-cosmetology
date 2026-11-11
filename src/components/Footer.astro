@@ -1,0 +1,33 @@
+---
+import { u, SALONS } from '../lib/data.js';
+import { CONFIG } from '../config.js';
+const by = r => SALONS.filter(s => s.region === r);
+---
+<div class="acc-warn"><div class="acc-wrap"><p>Имеются противопоказания. Необходима консультация специалиста.</p></div></div>
+<footer class="acc-ftr">
+  <div class="acc-wrap">
+    <div class="acc-ftr__grid">
+      <div class="acc-ftr__col">
+        <span style="font-weight:600;letter-spacing:.26em">ALDO COPPOLA</span>
+        <span class="acc-muted">Итальянские салоны красоты и центры косметологии · с {CONFIG.brandSince} года в России</span>
+        <a class="acc-link" href={u('konsultaciya/')} style="align-self:flex-start;margin-top:12px">Консультация врача</a>
+      </div>
+      <div class="acc-ftr__col">
+        <span class="acc-mono">Москва</span>
+        {by('Москва').map(s => <a href={u(`salony/${s.slug}/`)}>{s.name}<br /><span class="acc-muted">{s.address}</span><br /><span class="acc-muted">{s.phone}</span></a>)}
+      </div>
+      <div class="acc-ftr__col">
+        <span class="acc-mono">Московская область</span>
+        {by('Московская область').map(s => <a href={u(`salony/${s.slug}/`)}>{s.name}<br /><span class="acc-muted">{s.address}</span><br /><span class="acc-muted">{s.phone}</span></a>)}
+      </div>
+      <div class="acc-ftr__col">
+        <span class="acc-mono">Разделы</span>
+        <a href={u('celi/')}>Цели</a><a href={u('procedury/')}>Процедуры</a><a href={u('apparaty/')}>Аппараты</a><a href={u('ceny/')}>Цены</a><a href={u('podbor/')}>Подбор процедуры</a><a href={u('vrachi/')}>Врачи</a>
+      </div>
+    </div>
+    <div class="acc-ftr__legal">
+      <span>{CONFIG.license || 'Лицензия на медицинскую деятельность: [реквизиты — TODO]'}{CONFIG.legalEntity ? ` · ${CONFIG.legalEntity}` : ''}</span>
+      <span>Цены не являются публичной офертой; итоговая стоимость — после консультации.</span>
+    </div>
+  </div>
+</footer>

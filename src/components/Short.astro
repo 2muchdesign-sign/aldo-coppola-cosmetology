@@ -1,0 +1,14 @@
+---
+// «Коротко»: абзац 40–70 слов сразу под H1 — его цитируют нейросети целиком. Даты и рецензент — рядом.
+import { fmtDate, builtAt } from '../lib/data.js';
+const { text, reviewer, reviewedAt } = Astro.props;
+const rev = reviewer && reviewer !== 'TODO' ? reviewer : null;
+---
+<section class="acc-short" aria-labelledby="acc-short-h">
+  <h2 class="acc-mono acc-mono--ink" id="acc-short-h">Коротко</h2>
+  <p class="acc-short__t">{text}</p>
+  <p class="acc-short__meta">
+    <span class="acc-mono">Цены обновлены <time datetime={builtAt}>{fmtDate(builtAt)}</time></span>
+    <span class="acc-mono" data-todo={rev ? undefined : 'reviewer'}>Текст проверил: {rev ? <>{rev}{reviewedAt && reviewedAt !== 'TODO' && <>, <time datetime={reviewedAt}>{fmtDate(reviewedAt)}</time></>}</> : '[врач — уточняется]'}</span>
+  </p>
+</section>

@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { u } from '../../lib/data.js';
+---
+<Base title="Врачи-косметологи Aldo Coppola" description="Врачи-косметологи салонов Aldo Coppola — страница в подготовке." current="" breadcrumbs={[['Врачи', 'vrachi/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Врачи']]} />
+      <h1 class="acc-h1">Врачи-<span class="acc-it acc-it--red">косметологи</span></h1>
+      <p class="acc-lead">Страница в подготовке: имена, специализация, салоны приёма и фото врачей появятся после получения данных.</p>
+      <div class="acc-phero__cta"><a class="acc-btn acc-btn--primary acc-btn--lg" href={u('konsultaciya/')}>Консультация врача</a></div>
+    </header>
+    <div class="acc-devs" data-todo="doctors" style="margin-bottom:96px">{[1, 2, 3, 4].map(() => <div class="acc-dev"><div class="acc-ph" style="aspect-ratio:4/5"><div class="acc-ph__hint"><span class="acc-mono">Портрет врача · 4:5</span></div></div><span class="acc-mono">[ФИО, специализация — уточняется]</span></div>)}</div>
+  </div>
+</Base>

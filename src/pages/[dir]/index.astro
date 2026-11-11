@@ -1,0 +1,29 @@
+---
+// Направление: каталог с фильтром (ТЗ, раздел 4)
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Catalog from '../../components/Catalog.astro';
+import { PROCEDURES, DIRECTIONS, rub, u, fromPrice } from "../../lib/data.js";
+import { site, splitAccent } from '../../lib/pages.js';
+export function getStaticPaths() { return DIRECTIONS.map(d => ({ params: { dir: d.slug }, props: { d } })); }
+const { d } = Astro.props;
+const list = PROCEDURES.filter(p => p.direction === d.slug);
+const from = fromPrice(list);
+const [a, b] = splitAccent(d.name);
+const ld = [{ '@context': 'https://schema.org', '@type': 'ItemList', name: `${d.name} — Aldo Coppola`,
+  itemListElement: list.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `procedury/${p.slug}/`, name: p.name })) }];
+---
+<Base title={`${d.name} в Москве — цены от ${rub(from).replace(/ /g, ' ')} | Aldo Coppola`} description={`${d.name} в салонах Aldo Coppola: ${list.length} процедур — ${list.slice(0, 5).map(p => p.name).join(', ')}. Цены из прайсов салонов, запись онлайн.`} current="procedury" jsonld={ld} breadcrumbs={[['Процедуры', 'procedury/'], [d.name, d.slug + '/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Процедуры', 'procedury/'], [d.name]]} />
+      <div class="acc-phead__row">
+        <h1 class="acc-h1">{a}{b && <span class="acc-it acc-it--red">{b}</span>}</h1>
+        <div class="acc-chips">{DIRECTIONS.map(x => <a class="acc-chip" href={u(x.slug + '/')} aria-current={x.slug === d.slug ? 'page' : undefined} style={x.slug === d.slug ? 'border-color:var(--acc-red);color:var(--acc-red)' : undefined}>{x.short}</a>)}</div>
+      </div>
+      <p class="acc-lead">{list.length} процедур · цены от {rub(from)} · {list.map(p => p.name).slice(0, 4).join(', ')}{list.length > 4 ? ' и другие' : ''}.</p>
+    </header>
+    <Catalog procedures={list} fixed={{ napr: d.slug }} />
+  </div>
+  <div style="height:96px"></div>
+</Base>

@@ -1,0 +1,53 @@
+# robots.txt для боевого сайта aldocoppola.ru (ТЗ 10.1). На превью GitHub Pages используется закрывающий robots.txt.
+# Перенести в корень aldocoppola.ru (объединить с текущим robots.txt Битрикса). Решение по обучающим роботам
+# (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended) — за заказчиком; по умолчанию разрешены.
+
+User-agent: Yandex
+Allow: /kosmetologiya/
+
+User-agent: YandexAdditional
+Allow: /kosmetologiya/
+
+User-agent: YandexAdditionalBot
+Allow: /kosmetologiya/
+
+User-agent: Googlebot
+Allow: /kosmetologiya/
+
+User-agent: Google-Extended
+Allow: /kosmetologiya/
+
+User-agent: OAI-SearchBot
+Allow: /kosmetologiya/
+
+User-agent: ChatGPT-User
+Allow: /kosmetologiya/
+
+User-agent: GPTBot
+Allow: /kosmetologiya/
+
+User-agent: Claude-SearchBot
+Allow: /kosmetologiya/
+
+User-agent: Claude-User
+Allow: /kosmetologiya/
+
+User-agent: ClaudeBot
+Allow: /kosmetologiya/
+
+User-agent: PerplexityBot
+Allow: /kosmetologiya/
+
+User-agent: Perplexity-User
+Allow: /kosmetologiya/
+
+User-agent: Applebot
+Allow: /kosmetologiya/
+
+User-agent: Applebot-Extended
+Allow: /kosmetologiya/
+
+User-agent: *
+Allow: /kosmetologiya/
+
+Sitemap: https://aldocoppola.ru/kosmetologiya/sitemap.xml

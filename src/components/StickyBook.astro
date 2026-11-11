@@ -1,0 +1,12 @@
+---
+// Закреплённая панель внизу: цена «от» + «Записаться» (страница процедуры).
+import { rub } from '../lib/data.js';
+const { name, price, prices, procedure, consult, unit } = Astro.props;
+---
+<div class="acc-stick" data-acc-stick data-prices={JSON.stringify(prices)} hidden>
+  <div class="acc-wrap acc-stick__in">
+    <span class="acc-stick__name">{name}</span>
+    <span class="acc-stick__p"><span class="acc-mono">Цена</span><span data-price data-unit={unit || undefined}>от {rub(price)}{unit && ` ${unit}`}</span></span>
+    <button type="button" class="acc-btn acc-btn--primary" data-book data-procedure={procedure} data-name={name} data-consult={consult ? '1' : undefined}>{consult ? 'Записаться на консультацию' : 'Записаться'}</button>
+  </div>
+</div>

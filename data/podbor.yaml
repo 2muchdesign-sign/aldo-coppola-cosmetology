@@ -1,0 +1,45 @@
+# Правила мастера подбора /podbor/ (ТЗ, раздел 6). Ведут маркетинг и врач.
+# Результат — «варианты для обсуждения с врачом, не диагноз». Контакты до результата не спрашиваем.
+#
+# Шаг 1 — зона. goals — какие цели (goals.yaml) показать на шаге 2.
+areas:
+  - slug: lico
+    name: Лицо
+    hint: Овал, морщины, тон, поры, сияние
+    goals: [gladkaya-kozha-lica, chetkiy-oval, podtyanutyy-podborodok, uprugaya-kozha, svezhiy-vzglyad, rovnyy-ton, chistyy-cvet-lica, nezametnye-pory, siyanie-i-uvlazhnenie, gladkiy-relef, spokoynaya-kozha, matovost, siyanie-pered-vyhodom, ekspress-uhody, podderzhanie-rezultata]
+  - slug: sheya
+    name: Шея и декольте
+    hint: Упругость, тон, морщины
+    goals: [sheya-i-dekolte, uprugaya-kozha, rovnyy-ton, chistyy-cvet-lica]
+  - slug: telo
+    name: Тело
+    hint: Силуэт, целлюлит, упругость, отёки
+    goals: [stroynyy-siluet, gladkaya-kozha-tela, uprugost-tela, legkost, relef-myshc]
+  - slug: epilyaciya
+    name: Гладкая кожа
+    hint: Эпиляция и депиляция
+    goals: [lazernaya-epilyaciya, voskovaya-depilyaciya, suhost-bez-gipergidroza]
+  - slug: samochuvstvie
+    name: Самочувствие
+    hint: Энергия, детокс, расслабление
+    goals: [energiya, detoks, immunitet, rasslablenie]
+
+# Шаг 3 — что важно. Можно несколько.
+#  exclude_directions — убрать направления целиком (факт: инъекции — это инъекции).
+#  exclude / prefer — списки процедур; заполняет врач (пока пусто → на подбор не влияет, только передаётся врачу).
+prefs:
+  - slug: bez-vosstanovleniya
+    name: Без восстановления
+    exclude: []        # TODO врач: процедуры, после которых нужно восстановление
+  - slug: bystryy-effekt
+    name: Быстрый эффект
+    prefer: []         # TODO врач: процедуры с заметным эффектом сразу
+  - slug: bez-inekciy
+    name: Без инъекций
+    exclude_directions: [inekcii, kapelnicy]
+  - slug: byudzhet
+    name: Бюджет до …
+    budgets: [15000, 30000, 60000, 100000]   # фильтр по цене «от» в выбранном салоне
+
+# Ранжирование: сколько выбранных целей закрывает процедура (×3) + prefer (×2) + есть в выбранном салоне (обязательно, если салон выбран).
+max_results: 3

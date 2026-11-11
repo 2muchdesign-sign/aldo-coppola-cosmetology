@@ -1,0 +1,9 @@
+---
+// Навигация карусели в шапке раздела: счётчик + квадратные стрелки. for — id карусели.
+const { for: target, total = 1 } = Astro.props;
+---
+<div class="acc-car__nav" data-acc-carnav={target}>
+  <span class="acc-mono acc-mono--ink acc-car__count">01 / {String(total).padStart(2, '0')}</span>
+  <button type="button" class="acc-sqbtn" data-prev aria-label="Назад">←</button>
+  <button type="button" class="acc-sqbtn" data-next aria-label="Вперёд">→</button>
+</div>

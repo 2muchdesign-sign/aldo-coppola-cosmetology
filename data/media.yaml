@@ -1,0 +1,86 @@
+# Медиа сайта — только материалы заказчика (ТЗ, раздел 8). Ведёт маркетинг.
+# Обработка: node scripts/media/process-media.mjs → public/media/img/*.webp|jpg (640/1024/1600) и public/media/video/*.mp4.
+# key — ключ блока (как MEDIA в «Топ-стилисте»): salon-<slug>, tour-<slug>, device-<slug>, procedure-<slug>, hero.
+# src — путь к исходнику от папки «Claude Code». alt — осмысленное описание для поисковиков и экранных дикторов.
+# Кадры с людьми не берём (нужны согласия).
+
+images:
+  hero:
+    - {src: aldo-coppola-top-stylist-v2/media/guests/vip-vremena.jpg, alt: "Кабинет в салоне Aldo Coppola, ТЦ Времена года", caption: ТЦ Времена года}
+
+  salon-zhukovka:
+    - {src: "Фото салонов/Жуковка (small)/ZHP05133.jpg", alt: "Салон Aldo Coppola в Жуковке, фасад", caption: Фасад}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05340.jpg", alt: "Кабинет косметологии в Жуковке", caption: Кабинет косметологии}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05393.jpg", alt: "Аппарат CoolSculpting в кабинете косметологии, Жуковка", caption: CoolSculpting}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05382.jpg", alt: "Кабинет для процедур, Жуковка", caption: Кабинет}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05370.jpg", alt: "Аппаратный кабинет, Жуковка", caption: Аппаратный кабинет}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05391.jpg", alt: "Кабинет косметологии с аппаратом, Жуковка", caption: Кабинет}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05326.jpg", alt: "SPA-зона салона в Жуковке", caption: SPA-зона}
+    - {src: "Фото салонов/Жуковка (small)/ZHP05242.jpg", alt: "Зона отдыха для клиентов, Жуковка", caption: Зона отдыха}
+
+  salon-barvikha:
+    - {src: "Фото салонов/Барвиха (small)/ZHP04326.jpg", alt: "Салон Aldo Coppola в Барвихе, фасад", caption: Фасад}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04169.jpg", alt: "Кабинет косметологии в Барвихе", caption: Кабинет косметологии}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04166.jpg", alt: "Аппаратный кабинет, Барвиха", caption: Аппаратный кабинет}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04197.jpg", alt: "Кабинет для процедур, Барвиха", caption: Кабинет}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04255.jpg", alt: "Кабинет косметологии с аппаратом, Барвиха", caption: Кабинет}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04059.jpg", alt: "Ресепшн салона в Барвихе", caption: Ресепшн}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04070.jpg", alt: "Зона ожидания, Барвиха", caption: Зона ожидания}
+    - {src: "Фото салонов/Барвиха (small)/ZHP04240.jpg", alt: "Уходовая косметика, Барвиха", caption: Детали}
+
+  salon-veb-rf:
+    - {src: "Фото салонов/Новинский (small)/ZHP04838.jpg", alt: "Ресепшн салона Aldo Coppola в БЦ ВЭБ РФ", caption: Ресепшн}
+    - {src: "Фото салонов/Новинский (small)/ZHP04976.jpg", alt: "Аппаратный кабинет, БЦ ВЭБ РФ", caption: Аппаратный кабинет}
+    - {src: "Фото салонов/Новинский (small)/ZHP05012.jpg", alt: "Кабинет косметологии, БЦ ВЭБ РФ", caption: Кабинет косметологии}
+    - {src: "Фото салонов/Новинский (small)/ZHP04978.jpg", alt: "Кабинет для процедур, БЦ ВЭБ РФ", caption: Кабинет}
+    - {src: "Фото салонов/Новинский (small)/ZHP04983.jpg", alt: "Кабинет с креслом для процедур, БЦ ВЭБ РФ", caption: Кабинет}
+    - {src: "Фото салонов/Новинский (small)/ZHP05037.jpg", alt: "SPA-кабинет, БЦ ВЭБ РФ", caption: SPA-кабинет}
+    - {src: "Фото салонов/Новинский (small)/ZHP04954.jpg", alt: "Зона ожидания, БЦ ВЭБ РФ", caption: Зона ожидания}
+    - {src: "Фото салонов/Новинский (small)/ZHP04993.jpg", alt: "Детали кабинета, БЦ ВЭБ РФ", caption: Детали}
+
+  salon-vremena-goda:
+    - {src: "Фото салонов/Времена года (small)/ZHP04613.jpg", alt: "Вход в салон Aldo Coppola, ТЦ Времена года", caption: Вход}
+    - {src: "Фото салонов/Времена года (small)/ZHP04820.jpg", alt: "Кабинет косметологии, ТЦ Времена года", caption: Кабинет косметологии}
+    - {src: "Фото салонов/Времена года (small)/ZHP04779.jpg", alt: "Аппаратный кабинет, ТЦ Времена года", caption: Аппаратный кабинет}
+    - {src: "Фото салонов/Времена года (small)/ZHP04801.jpg", alt: "Кабинет для процедур, ТЦ Времена года", caption: Кабинет}
+    - {src: "Фото салонов/Времена года (small)/ZHP04780.jpg", alt: "Аппарат в кабинете косметологии, ТЦ Времена года", caption: Аппарат}
+    - {src: "Фото салонов/Времена года (small)/ZHP04635.jpg", alt: "Ресепшн, ТЦ Времена года", caption: Ресепшн}
+    - {src: "Фото салонов/Времена года (small)/ZHP04728.jpg", alt: "Уходовая косметика, ТЦ Времена года", caption: Детали}
+    - {src: "Фото салонов/Времена года (small)/ZHP04826.jpg", alt: "Коридор салона, ТЦ Времена года", caption: Интерьер}
+
+  salon-unimall:
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04348.jpg", alt: "Ресепшн салона Aldo Coppola в Юнимолле", caption: Ресепшн}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04497.jpg", alt: "Кабинет косметологии, Юнимолл", caption: Кабинет косметологии}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04508.jpg", alt: "Аппарат HydraFacial в кабинете косметологии, Юнимолл", caption: HydraFacial}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04493.jpg", alt: "Аппаратный кабинет, Юнимолл", caption: Аппаратный кабинет}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04515.jpg", alt: "Кабинет для процедур, Юнимолл", caption: Кабинет}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04407.jpg", alt: "Уходовая косметика, Юнимолл", caption: Детали}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04367.jpg", alt: "Логотип Aldo Coppola в салоне Юнимолл", caption: Интерьер}
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04452.jpg", alt: "Зал салона, Юнимолл", caption: Зал}
+
+  salon-boscovesna:   # отдельной фотосъёмки нет — кадры из «Топ-стилиста»
+    - {src: aldo-coppola-top-stylist-v2/media/salons/vesna-1.jpg, alt: "Салон Aldo Coppola в ТЦ BoscoVesna", caption: Салон}
+    - {src: aldo-coppola-top-stylist-v2/media/salons/vesna-2.jpg, alt: "Интерьер салона, ТЦ BoscoVesna", caption: Интерьер}
+    - {src: aldo-coppola-top-stylist-v2/media/salons/vesna-3.jpg, alt: "Зона салона, ТЦ BoscoVesna", caption: Интерьер}
+
+  salon-lotte:   # косметологии нет — без кабинетов
+    - {src: "Фото салонов/Лотте (small)/ZHP05058.jpg", alt: "Вход в салон Aldo Coppola, Лотте Отель", caption: Вход}
+    - {src: "Фото салонов/Лотте (small)/ZHP05068.jpg", alt: "Ресепшн, Лотте Отель", caption: Ресепшн}
+    - {src: "Фото салонов/Лотте (small)/ZHP05074.jpg", alt: "Зал салона, Лотте Отель", caption: Зал}
+    - {src: "Фото салонов/Лотте (small)/ZHP05103.jpg", alt: "Зона мойки, Лотте Отель", caption: Интерьер}
+
+  device-coolsculpting:
+    - {src: "Фото салонов/Жуковка (small)/ZHP05393.jpg", alt: "Аппарат CoolSculpting в кабинете косметологии, Жуковка", caption: Жуковка}
+  device-hydrafacial:
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04508.jpg", alt: "Аппарат HydraFacial в кабинете косметологии, Юнимолл", caption: Юнимолл}
+  procedure-kriolipoliz:
+    - {src: "Фото салонов/Жуковка (small)/ZHP05393.jpg", alt: "Криолиполиз: аппарат CoolSculpting в кабинете, Жуковка", caption: CoolSculpting · Жуковка}
+  procedure-apparatnoe-ochishchenie:
+    - {src: "Фото салонов/Юнимолл (small)/ZHP04508.jpg", alt: "Аппаратное очищение: HydraFacial в кабинете, Юнимолл", caption: HydraFacial · Юнимолл}
+
+videos:
+  tour-zhukovka: {src: aldo-coppola-top-stylist-v2/media/tour/zhukovka.mp4, poster: aldo-coppola-top-stylist-v2/media/tour/zhukovka.jpg, alt: "Видеотур по салону Aldo Coppola в Жуковке"}
+  tour-barvikha: {src: aldo-coppola-top-stylist-v2/media/tour/barvikha.mp4, poster: aldo-coppola-top-stylist-v2/media/tour/barvikha.jpg, alt: "Видеотур по салону Aldo Coppola в Барвихе"}
+  tour-veb-rf: {src: aldo-coppola-top-stylist-v2/media/tour/novinsky.mp4, poster: aldo-coppola-top-stylist-v2/media/tour/novinsky.jpg, alt: "Видеотур по салону Aldo Coppola в БЦ ВЭБ РФ"}
+  tour-boscovesna: {src: aldo-coppola-top-stylist-v2/media/tour/vesna.mp4, poster: aldo-coppola-top-stylist-v2/media/tour/vesna.jpg, alt: "Видеотур по салону Aldo Coppola в ТЦ BoscoVesna"}
+  tour-unimall: {src: aldo-coppola-top-stylist-v2/media/tour/unimall.mp4, poster: aldo-coppola-top-stylist-v2/media/tour/unimall.jpg, alt: "Видеотур по салону Aldo Coppola в Юнимолле"}

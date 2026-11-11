@@ -1,0 +1,51 @@
+---
+// Аппараты A–Z, фильтр по технологии
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SalonDots from '../../components/SalonDots.astro';
+import Media from '../../components/Media.astro';
+import { DEVICES, METHOD_LABEL, rub, u } from '../../lib/data.js';
+import { HINTS, deviceMedia } from '../../lib/media.js';
+import { serviceRows, priceSpan, salonsOfDevice, site } from '../../lib/pages.js';
+const list = [...DEVICES].sort((a, b) => a.name.localeCompare(b.name, 'en'));
+const techs = [...new Set(list.map(d => d.technology))];
+const letters = [...new Set(list.map(d => d.name[0].toUpperCase()))];
+const ld = [{ '@context': 'https://schema.org', '@type': 'ItemList', name: 'Аппараты косметологии Aldo Coppola',
+  itemListElement: list.map((d, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `apparaty/${d.slug}/`, name: d.name })) }];
+---
+<Base title={`Аппараты косметологии — ${list.length} аппаратов в салонах Aldo Coppola`} description={`Аппараты косметологии Aldo Coppola: ${list.map(d => d.name).join(', ')}.`} current="apparaty" jsonld={ld} breadcrumbs={[['Аппараты', 'apparaty/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Аппараты']]} />
+      <h1 class="acc-h1">Аппараты <span class="acc-it acc-it--red">A–Z</span></h1>
+      <p class="acc-lead">{list.length} аппаратов в салонах сети. Выберите технологию — останутся только подходящие.</p>
+      <div class="acc-chips" data-acc-techf>
+        <button type="button" class="acc-chip" data-tech="" aria-pressed="true">Все</button>
+        {techs.map(t => <button type="button" class="acc-chip" data-tech={t} aria-pressed="false">{METHOD_LABEL[t]} <span class="acc-chip__n">{list.filter(d => d.technology === t).length}</span></button>)}
+      </div>
+    </header>
+    <div class="acc-devs" data-acc-devs>
+      {letters.map(L => (
+        <>
+          <h2 class="acc-letter" data-letter>{L}</h2>
+          {list.filter(d => d.name[0].toUpperCase() === L).map(d => { const [lo] = priceSpan(serviceRows(s => s.device === d.slug)); return (
+            <article class="acc-dev" data-tech={d.technology}>
+              <Media item={deviceMedia(d)[0].src ? deviceMedia(d)[0] : HINTS.device(d.name)[1]} sizes="(max-width: 899px) 50vw, 25vw" />
+              <span class="acc-chip acc-chip--sm acc-chip--static" style="align-self:flex-start">{METHOD_LABEL[d.technology]}</span>
+              <h3 class="acc-dev__n"><a href={u(`apparaty/${d.slug}/`)}>{d.name}</a></h3>
+              <span class="acc-mono">{d.country && d.country !== 'TODO' ? d.country : ''}</span>
+              <div style="display:flex;justify-content:space-between;align-items:center"><SalonDots salons={salonsOfDevice(d)} size="sm" /><span>от {rub(lo)}</span></div>
+            </article>
+          ); })}
+        </>
+      ))}
+    </div>
+  </div>
+  <div style="height:96px"></div>
+  <script is:inline>
+    (function(){var f=document.querySelector('[data-acc-techf]');if(!f)return;f.addEventListener('click',function(e){var b=e.target.closest('[data-tech]');if(!b)return;var t=b.getAttribute('data-tech');
+    f.querySelectorAll('[data-tech]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    document.querySelectorAll('.acc-dev').forEach(function(d){d.hidden=!!t&&d.getAttribute('data-tech')!==t});
+    document.querySelectorAll('[data-letter]').forEach(function(h){var n=h.nextElementSibling,any=false;while(n&&!n.hasAttribute('data-letter')){if(!n.hidden)any=true;n=n.nextElementSibling}h.hidden=!any});});})();
+  </script>
+</Base>

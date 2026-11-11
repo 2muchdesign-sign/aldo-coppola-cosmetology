@@ -1,0 +1,125 @@
+# Салоны сети Aldo Coppola. Ведёт маркетинг.
+# Названия — строго по правилам ТЗ (раздел 0). Порядок списка = порядок точек в индикаторе салонов.
+# TODO — данных пока нет, заполнит заказчик.
+# Адреса, телефоны и ссылки YClients — от заказчика (Адреса салонов.rtf, Ссылки на YClients.rtf, 11.11.2026).
+- slug: zhukovka
+  name: Жуковка
+  short: Жук
+  address: "Рублёво-Успенское шоссе, д. 204"
+  region: Московская область
+  geo: TODO            # широта, долгота
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 641-31-10"
+  phone_mobile: "+7 905 590-69-14"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237624.yclients.com"
+  yclients_branch: 1132900
+  price_file: Жуковка.xls
+  has_cosmetology: true
+  photos: [salons/zhukovka-1.jpg, salons/zhukovka-2.jpg, salons/zhukovka-3.jpg]
+  tour: tour/zhukovka.mp4
+- slug: barvikha
+  name: Барвиха
+  short: Бар
+  address: "Рублёво-Успенское шоссе, д. 114, «Барвиха Luxury Village»"
+  region: Московская область
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 726-55-18"
+  phone_mobile: "+7 905 591-39-36"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237619.yclients.com"
+  yclients_branch: 1132895
+  price_file: Барвиха.xls
+  has_cosmetology: true
+  photos: [salons/barvikha-photo-1.jpg, salons/barvikha-photo-2.jpg, salons/barvikha-photo-3.jpg]
+  tour: tour/barvikha.mp4
+- slug: veb-rf
+  name: БЦ ВЭБ РФ
+  short: ВЭБ
+  address: "Новинский бульвар, д. 31, БЦ «ВЭБ Центр», 2 этаж"
+  region: Москва
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 258-87-79"
+  phone_mobile: "+7 905 591-97-53"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237626.yclients.com"
+  yclients_branch: 1132902
+  price_file: Новинский.xls
+  has_cosmetology: true
+  photos: [salons/novinsky-photo-1.jpg, salons/novinsky-photo-2.jpg, salons/novinsky-photo-3.jpg]
+  tour: tour/novinsky.mp4
+- slug: vremena-goda
+  name: ТЦ Времена года
+  short: ВГ
+  address: "Кутузовский проспект, д. 48, Галереи «Времена года», 3 этаж"
+  region: Москва
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 775-96-97"
+  phone_mobile: "+7 905 591-46-31"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237622.yclients.com"
+  yclients_branch: 1132899
+  price_file: Времена года.xls
+  has_cosmetology: true
+  photos: [salons/vremena-photo-1.jpg, salons/vremena-photo-2.jpg, salons/vremena-photo-3.jpg]
+  tour: null           # видеотура нет
+- slug: boscovesna
+  name: ТЦ BoscoVesna
+  short: BV
+  address: "Новый Арбат, д. 19, стр. 1, ТЦ «BoscoVesna», −1 этаж"
+  region: Москва
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 783-73-73"
+  phone_mobile: "+7 905 591-97-52"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237621.yclients.com"
+  yclients_branch: 1132897
+  price_file: Весна.xls
+  has_cosmetology: true
+  photos: [salons/vesna-1.jpg, salons/vesna-2.jpg, salons/vesna-3.jpg]
+  tour: tour/vesna.mp4
+- slug: unimall
+  name: Юнимолл
+  short: Юни
+  address: "Новорижское шоссе, 6 км от МКАД, ТК «Юнимолл», 1 этаж"
+  region: Московская область
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 640-18-77"
+  phone_mobile: "+7 905 590-53-71"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237627.yclients.com"
+  yclients_branch: 1132903
+  price_file: Юнимолл.xls
+  has_cosmetology: true
+  photos: [salons/unimall-1.jpg, salons/unimall-2.jpg, salons/unimall-3.jpg]
+  tour: tour/unimall.mp4
+- slug: lotte
+  name: Лотте Отель
+  short: Лот
+  address: "Новинский бульвар, д. 8/2, Lotte Hotel, −1 этаж"
+  region: Москва
+  geo: TODO
+  metro: TODO
+  parking: TODO
+  hours: TODO
+  phone: "+7 495 558-61-88"
+  phone_mobile: "+7 965 237-88-98"   # WhatsApp — на этом номере (заказчик, 11.11.2026)
+  booking_url: "https://n1237625.yclients.com"
+  yclients_branch: 1132901
+  price_file: Лотте.xls
+  has_cosmetology: false
+  note: "Косметологии в этом салоне нет — ближайший: БЦ ВЭБ РФ"
+  nearest: veb-rf
+  photos: [salons/lotte-1.jpg, salons/lotte-2.jpg, salons/lotte-3.jpg]
+  tour: null

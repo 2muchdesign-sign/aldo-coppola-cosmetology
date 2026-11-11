@@ -1,0 +1,105 @@
+---
+// 7.5. Салон
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Carousel from '../../components/Carousel.astro';
+import CarouselNav from '../../components/CarouselNav.astro';
+import Catalog from '../../components/Catalog.astro';
+import Short from '../../components/Short.astro';
+import { SALONS, SALON, METHOD_LABEL, rub, u, priceUnit, procedurePrices } from "../../lib/data.js";
+import { MEDIA } from '../../lib/media.js';
+import { procsOfSalon, devicesOfSalon, salonLD, inSalon, listAnd, plural, site } from '../../lib/pages.js';
+
+export function getStaticPaths() { return SALONS.map(s => ({ params: { slug: s.slug }, props: { s } })); }
+const { s } = Astro.props;
+const procs = procsOfSalon(s.slug);
+const devs = devicesOfSalon(s.slug);
+const photos = MEDIA[`salon-${s.slug}`] || [];
+const tour = MEDIA[`tour-${s.slug}`]?.[0];
+const items = [...(tour ? [{ ...tour, caption: 'Видеотур по салону' }] : []), ...photos];
+const nearest = s.nearest ? SALON[s.nearest] : null;
+const known = v => v && v !== 'TODO';
+const own = procs.filter(p => !priceUnit(p.slug)).map(p => procedurePrices(p.slug)[s.slug]).filter(v => v != null);
+const from = own.length ? Math.min(...own) : null; // «от» именно этого салона, без поштучных позиций
+const short = s.has_cosmetology
+  ? `Салон Aldo Coppola ${inSalon(s.slug)} — ${s.address}. Здесь доступны ${procs.length} ${plural(procs.length, 'процедура', 'процедуры', 'процедур')} косметологии${devs.length ? ` и ${devs.length} ${plural(devs.length, 'аппарат', 'аппарата', 'аппаратов')}: ${listAnd(devs.slice(0, 6).map(d => d.name))}${devs.length > 6 ? ' и другие' : ''}` : ''}. Цены — от ${rub(from)}. Запись онлайн или по телефону ${s.phone}.`
+  : `Лотте Отель — салон Aldo Coppola на Новинском бульваре. Косметологии в этом салоне нет — ближайший центр косметологии: ${nearest?.name}, ${nearest?.address}.`;
+const jsonld = [{ ...salonLD(s), hasOfferCatalog: s.has_cosmetology ? { '@type': 'OfferCatalog', name: 'Косметология', itemListElement: procs.map(p => ({ '@type': 'Offer', itemOffered: { '@type': 'MedicalProcedure', name: p.name }, url: site() + `procedury/${p.slug}/?salon=${s.slug}` })) } : undefined }];
+---
+<Base title={`Aldo Coppola ${s.name} — косметология, адрес, цены`} description={`${s.name}: ${s.address}, ${s.phone}. ${s.has_cosmetology ? `${procs.length} процедур косметологии, цены от ${rub(from).replace(/ /g, ' ')}.` : 'Косметологии нет — ближайший центр: БЦ ВЭБ РФ.'}`} current="salony" jsonld={jsonld} breadcrumbs={[['Салоны', 'salony/'], [s.name, `salony/${s.slug}/`]]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Салоны', 'salony/'], [s.name]]} />
+      <span class="acc-mono">{s.region} · {s.has_cosmetology ? 'центр косметологии' : 'без косметологии'}</span>
+      <div class="acc-phead__row">
+        <h1 class="acc-h1">{s.name.split(' ').length > 1 ? <>{s.name.split(' ').slice(0, -1).join(' ')} <span class="acc-it acc-it--red">{s.name.split(' ').at(-1)}</span></> : <span class="acc-it acc-it--red">{s.name}</span>}</h1>
+        <div class="acc-phero__cta" data-acc-hero-cta>
+          {s.has_cosmetology ? <button type="button" class="acc-btn acc-btn--primary acc-btn--lg" data-book data-salon={s.slug} data-name={`Aldo Coppola ${s.name}`}>Записаться в этот салон</button>
+            : nearest && <a class="acc-btn acc-btn--primary acc-btn--lg" href={u(`salony/${nearest.slug}/`)}>Ближайший: {nearest.name}</a>}
+          <a class="acc-btn acc-btn--secondary acc-btn--lg" href={`tel:${s.phone.replace(/[^\d+]/g, '')}`} data-goal="phone_click">{s.phone}</a>
+        </div>
+      </div>
+    </header>
+  </div>
+  {items.length > 0 && (
+    <section>
+      <div class="acc-wrap">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:16px"><CarouselNav for="acc-salon-media" total={items.length} /></div>
+        <Carousel id="acc-salon-media" items={items} ratio="16 / 9" label={`Салон ${s.name}: фото и видеотур`} />
+      </div>
+    </section>
+  )}
+  <div class="acc-wrap" style="margin-top:56px"><Short text={short} /></div>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="01" label="Как добраться">Адрес и <span class="acc-it">контакты</span></SectionHead>
+      <div class="acc-sinfo">
+        <div><span class="acc-mono">Адрес</span><span>{s.address}</span></div>
+        <div><span class="acc-mono">Телефон</span><a href={`tel:${s.phone.replace(/[^\d+]/g, '')}`}>{s.phone}</a></div>
+        <div><span class="acc-mono">WhatsApp</span>{s.phone_mobile ? <a href={`https://wa.me/${s.phone_mobile.replace(/\D/g, '')}`} target="_blank" rel="noopener" data-goal="whatsapp_click">{s.phone_mobile}</a> : '—'}</div>
+        <div><span class="acc-mono">Часы работы</span><span class={known(s.hours) ? '' : 'acc-muted'}>{known(s.hours) ? s.hours : '[уточняется]'}</span></div>
+        <div><span class="acc-mono">Метро</span><span class={known(s.metro) ? '' : 'acc-muted'}>{known(s.metro) ? s.metro : '[уточняется]'}</span></div>
+        <div><span class="acc-mono">Парковка</span><span class={known(s.parking) ? '' : 'acc-muted'}>{known(s.parking) ? s.parking : '[уточняется]'}</span></div>
+      </div>
+      <div class="acc-map acc-ph" style="margin-top:32px">
+        <span class="acc-mono" style="position:relative;z-index:1">Карта не загружается, пока вы её не откроете</span>
+        <button type="button" class="acc-btn acc-btn--secondary" style="position:relative;z-index:1" data-acc-map={`Москва, ${s.address}`} data-title={s.name}>Показать на Яндекс Картах</button>
+      </div>
+    </div>
+  </section>
+
+  {s.has_cosmetology ? (
+    <section class="acc-sec acc-sec--tight">
+      <div class="acc-wrap">
+        <SectionHead num="02" label="Процедуры">Процедуры <span class="acc-it">{inSalon(s.slug)}</span></SectionHead>
+        <Catalog procedures={procs} fixed={{ salon: s.slug }} />
+      </div>
+    </section>
+  ) : (
+    <section class="acc-sec acc-sec--tight">
+      <div class="acc-wrap">
+        <SectionHead num="02" label="Косметология">Косметологии здесь <span class="acc-it">нет</span></SectionHead>
+        <p class="acc-lead">Ближайший центр косметологии — <a class="acc-link" href={u(`salony/${nearest.slug}/`)}>{nearest.name}, {nearest.address}</a>.</p>
+      </div>
+    </section>
+  )}
+
+  {devs.length > 0 && (
+    <section class="acc-sec acc-sec--mist">
+      <div class="acc-wrap">
+        <SectionHead num="03" label="Аппараты">Аппараты <span class="acc-it">{inSalon(s.slug)}</span></SectionHead>
+        <div class="acc-chips">{devs.map(d => <a class="acc-chip" href={u(`apparaty/${d.slug}/`)}>{d.name} <span class="acc-chip__n">{METHOD_LABEL[d.technology]}</span></a>)}</div>
+        <p class="acc-note">Приезжают по графику: [график перевозимых аппаратов — уточняется].</p>
+      </div>
+    </section>
+  )}
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap">
+      <SectionHead num="04" label="Врачи">Врачи <span class="acc-it">салона</span></SectionHead>
+      <div class="acc-doc" data-todo="doctors"><div class="acc-doc__ph acc-ph"></div><p class="acc-muted">Врачи, принимающие в салоне {s.name}, появятся после получения данных.</p></div>
+    </div>
+  </section>
+</Base>

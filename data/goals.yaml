@@ -1,0 +1,212 @@
+# Цели (страницы /celi/<slug>/). Название — результат, без слов «проблемы»/«недостатки».
+# terms — клинические слова, которыми это ищут: идут в SEO-title, текст, FAQ и синонимы поиска (не в навигацию).
+# procedures — ЧЕРНОВИК связок, предложен по составу прайса; утверждает врач.
+# status: draft — до проверки врачом. summary / text / faq — TODO (врач + маркетинг).
+groups:
+  - {slug: molodost-i-tonus, name: Молодость и тонус}
+  - {slug: rovnyy-ton-i-siyanie, name: Ровный тон и сияние}
+  - {slug: chistaya-kozha, name: Чистая кожа}
+  - {slug: kontury-tela, name: Контуры тела}
+  - {slug: gladkaya-kozha, name: Гладкая кожа}
+  - {slug: energiya-i-vosstanovlenie, name: Энергия и восстановление}
+  - {slug: k-vazhnomu-sobytiyu, name: К важному событию}
+  - {slug: profilaktika-i-uhod, name: Профилактика и уход}
+
+goals:
+# --- Молодость и тонус ---
+- slug: gladkaya-kozha-lica
+  name: Гладкая кожа
+  group: molodost-i-tonus
+  terms: [морщины, мимические морщины, носогубные складки]
+  zones: [lico, glaza]
+  procedures: [botulinoterapiya, konturnaya-plastika, biorevitalizaciya-i-mezoterapiya, lazernoe-omolozhenie, mikroigolchatyy-rf-lifting, plazmennoe-omolozhenie]
+- slug: chetkiy-oval
+  name: Чёткий овал
+  group: molodost-i-tonus
+  terms: [брыли, потеря овала, птоз нижней трети лица]
+  zones: [oval, lico]
+  procedures: [smas-lifting-hifu, mikroigolchatyy-rf-lifting, rf-lifting, nitevoy-lifting, konturnaya-plastika, rf-liposakciya-podborodka]
+- slug: podtyanutyy-podborodok
+  name: Подтянутый подбородок
+  group: molodost-i-tonus
+  terms: [второй подбородок]
+  zones: [oval]
+  procedures: [smas-lifting-hifu, rf-liposakciya-podborodka, mikroigolchatyy-rf-lifting, lipolitiki]
+- slug: uprugaya-kozha
+  name: Упругая кожа
+  group: molodost-i-tonus
+  terms: [дряблость, птоз, потеря упругости]
+  zones: [lico, sheya]
+  procedures: [smas-lifting-hifu, rf-lifting, mikroigolchatyy-rf-lifting, infrakrasnyy-termolifting, biorevitalizaciya-i-mezoterapiya, plazmoterapiya, sprs-terapiya, nitevoy-lifting, mikrotoki-i-miostimulyaciya]
+- slug: svezhiy-vzglyad
+  name: Свежий взгляд
+  group: molodost-i-tonus
+  terms: [веки, зона вокруг глаз, тёмные круги, отёки под глазами]
+  zones: [glaza]
+  procedures: [smas-lifting-hifu, lazernoe-omolozhenie, biorevitalizaciya-i-mezoterapiya, uhody-sodashi]
+- slug: sheya-i-dekolte
+  name: Подтянутые шея и декольте
+  group: molodost-i-tonus
+  terms: [морщины на шее, кольца Венеры, дряблость шеи]
+  zones: [sheya, dekolte]
+  procedures: [smas-lifting-hifu, rf-lifting, mikroigolchatyy-rf-lifting, fotoomolozhenie, biorevitalizaciya-i-mezoterapiya]
+# --- Ровный тон и сияние ---
+- slug: rovnyy-ton
+  name: Ровный тон
+  group: rovnyy-ton-i-siyanie
+  terms: [пигментация, пигментные пятна, веснушки]
+  zones: [lico, dekolte]
+  procedures: [fotoomolozhenie, lazernoe-omolozhenie, pilingi, uhody-jan-marini]
+- slug: chistyy-cvet-lica
+  name: Чистый цвет лица
+  group: rovnyy-ton-i-siyanie
+  terms: [сосуды, купероз, покраснения, розацеа]
+  zones: [lico]
+  procedures: [fotoomolozhenie, lazernoe-omolozhenie]
+- slug: nezametnye-pory
+  name: Незаметные поры
+  group: rovnyy-ton-i-siyanie
+  terms: [расширенные поры]
+  zones: [lico]
+  procedures: [apparatnoe-ochishchenie, mikroigolchatyy-rf-lifting, lazernoe-omolozhenie, pilingi]
+- slug: siyanie-i-uvlazhnenie
+  name: Сияние и увлажнение
+  group: rovnyy-ton-i-siyanie
+  terms: [тусклость, обезвоженность, сухость кожи]
+  zones: [lico]
+  procedures: [apparatnoe-ochishchenie, biorevitalizaciya-i-mezoterapiya, rf-lifting, uhody-111skin, uhody-qms, uhody-cellcosmet, uhody-sodashi]
+- slug: gladkiy-relef
+  name: Гладкий рельеф
+  group: rovnyy-ton-i-siyanie
+  terms: [рубцы, постакне, шрамы, неровный рельеф]
+  zones: [lico, telo]
+  procedures: [mikroigolchatyy-rf-lifting, lazernoe-omolozhenie, plazmennoe-omolozhenie, korrekciya-rubcov, pilingi]
+# --- Чистая кожа ---
+- slug: spokoynaya-kozha
+  name: Спокойная кожа
+  group: chistaya-kozha
+  terms: [акне, воспаления, прыщи]
+  zones: [lico]
+  procedures: [lechenie-akne, fotodinamicheskaya-terapiya, apparatnoe-ochishchenie, pilingi, uhody-111skin]
+- slug: matovost
+  name: Матовость
+  group: chistaya-kozha
+  terms: [жирная кожа, жирный блеск]
+  zones: [lico]
+  procedures: [apparatnoe-ochishchenie, pilingi, uhody-jan-marini]
+# --- Контуры тела ---
+- slug: stroynyy-siluet
+  name: Стройный силуэт
+  group: kontury-tela
+  terms: [жировые отложения, галифе, живот, бока]
+  zones: [zhivot, boka, bedra]
+  procedures: [kriolipoliz, hifu-tela, rf-lifting-tela, lipolitiki, vakuumnyy-massazh-tela]
+- slug: gladkaya-kozha-tela
+  name: Гладкая кожа тела
+  group: kontury-tela
+  terms: [целлюлит, апельсиновая корка]
+  zones: [bedra, yagodicy]
+  procedures: [vakuumnyy-massazh-tela, rf-lifting-tela, pressoterapiya, obertyvaniya, massazh]
+- slug: uprugost-tela
+  name: Упругость тела
+  group: kontury-tela
+  terms: [дряблость кожи тела, растяжки]
+  zones: [zhivot, ruki, bedra]
+  procedures: [rf-lifting-tela, hifu-tela, biorevitalizaciya-i-mezoterapiya]
+- slug: legkost
+  name: Лёгкость
+  group: kontury-tela
+  terms: [отёки, лимфодренаж, тяжесть в ногах]
+  zones: [nogi, telo]
+  procedures: [pressoterapiya, vakuumnyy-massazh-tela, massazh]
+- slug: relef-myshc
+  name: Рельеф мышц
+  group: kontury-tela
+  terms: [тонус мышц, миостимуляция]
+  zones: [zhivot, yagodicy, ruki]
+  procedures: [miostimulyaciya-tela, magnitoterapiya]
+# --- Гладкая кожа (эпиляция) ---
+- slug: lazernaya-epilyaciya
+  name: Лазерная эпиляция
+  group: gladkaya-kozha
+  terms: [удаление волос, нежелательные волосы, эпиляция для мужчин]
+  zones: [lico, bikini, podmyshki, nogi, ruki, spina]
+  procedures: [lazernaya-epilyaciya]
+- slug: voskovaya-depilyaciya
+  name: Восковая депиляция
+  group: gladkaya-kozha
+  terms: [депиляция воском, шугаринг]
+  zones: [bikini, nogi, ruki, podmyshki]
+  procedures: [voskovaya-depilyaciya]
+- slug: suhost-bez-gipergidroza
+  name: Сухость без пота
+  group: gladkaya-kozha
+  terms: [гипергидроз, потливость]
+  zones: [podmyshki]
+  procedures: [lechenie-gipergidroza]
+  status_note: "В черновике ТЗ этой цели нет — предложена, т. к. в прайсе есть «Лечение гипергидроза». Подтвердить или убрать."
+# --- Энергия и восстановление ---
+- slug: energiya
+  name: Энергия
+  group: energiya-i-vosstanovlenie
+  terms: [усталость, хроническая усталость]
+  zones: [telo]
+  procedures: [kapelnicy]
+- slug: detoks
+  name: Детокс
+  group: energiya-i-vosstanovlenie
+  terms: [выведение токсинов]
+  zones: [telo]
+  procedures: [kapelnicy, obertyvaniya, pressoterapiya]
+- slug: immunitet
+  name: Иммунитет
+  group: energiya-i-vosstanovlenie
+  terms: [укрепление иммунитета]
+  zones: [telo]
+  procedures: [kapelnicy]
+- slug: rasslablenie
+  name: Расслабление
+  group: energiya-i-vosstanovlenie
+  terms: [массаж, SPA-уход, стресс]
+  zones: [telo, lico]
+  procedures: [massazh, obertyvaniya, face-fitness, uhody-sodashi]
+# --- К важному событию ---
+- slug: siyanie-pered-vyhodom
+  name: Сияние перед выходом
+  group: k-vazhnomu-sobytiyu
+  terms: [перед мероприятием, перед свадьбой]
+  zones: [lico]
+  procedures: [apparatnoe-ochishchenie, uhody-111skin, mikrotoki-i-miostimulyaciya, face-fitness]
+- slug: ekspress-uhody
+  name: Экспресс-уходы
+  group: k-vazhnomu-sobytiyu
+  terms: [быстрый уход, уход за 30 минут]
+  zones: [lico]
+  procedures: [uhody-sodashi, muzhskie-uhody, face-fitness]
+- slug: vyhod-v-svet
+  name: Ultraformer «Выход в свет»
+  group: k-vazhnomu-sobytiyu
+  terms: [лифтинг перед событием]
+  zones: [lico, sheya, dekolte]
+  procedures: [smas-lifting-hifu]
+  services: [18322513]   # конкретная услуга прайса «Ultraformer МРТ "Выход в свет"»
+# --- Профилактика и уход ---
+- slug: podderzhanie-rezultata
+  name: Поддержание результата
+  group: profilaktika-i-uhod
+  terms: [поддерживающий уход, после процедур]
+  zones: [lico]
+  procedures: [uhody-111skin, uhody-qms, uhody-cellcosmet, avtorskiy-uhod, mikrotoki-i-miostimulyaciya]
+- slug: uhod-po-sezonu
+  name: Уход по сезону
+  group: profilaktika-i-uhod
+  terms: [осенний уход, зимний уход, уход летом]
+  zones: [lico]
+  procedures: [pilingi, uhody-jan-marini, uhody-qms]
+- slug: domashniy-uhod-111skin
+  name: Домашний уход 111SKIN
+  group: profilaktika-i-uhod
+  terms: [домашний уход, косметика 111SKIN]
+  zones: [lico]
+  procedures: [uhody-111skin]
+  status_note: "Домашней косметики 111SKIN в прайсах нет (только уходы и маски в салоне). Подтвердить, что именно показывать."

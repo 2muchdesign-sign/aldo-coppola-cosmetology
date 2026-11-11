@@ -1,0 +1,29 @@
+---
+// Зона: каталог с фильтром
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Catalog from '../../components/Catalog.astro';
+import { PROCEDURES, ZONES, rub, u, fromPrice } from "../../lib/data.js";
+import { site } from '../../lib/pages.js';
+export function getStaticPaths() { return ZONES.filter(z => PROCEDURES.some(p => p.zones.includes(z.slug))).map(z => ({ params: { slug: z.slug }, props: { z } })); }
+const { z } = Astro.props;
+const list = PROCEDURES.filter(p => p.zones.includes(z.slug));
+const from = fromPrice(list);
+const ld = [{ '@context': 'https://schema.org', '@type': 'ItemList', name: `Косметология: ${z.name}`,
+  itemListElement: list.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `procedury/${p.slug}/`, name: p.name })) }];
+const others = ZONES.filter(x => x.body === z.body && x.slug !== z.slug && PROCEDURES.some(p => p.zones.includes(x.slug)));
+const words = z.name.split(' ');
+---
+<Base title={`${z.name}: процедуры косметологии и цены | Aldo Coppola`} description={`Процедуры для зоны «${z.name}» в салонах Aldo Coppola: ${list.length} процедур, цены от ${rub(from).replace(/ /g, ' ')}.`} current="procedury" jsonld={ld} breadcrumbs={[['Зоны', 'zony/'], [z.name, `zony/${z.slug}/`]]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Зоны', 'zony/'], [z.name]]} />
+      <span class="acc-mono">Зона · {z.body === 'face' ? 'лицо' : 'тело'}</span>
+      <h1 class="acc-h1">{words.length > 1 ? <>{words.slice(0, -1).join(' ')} <span class="acc-it acc-it--red">{words.at(-1)}</span></> : <span class="acc-it acc-it--red">{z.name}</span>}</h1>
+      <p class="acc-lead">{list.length} процедур · цены от {rub(from)}</p>
+      <div class="acc-chips">{others.map(x => <a class="acc-chip" href={u(`zony/${x.slug}/`)}>{x.name}</a>)}</div>
+    </header>
+    <Catalog procedures={list} fixed={{ zona: z.slug }} />
+  </div>
+  <div style="height:96px"></div>
+</Base>

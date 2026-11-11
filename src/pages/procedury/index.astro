@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Catalog from '../../components/Catalog.astro';
+import { PROCEDURES, DIRECTIONS, u } from '../../lib/data.js';
+import { site } from '../../lib/pages.js';
+const ld = [{ '@context': 'https://schema.org', '@type': 'ItemList', name: 'Процедуры косметологии Aldo Coppola',
+  itemListElement: PROCEDURES.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `procedury/${p.slug}/`, name: p.name })) }];
+---
+<Base title="Процедуры косметологии в Москве — цены и салоны | Aldo Coppola" description={`Все процедуры косметологии Aldo Coppola: ${PROCEDURES.length} процедур, цены из прайсов салонов, фильтр по зоне, методу и салону.`} current="procedury" jsonld={ld} breadcrumbs={[['Процедуры', 'procedury/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Процедуры']]} />
+      <div class="acc-phead__row">
+        <h1 class="acc-h1">Все <span class="acc-it acc-it--red">процедуры</span></h1>
+        <div class="acc-chips">{DIRECTIONS.map(d => <a class="acc-chip" href={u(d.slug + '/')}>{d.short}</a>)}</div>
+      </div>
+    </header>
+    <Catalog procedures={PROCEDURES} />
+  </div>
+  <div style="height:96px"></div>
+</Base>

@@ -1,0 +1,18 @@
+---
+// Один медиа-элемент (фото <picture> / беззвучное видео в зоне видимости) или заглушка с подсказкой съёмки.
+import Picture from './Picture.astro';
+const { item, ratio, class: cls = '', eager = false, sizes = '100vw' } = Astro.props;
+---
+{item && item.src ? (
+  <div class={`acc-media ${cls}`} style={ratio ? `aspect-ratio:${ratio}` : undefined}>
+    <Picture item={item} sizes={sizes} eager={eager} />
+  </div>
+) : item && item.video ? (
+  <div class={`acc-media ${cls}`} style={ratio ? `aspect-ratio:${ratio}` : undefined}>
+    <video src={item.video} data-mobile={item.mobile} poster={item.poster} muted loop playsinline preload="none" data-acc-autoplay aria-label={item.alt}></video>
+  </div>
+) : (
+  <div class={`acc-ph ${cls}`} style={ratio ? `aspect-ratio:${ratio}` : undefined} data-todo="media">
+    <div class="acc-ph__hint"><span class="acc-mono">{item?.kind || 'Фото'} · {item?.hint || 'кадр заказчика'}</span></div>
+  </div>
+)}

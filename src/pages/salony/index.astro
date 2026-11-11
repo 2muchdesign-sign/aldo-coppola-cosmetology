@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SalonCards from '../../components/SalonCards.astro';
+import { SALONS } from '../../lib/data.js';
+import { salonLD } from '../../lib/pages.js';
+---
+<Base title="Салоны Aldo Coppola с косметологией — адреса и телефоны" description={`Шесть центров косметологии Aldo Coppola в Москве и на Рублёвке: ${SALONS.filter(s => s.has_cosmetology).map(s => s.name).join(', ')}.`} current="salony" jsonld={SALONS.map(salonLD)} breadcrumbs={[['Салоны', 'salony/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead"><Breadcrumbs items={[['Салоны']]} /><h1 class="acc-h1">Шесть центров <span class="acc-it acc-it--red">косметологии</span></h1><p class="acc-lead">Рублёвка, Новая Рига и центр Москвы. Выберите салон — на сайте останутся его процедуры и цены.</p></header>
+    <SalonCards />
+  </div>
+  <div style="height:96px"></div>
+</Base>

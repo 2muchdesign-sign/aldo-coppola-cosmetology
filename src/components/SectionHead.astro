@@ -1,0 +1,10 @@
+---
+// Номер раздела: моно-метка «01 / Цели» + линия графита, прорисовывается слева направо.
+const { num, label, tag = 'h2', id } = Astro.props;
+const H = tag;
+---
+<div class="acc-sechead">
+  <span class="acc-mono acc-mono--ink">{num} / {label}</span>
+  <H class="acc-h2" id={id}><slot /></H>
+  {Astro.slots.has('aside') && <div class="acc-sechead__aside"><slot name="aside" /></div>}
+</div>

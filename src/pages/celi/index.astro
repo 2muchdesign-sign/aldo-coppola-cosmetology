@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { GOALS, GOAL_GROUPS, procedurePrices, rub, u } from '../../lib/data.js';
+import { procsOfGoal, site } from '../../lib/pages.js';
+const ld = [{ '@context': 'https://schema.org', '@type': 'ItemList', name: 'Цели косметологии Aldo Coppola',
+  itemListElement: GOALS.map((g, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `celi/${g.slug}/`, name: g.name })) }];
+---
+<Base title="Цели косметологии: чёткий овал, ровный тон, сияние кожи | Aldo Coppola" description="Подбор косметологии по желаемому результату: молодость и тонус, ровный тон, чистая кожа, контуры тела и другие цели." current="celi" jsonld={ld} breadcrumbs={[['Цели', 'celi/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead"><Breadcrumbs items={[['Цели']]} /><h1 class="acc-h1">Начните с <span class="acc-it acc-it--red">результата</span></h1>
+      <p class="acc-lead">Косметология — это и коррекция, и эстетическое совершенствование. Привычные слова («брыли», «пигментация», «постакне») поиск тоже понимает.</p></header>
+    {GOAL_GROUPS.map((gr, i) => (
+      <section class="acc-sec acc-sec--tight" id={gr.slug}>
+        <SectionHead num={String(i + 1).padStart(2, '0')} label="Группа">{gr.name}</SectionHead>
+        <div class="acc-rows">{GOALS.filter(g => g.group === gr.slug).map(g => { const pr = procsOfGoal(g).flatMap(p => Object.values(procedurePrices(p.slug))); return (
+          <a class="acc-row" href={u(`celi/${g.slug}/`)}>
+            <span><span class="acc-row__n">{g.name}</span><br /><span class="acc-mono">{g.terms.join(' · ')}</span></span>
+            <span class="acc-mono">{procsOfGoal(g).length} методов</span>
+            <span class="acc-row__p">{pr.length ? <>от {rub(Math.min(...pr))}</> : ''}</span>
+          </a>
+        ); })}</div>
+      </section>
+    ))}
+  </div>
+</Base>

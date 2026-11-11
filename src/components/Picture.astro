@@ -1,0 +1,9 @@
+---
+// <picture>: WebP с srcset 640/1024/1600 + запасной JPG. lazy для всего ниже первого экрана.
+const { item, sizes = '100vw', eager = false, cls } = Astro.props;
+---
+<picture class={cls}>
+  <source type="image/webp" srcset={item.srcsetWebp} sizes={sizes} />
+  <img src={item.src} srcset={item.srcsetJpg} sizes={sizes} alt={item.alt || ''} loading={eager ? 'eager' : 'lazy'} decoding="async"
+    fetchpriority={eager ? 'high' : undefined} width={1600} height={item.ratio ? Math.round(1600 / item.ratio) : undefined} />
+</picture>

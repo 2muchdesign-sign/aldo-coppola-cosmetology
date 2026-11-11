@@ -1,0 +1,20 @@
+---
+// FAQ — <details> с текстом в разметке (видно роботам без JS).
+import SectionHead from './SectionHead.astro';
+const { items = [], num = '10', title = 'Частые вопросы' } = Astro.props;
+---
+{items.length > 0 && (
+  <section class="acc-sec acc-sec--tight" aria-labelledby="acc-faq-h">
+    <div class="acc-wrap">
+      <SectionHead num={num} label="Вопросы" id="acc-faq-h">{title.split(' ').slice(0, -1).join(' ')} <span class="acc-it">{title.split(' ').at(-1)}</span></SectionHead>
+      <div class="acc-faq">
+        {items.map(([q, a], i) => (
+          <details class="acc-faq__i" open={i === 0}>
+            <summary><h3 class="acc-faq__q">{q}</h3><span class="acc-faq__pm" aria-hidden="true"></span></summary>
+            <p class="acc-faq__a">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

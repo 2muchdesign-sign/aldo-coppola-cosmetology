@@ -1,0 +1,62 @@
+# Процедуры (страницы /procedury/<slug>/). Ведут маркетинг и врач.
+# direction: apparatnaya | inekcii | uhody | lazernaya-epilyaciya | telo | kapelnicy
+# method: технология/метод для фильтра (hifu, rf, rf-microneedle, laser, ipl, microcurrent, ems, vacuum, cryo, plasma,
+#         pressotherapy, magnetic, led-pdt, hydrodermabrasion, injection, threads, care, peel, massage, wrap, drip, wax, infrared)
+# Аппараты, зоны, цены и салоны НЕ пишем здесь — они берутся из mapping.yaml и прайсов при сборке.
+# Цели процедуры — в goals.yaml (один источник), сборка проставляет обратные связи.
+# course / recovery / anesthesia / sensations / summary / texts / faq / reviewer — заполняет врач (TODO).
+# consultation_first: true — основная кнопка «Записаться на консультацию».
+defaults: &d {course: TODO, recovery: TODO, anesthesia: TODO, sensations: TODO, summary: TODO, faq: [], reviewer: TODO, reviewed_at: TODO, consultation_first: false}
+
+procedures:
+# --- Аппаратная косметология · лицо ---
+- {<<: *d, slug: smas-lifting-hifu, name: SMAS-лифтинг HIFU, direction: apparatnaya, method: hifu, consultation_first: true}
+- {<<: *d, slug: mikroigolchatyy-rf-lifting, name: Микроигольчатый RF-лифтинг, direction: apparatnaya, method: rf-microneedle, consultation_first: true}
+- {<<: *d, slug: rf-lifting, name: RF-лифтинг без игл, direction: apparatnaya, method: rf}
+- {<<: *d, slug: infrakrasnyy-termolifting, name: Инфракрасный термолифтинг BBL SkinTyte, direction: apparatnaya, method: infrared}
+- {<<: *d, slug: fotoomolozhenie, name: Фотоомоложение, direction: apparatnaya, method: ipl}
+- {<<: *d, slug: lazernoe-omolozhenie, name: Лазерное омоложение, direction: apparatnaya, method: laser, consultation_first: true}
+- {<<: *d, slug: plazmennoe-omolozhenie, name: Плазменное омоложение, direction: apparatnaya, method: plasma, consultation_first: true}
+- {<<: *d, slug: mikrotoki-i-miostimulyaciya, name: Микротоки и миостимуляция лица, direction: apparatnaya, method: microcurrent}
+- {<<: *d, slug: apparatnoe-ochishchenie, name: Аппаратное очищение HydraFacial, direction: apparatnaya, method: hydrodermabrasion}
+- {<<: *d, slug: vakuumnyy-massazh-lica, name: Вакуумный и компрессионный массаж лица, direction: apparatnaya, method: vacuum}
+- {<<: *d, slug: fotodinamicheskaya-terapiya, name: Фотодинамическая терапия, direction: apparatnaya, method: led-pdt}
+- {<<: *d, slug: lechenie-akne, name: Лечение акне BBL Forever Clear, direction: apparatnaya, method: ipl}
+- {<<: *d, slug: rf-liposakciya-podborodka, name: RF-липосакция подбородка, direction: apparatnaya, method: rf, consultation_first: true}
+# --- Тело ---
+- {<<: *d, slug: kriolipoliz, name: Криолиполиз, direction: telo, method: cryo, consultation_first: true}
+- {<<: *d, slug: hifu-tela, name: HIFU тела, direction: telo, method: hifu, consultation_first: true}
+- {<<: *d, slug: rf-lifting-tela, name: RF-лифтинг тела, direction: telo, method: rf}
+- {<<: *d, slug: korrekciya-rubcov, name: Коррекция рубцов Innofill, direction: telo, method: rf, consultation_first: true}
+- {<<: *d, slug: vakuumnyy-massazh-tela, name: Вакуумный и компрессионный массаж тела, direction: telo, method: vacuum}
+- {<<: *d, slug: miostimulyaciya-tela, name: Миостимуляция тела, direction: telo, method: ems}
+- {<<: *d, slug: magnitoterapiya, name: Магнитотерапия Mantis, direction: telo, method: magnetic}
+- {<<: *d, slug: pressoterapiya, name: Прессотерапия, direction: telo, method: pressotherapy}
+- {<<: *d, slug: massazh, name: Массаж, direction: telo, method: massage}
+- {<<: *d, slug: obertyvaniya, name: Обёртывания и SPA-уходы для тела, direction: telo, method: wrap}
+# --- Эпиляция ---
+- {<<: *d, slug: lazernaya-epilyaciya, name: Лазерная эпиляция, direction: lazernaya-epilyaciya, method: laser}
+- {<<: *d, slug: voskovaya-depilyaciya, name: Восковая депиляция, direction: lazernaya-epilyaciya, method: wax}
+# --- Уходы и пилинги ---
+- {<<: *d, slug: uhody-111skin, name: Уходы 111SKIN, direction: uhody, method: care}
+- {<<: *d, slug: uhody-cellcosmet, name: Уходы Cellcosmet, direction: uhody, method: care}
+- {<<: *d, slug: uhody-qms, name: Уходы QMS, direction: uhody, method: care}
+- {<<: *d, slug: uhody-sodashi, name: Уходы Sodashi, direction: uhody, method: care}
+- {<<: *d, slug: uhody-jan-marini, name: Уходы Jan Marini, direction: uhody, method: care}
+- {<<: *d, slug: avtorskiy-uhod, name: Авторский уход Aldo Coppola, direction: uhody, method: care}
+- {<<: *d, slug: face-fitness, name: Face Fitness by Aldo Coppola, direction: uhody, method: massage}
+- {<<: *d, slug: pilingi, name: Пилинги BioRePeel и PRXt33, direction: uhody, method: peel}
+- {<<: *d, slug: muzhskie-uhody, name: Уходы для мужчин, direction: uhody, method: care}
+- {<<: *d, slug: maski, name: Маски к уходу, direction: uhody, method: care}
+# --- Инъекции (всегда консультация) ---
+- {<<: *d, slug: konturnaya-plastika, name: Контурная пластика, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: botulinoterapiya, name: Ботулинотерапия, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: lechenie-gipergidroza, name: Лечение гипергидроза, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: biorevitalizaciya-i-mezoterapiya, name: Биоревитализация и мезотерапия, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: karboksiterapiya, name: Карбокситерапия, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: plazmoterapiya, name: Плазмотерапия, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: sprs-terapiya, name: SPRS-терапия, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: lipolitiki, name: Липолитики, direction: inekcii, method: injection, consultation_first: true}
+- {<<: *d, slug: nitevoy-lifting, name: Нитевой лифтинг, direction: inekcii, method: threads, consultation_first: true}
+# --- Капельницы ---
+- {<<: *d, slug: kapelnicy, name: Витаминные капельные коктейли, direction: kapelnicy, method: drip, consultation_first: true}

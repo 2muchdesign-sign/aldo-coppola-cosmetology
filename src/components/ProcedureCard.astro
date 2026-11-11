@@ -1,0 +1,31 @@
+---
+// Карточка процедуры (во всех списках). Цены по салонам — в data-prices, клиентский скрипт подставляет цену выбранного салона.
+import SalonDots from './SalonDots.astro';
+import Media from './Media.astro';
+import { METHOD_LABEL, procedurePrices, procedureLine, rub, u, durationRange, priceUnit } from "../lib/data.js";
+import { HINTS, MEDIA } from '../lib/media.js';
+const { p, media, onlySalon } = Astro.props;
+const all = procedurePrices(p.slug);
+const prices = onlySalon && all[onlySalon] != null ? { [onlySalon]: all[onlySalon] } : all;
+const from = Object.values(prices).length ? Math.min(...Object.values(prices)) : null;
+const item = media?.[0] || MEDIA[`procedure-${p.slug}`]?.[0] || HINTS.procedure(p.name, procedureLine(p))[0];
+const dur = durationRange(p);
+---
+<article class="acc-card" data-proc={p.slug} data-prices={JSON.stringify(prices)} data-fixed-salon={onlySalon}>
+  <Media item={item} class="acc-card__media" sizes="300px" />
+  <div class="acc-card__meta">
+    <span class="acc-chip acc-chip--sm acc-chip--static">{METHOD_LABEL[p.method]}</span>
+    <SalonDots salons={Object.keys(prices)} size="sm" />
+  </div>
+  <h3 class="acc-card__name"><a href={u(`procedury/${p.slug}/`)}>{p.name}</a></h3>
+  <p class="acc-card__line">{procedureLine(p)}</p>
+  <div class="acc-card__facts">
+    {dur && <span class="acc-mono">{dur}</span>}
+    <span class="acc-mono">Восстановление: {p.recovery === 'TODO' ? 'уточнить у врача' : p.recovery}</span>
+  </div>
+  <p class="acc-card__avail" data-avail aria-live="polite"></p>
+  <div class="acc-card__foot">
+    <span class="acc-card__price" data-price data-unit={priceUnit(p.slug) || undefined}>от {rub(from)}{priceUnit(p.slug) && ` ${priceUnit(p.slug)}`}</span>
+    <button type="button" class="acc-btn acc-btn--primary acc-card__book" data-book data-procedure={p.slug} data-consult={p.consultation_first ? '1' : undefined} data-name={p.name}>{p.consultation_first ? 'Консультация' : 'Записаться'}</button>
+  </div>
+</article>

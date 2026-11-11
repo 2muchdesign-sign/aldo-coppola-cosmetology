@@ -1,0 +1,20 @@
+# Зоны для схемы лица/тела и фильтра. Ведёт маркетинг.
+# body: face | body. xy — координаты точки на схеме: лицо — viewBox 400×540, тело — viewBox 320×600.
+# label — подпись на схеме (моно, верхний регистр), side — с какой стороны от точки подпись (l / r).
+- {slug: kozha-golovy, name: Кожа головы, body: face, xy: [200, 52], label: Кожа головы, side: r}
+- {slug: glaza, name: Зона вокруг глаз, body: face, xy: [148, 190], label: Глаза, side: l}
+- {slug: lico, name: Лицо, body: face, xy: [270, 245], label: Лицо, side: r}
+- {slug: guby, name: Губы, body: face, xy: [200, 302], label: Губы, side: l}
+- {slug: oval, name: Овал и подбородок, body: face, xy: [292, 322], label: Овал, side: r}
+- {slug: sheya, name: Шея, body: face, xy: [200, 420], label: Шея, side: r}
+- {slug: dekolte, name: Декольте, body: face, xy: [200, 505], label: Декольте, side: r}
+- {slug: spina, name: Спина и грудь, body: body, xy: [160, 168], label: Грудь и спина, side: r}
+- {slug: podmyshki, name: Подмышки, body: body, xy: [108, 150], label: Подмышки, side: l}
+- {slug: ruki, name: Руки, body: body, xy: [70, 250], label: Руки, side: l}
+- {slug: zhivot, name: Живот, body: body, xy: [160, 255], label: Живот, side: r}
+- {slug: boka, name: Бока, body: body, xy: [205, 280], label: Бока, side: r}
+- {slug: bikini, name: Зона бикини, body: body, xy: [160, 335], label: Бикини, side: l}
+- {slug: yagodicy, name: Ягодицы, body: body, xy: [212, 350], label: Ягодицы, side: r}
+- {slug: bedra, name: Бёдра, body: body, xy: [130, 400], label: Бёдра, side: l}
+- {slug: nogi, name: Ноги, body: body, xy: [190, 500], label: Ноги, side: r}
+- {slug: telo, name: Всё тело, body: body, xy: null}

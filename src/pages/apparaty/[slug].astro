@@ -1,0 +1,108 @@
+---
+// 7.4. Аппарат
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import SalonDots from '../../components/SalonDots.astro';
+import Carousel from '../../components/Carousel.astro';
+import PriceMatrix from '../../components/PriceMatrix.astro';
+import Faq from '../../components/Faq.astro';
+import Short from '../../components/Short.astro';
+import { DEVICES, METHOD_LABEL, SALON, rub, u, builtAt } from '../../lib/data.js';
+import { HINTS, deviceMedia } from '../../lib/media.js';
+import { serviceRows, priceSpan, procsOfDevice, salonsOfDevice, deviceFull, listAnd, faqLD, site, plural } from '../../lib/pages.js';
+
+export function getStaticPaths() { return DEVICES.map(d => ({ params: { slug: d.slug }, props: { d } })); }
+const { d } = Astro.props;
+const procs = procsOfDevice(d);
+const rows = serviceRows(s => s.device === d.slug);
+const [lo, hi] = priceSpan(rows);
+const where = salonsOfDevice(d);
+const tech = (d.technologies || [d.technology]).map(t => METHOD_LABEL[t]).filter(Boolean);
+const similar = DEVICES.filter(x => x.slug !== d.slug && (x.technologies || [x.technology]).some(t => (d.technologies || [d.technology]).includes(t)));
+const known = v => v && v !== 'TODO';
+const short = `${deviceFull(d)} — ${tech.join(' и ').toLowerCase()}-аппарат${d.model && known(d.model) && d.model !== d.name ? ` (${d.model})` : ''}. В Aldo Coppola на нём проводят: ${listAnd(procs.map(p => p.name.charAt(0).toLowerCase() + p.name.slice(1)))}. Аппарат есть ${where.length === 1 ? 'в салоне' : `в ${where.length} ${plural(where.length, 'салоне', 'салонах', 'салонах')}:`} ${listAnd(where.map(s => SALON[s].name))}. ${lo != null ? (lo === hi ? `Цена — ${rub(lo)}.` : `Цены — от ${rub(lo)} до ${rub(hi)}.`) : ''}`.replace(/ (\d)/g, ' $1');
+const faq = [
+  lo != null && [`Сколько стоит процедура на ${d.name}?`, `От ${rub(lo)}${hi !== lo ? ` до ${rub(hi)}` : ''} в зависимости от зоны и объёма. Все позиции прайса — в таблице на этой странице.`],
+  [`Где в Москве есть ${d.name}?`, `В салонах Aldo Coppola: ${listAnd(where.map(s => `${SALON[s].name} (${SALON[s].address})`))}.`],
+  [`Какие процедуры делают на ${d.name}?`, `${listAnd(procs.map(p => p.name))}. Подходящий протокол врач подбирает на консультации.`],
+].filter(Boolean);
+const url = site() + `apparaty/${d.slug}/`;
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'Product', '@id': url + '#device', name: d.name, url,
+    brand: known(d.brand) ? { '@type': 'Brand', name: d.brand } : undefined,
+    manufacturer: known(d.manufacturer) ? { '@type': 'Organization', name: d.manufacturer } : undefined,
+    countryOfOrigin: known(d.country) ? d.country : undefined, category: tech.join(', '),
+    isRelatedTo: procs.map(p => ({ '@type': 'MedicalProcedure', name: p.name, url: site() + `procedury/${p.slug}/` })) },
+  faqLD(faq),
+];
+const txt = d.text;
+---
+<Base title={`${d.name}${known(d.country) ? ` (${d.country})` : ''} в Москве — процедуры и цены | Aldo Coppola`} description={`${deviceFull(d)}: ${procs.map(p => p.name).join(', ')}. Где есть: ${where.map(s => SALON[s].name).join(', ')}. Цены от ${rub(lo).replace(/ /g, ' ')}.`} current="apparaty" jsonld={jsonld} breadcrumbs={[['Аппараты', 'apparaty/'], [d.name, `apparaty/${d.slug}/`]]}>
+  <div class="acc-wrap">
+    <div style="padding-top:24px"><Breadcrumbs items={[['Аппараты', 'apparaty/'], [d.name]]} /></div>
+    <section class="acc-phero">
+      <div class="acc-phero__l">
+        <span class="acc-mono">{[known(d.brand) ? d.brand : null, known(d.country) ? d.country : null, ...tech].filter(Boolean).join(' · ')}</span>
+        <h1 class="acc-h1"><span class="acc-it acc-it--red">{d.name}</span></h1>
+        <dl class="acc-kv" style="max-width:520px">
+          <div><dt class="acc-mono">Производитель</dt><dd>{known(d.manufacturer) ? d.manufacturer : '[уточняется]'}</dd></div>
+          <div><dt class="acc-mono">Страна</dt><dd>{known(d.country) ? d.country : '[уточняется]'}</dd></div>
+          <div><dt class="acc-mono">Модель</dt><dd>{known(d.model) ? d.model : '[уточняется]'}</dd></div>
+          <div><dt class="acc-mono">Технология</dt><dd>{tech.join(' · ')}</dd></div>
+          <div><dt class="acc-mono">Где есть</dt><dd>{where.map(s => SALON[s].name).join(', ')}{d.travels ? ' · приезжает по графику' : ''}</dd></div>
+        </dl>
+        <SalonDots salons={where} travels={!!d.travels} labels />
+        <div class="acc-phero__cta" data-acc-hero-cta>
+          <button type="button" class="acc-btn acc-btn--primary acc-btn--lg" data-book data-procedure={procs[0]?.slug} data-name={d.name}>Записаться</button>
+          <a class="acc-btn acc-btn--secondary acc-btn--lg" href="#ceny">Цены</a>
+        </div>
+      </div>
+      <div class="acc-phero__r"><Carousel items={deviceMedia(d)} ratio="4 / 5" label={`Аппарат ${d.name}`} /></div>
+    </section>
+    <Short text={short} />
+  </div>
+
+  {txt && (
+    <section class="acc-sec">
+      <div class="acc-wrap acc-2col">
+        <div><h2 class="acc-h3">Как работает {d.name}</h2><p class="acc-text" style="margin-top:16px">{txt.principle}</p></div>
+        <div><h2 class="acc-h3">Показания</h2><ul class="acc-bullets" style="margin-top:16px">{txt.indications.map(i => <li>{i}</li>)}</ul>
+          <p class="acc-note">Текст — черновик с прежнего сайта, проверяет врач. Имеются противопоказания, необходима консультация специалиста.</p></div>
+      </div>
+    </section>
+  )}
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap">
+      <SectionHead num="01" label="Процедуры">Процедуры на <span class="acc-it">{d.name}</span></SectionHead>
+      <div class="acc-rows">
+        {procs.map(p => (
+          <a class="acc-row" href={u(`procedury/${p.slug}/`)}>
+            <span><span class="acc-row__n">{p.name}</span><br /><span class="acc-mono">{METHOD_LABEL[p.method]}</span></span>
+            <SalonDots salons={p.salons} size="sm" />
+            <span class="acc-row__p">от {rub(p.price_from)}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="acc-sec" id="ceny" style="scroll-margin-top:var(--acc-hdr)">
+    <div class="acc-wrap">
+      <SectionHead num="02" label="Цены">Цены на <span class="acc-it">{d.name}</span></SectionHead>
+      <PriceMatrix rows={rows} caption={`Цены из прайсов салонов на ${new Date(builtAt).toLocaleDateString('ru-RU')}, ₽`} />
+      <p class="acc-note">Итоговая стоимость определяется после консультации. Цены не являются публичной офертой.</p>
+    </div>
+  </section>
+
+  {similar.length > 0 && (
+    <section class="acc-sec acc-sec--tight">
+      <div class="acc-wrap">
+        <SectionHead num="03" label="Похожие">Похожие <span class="acc-it">аппараты</span></SectionHead>
+        <div class="acc-chips">{similar.map(x => <a class="acc-chip" href={u(`apparaty/${x.slug}/`)}>{x.name} <span class="acc-chip__n">{METHOD_LABEL[x.technology]}</span></a>)}</div>
+      </div>
+    </section>
+  )}
+  <Faq items={faq} num="04" />
+</Base>

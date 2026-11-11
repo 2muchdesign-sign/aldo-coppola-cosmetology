@@ -1,0 +1,81 @@
+---
+// Базовый шаблон: всё внутри .acc-root. Шапка/подвал отключаемы (CONFIG.standaloneChrome) для встраивания в Битрикс.
+import '../styles/acc.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Palette from '../components/Palette.astro';
+import { CONFIG } from '../config.js';
+import { MEDIA } from '../lib/media.js';
+import { SALONS, PROCEDURES, procedurePrices, u } from '../lib/data.js';
+
+const { title, description = '', current = '', jsonld = [], canonical, ogImage, noindex = false, breadcrumbs = [] } = Astro.props;
+const LOC = { zhukovka: 'Жуковке', barvikha: 'Барвихе', unimall: 'Юнимолле' };
+const site = Astro.site ? new URL(import.meta.env.BASE_URL, Astro.site).href : '';
+const canon = canonical || (Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname);
+const robots = CONFIG.preview || noindex ? 'noindex, nofollow' : 'index, follow';
+const accData = {
+  config: { preview: CONFIG.preview, whatsapp: CONFIG.whatsapp, metrika: CONFIG.metrika },
+  base: u(''), searchIndex: u('search-index.json'),
+  salons: SALONS.map(s => ({ slug: s.slug, name: s.name, loc: LOC[s.slug] || s.name, phone: s.phone, address: s.address,
+    booking: s.booking_url, branch: s.yclients_branch, wa: String(s.phone_mobile || '').replace(/\D/g, '') || null, cosmo: s.has_cosmetology })),
+  avail: Object.fromEntries(PROCEDURES.map(p => [p.slug, Object.keys(procedurePrices(p.slug))])),
+};
+const ORG = {
+  '@context': 'https://schema.org', '@type': 'Organization', '@id': site + '#org', name: 'Aldo Coppola',
+  url: site, logo: site + 'media/brand/logo-256.png', foundingDate: String(CONFIG.brandSince),
+  // sameAs: TODO — официальные соцсети заказчика
+};
+const WEBSITE = {
+  '@context': 'https://schema.org', '@type': 'WebSite', '@id': site + '#site', name: 'Косметология Aldo Coppola', url: site, inLanguage: 'ru',
+  publisher: { '@id': site + '#org' },
+  potentialAction: { '@type': 'SearchAction', target: site + '?q={search_term_string}', 'query-input': 'required name=search_term_string' },
+};
+const crumbs = breadcrumbs.length ? [{
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [['Косметология', ''], ...breadcrumbs].map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: site + p })),
+}] : [];
+const LD = [ORG, WEBSITE, ...crumbs, ...jsonld];
+---
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <meta name="robots" content={robots} />
+  <link rel="canonical" href={canon} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="Aldo Coppola — косметология" />
+  <meta property="og:title" content={title} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:url" content={canon} />
+  <meta property="og:image" content={ogImage || new URL(MEDIA.hero[0].src, Astro.site || 'https://example.com').href} />
+  <meta name="theme-color" content="#FFFFFF" />
+  <link rel="icon" type="image/png" href={u('favicon.png')} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap&subset=cyrillic" />
+  {CONFIG.standaloneChrome && <style is:inline>body{margin:0;background:#fff}</style>}
+  {LD.map(j => <script type="application/ld+json" set:html={JSON.stringify(j)} />)}
+</head>
+<body>
+  <div class="acc-root">
+    <a class="acc-skip" href="#acc-main">Перейти к содержанию</a>
+    {CONFIG.standaloneChrome && <Header current={current} />}
+    <main id="acc-main"><slot /></main>
+    {CONFIG.standaloneChrome && <Footer />}
+    {CONFIG.standaloneChrome && (
+      <nav class="acc-mbar" aria-label="Быстрые действия">
+        <button type="button" class="acc-mbar__book" data-book>Записаться</button>
+        <button type="button" data-acc-wa>WhatsApp</button>
+        <button type="button" data-acc-call>Позвонить</button>
+      </nav>
+    )}
+    <Palette />
+    <script type="application/json" id="acc-data" set:html={JSON.stringify(accData)} />
+  </div>
+  <script>import '../scripts/acc.js';</script>
+</body>
+</html>

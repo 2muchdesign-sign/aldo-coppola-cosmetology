@@ -1,0 +1,19 @@
+# Разговорные слова и бренды для поиска -> на что указывают. Ведёт маркетинг.
+# Синонимы аппаратов лежат в devices.yaml, клинические термины целей — в goals.yaml (terms); здесь — остальное.
+procedures:
+  botulinoterapiya: [ботокс, botox, диспорт, dysport, ксеомин, xeomin, релатокс, миотокс, уколы красоты]
+  konturnaya-plastika: [филлеры, филлер, увеличение губ, гиалуронка, гиалуроновая кислота, ювидерм, juvederm, белотеро, рестилайн, радиесс]
+  biorevitalizaciya-i-mezoterapiya: [биорев, мезо, профайло, profhilo, мезотерапия, биоревитализация]
+  nitevoy-lifting: [нити, мезонити, аптос, aptos]
+  plazmoterapiya: [плазмолифтинг, prp, регенлаб, regenlab]
+  sprs-terapiya: [фибробласты, sprs, клеточная терапия]
+  lipolitiki: [липолитик, акваликс, aqualyx]
+  kapelnicy: [капельница, капельницы, витамины внутривенно, детокс капельница]
+  lazernaya-epilyaciya: [лазер, удаление волос, эпиляция]
+  voskovaya-depilyaciya: [воск, депиляция]
+  apparatnoe-ochishchenie: [чистка лица, гидропилинг]
+  smas-lifting-hifu: [смас, smas, хайфу, hifu, ультразвуковой лифтинг]
+  kriolipoliz: [заморозка жира, криолиполиз]
+  pressoterapiya: [лимфодренаж, прессотерапия]
+  massazh: [массаж тела, спа]
+  face-fitness: [массаж лица, фейс фитнес]

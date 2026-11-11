@@ -1,0 +1,193 @@
+---
+// 7.2. Страница процедуры
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import SalonDots from '../../components/SalonDots.astro';
+import Carousel from '../../components/Carousel.astro';
+import CarouselNav from '../../components/CarouselNav.astro';
+import Passport from '../../components/Passport.astro';
+import Short from '../../components/Short.astro';
+import PriceMatrix from '../../components/PriceMatrix.astro';
+import Faq from '../../components/Faq.astro';
+import ProcedureCard from '../../components/ProcedureCard.astro';
+import StickyBook from '../../components/StickyBook.astro';
+import { PROCEDURES, SALONS, DEVICE, ZONE, DIRECTION, METHOD_LABEL, SALON, procedurePrices, rub, u, durationRange, builtAt, priceUnit } from "../../lib/data.js";
+import { HINTS, procedureMedia } from '../../lib/media.js';
+import { serviceRows, priceSpan, procedureShort, procedureFaq, relatedProcedures, goalsOf, splitAccent, deviceFull, salonsOfDevice,
+  procedurePricesByDevice, minPrice, faqLD, offersLD, site, listAnd } from '../../lib/pages.js';
+
+export function getStaticPaths() { return PROCEDURES.map(p => ({ params: { slug: p.slug }, props: { p } })); }
+const { p } = Astro.props;
+const dir = DIRECTION[p.direction];
+const devs = p.devices.map(d => DEVICE[d]).filter(Boolean);
+const prices = procedurePrices(p.slug);
+const from = minPrice(prices);
+const rows = serviceRows(s => s.procedure === p.slug);
+const [lo, hi] = priceSpan(rows);
+const goals = goalsOf(p);
+const zones = p.zones.map(z => ZONE[z]).filter(Boolean);
+const faq = procedureFaq(p);
+const related = relatedProcedures(p);
+const [h1a, h1b] = splitAccent(p.name);
+const devTexts = devs.filter(d => d.text?.indications?.length);
+const media = procedureMedia(p, devs.map(d => d.name).join(' · '));
+const terms = [...new Set(goals.flatMap(g => g.terms))].slice(0, 3);
+const title = `${p.name}${devs.length ? ` (${devs.map(d => d.name).join(', ')})` : ''} в Москве — цены от ${rub(from).replace(/ /g, ' ')}${priceUnit(p.slug) ? " " + priceUnit(p.slug) : ""} | Aldo Coppola`;
+const description = `${p.name} в салонах Aldo Coppola: ${Object.keys(prices).map(s => SALON[s].name).join(', ')}. Цены от ${rub(lo).replace(/ /g, ' ')}${terms.length ? `; ${terms.join(', ')}` : ''}. Запись онлайн.`;
+const url = site() + `procedury/${p.slug}/`;
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'MedicalWebPage', '@id': url + '#page', url, name: p.name, inLanguage: 'ru',
+    about: { '@id': url + '#procedure' }, lastReviewed: p.reviewed_at !== 'TODO' ? p.reviewed_at : undefined, dateModified: builtAt,
+    // reviewedBy → Physician — TODO: врач-рецензент
+  },
+  { '@context': 'https://schema.org', '@type': 'MedicalProcedure', '@id': url + '#procedure', name: p.name,
+    alternateName: [...goals.flatMap(g => g.terms)].slice(0, 8), procedureType: p.direction === 'inekcii' ? 'https://schema.org/PercutaneousProcedure' : 'https://schema.org/NoninvasiveProcedure',
+    bodyLocation: zones.map(z => z.name).join(', ') || undefined, offers: offersLD(p) },
+  faqLD(faq),
+];
+---
+<Base title={title} description={description} current="procedury" jsonld={jsonld}
+  breadcrumbs={[['Процедуры', 'procedury/'], [dir.name, `${p.direction}/`], [p.name, `procedury/${p.slug}/`]]}>
+  <div class="acc-wrap">
+    <div style="padding-top:24px"><Breadcrumbs items={[[dir.name, `${p.direction}/`], [p.name]]} /></div>
+    <section class="acc-phero">
+      <div class="acc-phero__l">
+        <span class="acc-mono">{dir.short} · {METHOD_LABEL[p.method]}{zones.length ? ` · ${zones.slice(0, 3).map(z => z.name.toLowerCase()).join(', ')}` : ''}</span>
+        <h1 class="acc-h1">{h1a}{h1b && <span class="acc-it acc-it--red">{h1b}</span>}</h1>
+        <p class="acc-lead">{devs.length ? `На ${devs.length > 1 ? 'аппаратах' : 'аппарате'} ${listAnd(devs.map(d => d.name))}. ` : ''}{zones.length ? `Зоны: ${zones.map(z => z.name.toLowerCase()).join(', ')}.` : ''}{terms.length ? ` Выбирают, когда беспокоят ${listAnd(terms)}.` : ''}</p>
+        <div class="acc-phero__price" data-prices={JSON.stringify(prices)}>
+          <span class="acc-mono">Цена</span><b data-price data-unit={priceUnit(p.slug) || undefined}>от {rub(from)}{priceUnit(p.slug) && ` ${priceUnit(p.slug)}`}</b>
+          <span class="acc-avail" data-avail></span>
+        </div>
+        <SalonDots salons={Object.keys(prices)} labels />
+        <div class="acc-phero__cta" data-acc-hero-cta>
+          <button type="button" class="acc-btn acc-btn--primary acc-btn--lg" data-book data-procedure={p.slug} data-name={p.name} data-consult={p.consultation_first ? '1' : undefined}>{p.consultation_first ? 'Записаться на консультацию' : 'Записаться'}</button>
+          {!p.consultation_first && <a class="acc-btn acc-btn--secondary acc-btn--lg" href={u('konsultaciya/')}>Консультация врача</a>}
+          <a class="acc-btn acc-btn--secondary acc-btn--lg" href="#ceny">Все цены</a>
+        </div>
+      </div>
+      <div class="acc-phero__r">
+        <Carousel id="acc-proc-media" items={media} ratio="4 / 5" label={`${p.name}: фото и видео`} />
+        <div style="display:flex;justify-content:flex-end;margin-top:12px" class="acc-wrap-m"><CarouselNav for="acc-proc-media" total={media.length} /></div>
+      </div>
+    </section>
+
+    <Short text={procedureShort(p)} reviewer={p.reviewer} reviewedAt={p.reviewed_at} />
+  </div>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="01" label="Паспорт">Паспорт <span class="acc-it">процедуры</span></SectionHead>
+      <Passport rows={[
+        ['Метод', METHOD_LABEL[p.method]],
+        ['Аппараты', devs.map(d => d.name).join(' · ') || 'без аппарата'],
+        ['Время в записи', durationRange(p)],
+        ['Курс', p.course],
+        ['Восстановление', p.recovery],
+        ['Ощущения', p.sensations],
+      ]} />
+    </div>
+  </section>
+
+  {(goals.length > 0 || zones.length > 0) && (
+    <section class="acc-sec acc-sec--tight">
+      <div class="acc-wrap">
+        <SectionHead num="02" label="Результат и зоны">Для чего <span class="acc-it">выбирают</span></SectionHead>
+        <div class="acc-links2">
+          {goals.length > 0 && <div><span class="acc-mono">Цели</span><div class="acc-chips">{goals.map(g => <a class="acc-chip" href={u(`celi/${g.slug}/`)}>{g.name}</a>)}</div></div>}
+          {zones.length > 0 && <div><span class="acc-mono">Зоны</span><div class="acc-chips">{zones.map(z => <a class="acc-chip" href={u(`zony/${z.slug}/`)}>{z.name}</a>)}</div></div>}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="acc-sec" id="ceny" style="scroll-margin-top:var(--acc-hdr)">
+    <div class="acc-wrap">
+      <SectionHead num="03" label="Цены">Сколько стоит {/^[A-ZА-ЯЁ]{2}|^[A-Z]/.test(p.name) ? p.name : p.name.charAt(0).toLowerCase() + p.name.slice(1)} в <span class="acc-it">Москве</span></SectionHead>
+      <div class="acc-chips" style="margin-bottom:24px" data-acc-salonchips>
+        <span class="acc-mono" style="align-self:center;margin-right:6px">Салон</span>
+        <button type="button" class="acc-chip" data-salon="" aria-pressed="true">Все</button>
+        {SALONS.filter(x => prices[x.slug] != null).map(x => x.slug).map(s => <button type="button" class="acc-chip" data-salon={s} aria-pressed="false">{SALON[s].name}</button>)}
+      </div>
+      <PriceMatrix rows={rows} procedure={p.slug} consult={p.consultation_first} caption={`Цены из прайсов салонов на ${new Date(builtAt).toLocaleDateString('ru-RU')}, ₽`} />
+      <p class="acc-note">Итоговая стоимость определяется после консультации и может отличаться в салонах сети. Цены не являются публичной офертой. Имеются противопоказания, необходима консультация специалиста.</p>
+    </div>
+  </section>
+
+  {devs.length > 1 && (
+    <section class="acc-sec acc-sec--mist">
+      <div class="acc-wrap">
+        <SectionHead num="04" label="Аппараты">На каких аппаратах <span class="acc-it">делаем</span></SectionHead>
+        <div class="acc-cmp">
+          {devs.map(d => { const pr = procedurePricesByDevice(p.slug, d.slug); return (
+            <div>
+              <span class="acc-mono">{d.country && d.country !== 'TODO' ? d.country : 'Страна — уточняется'}</span>
+              <h3 class="acc-h4"><a href={u(`apparaty/${d.slug}/`)}>{deviceFull(d)}</a></h3>
+              <span class="acc-mono acc-mono--ink">{METHOD_LABEL[d.technology]}</span>
+              <SalonDots salons={Object.keys(pr)} labels />
+              <span>{Object.keys(pr).length ? <>от {rub(minPrice(pr))}</> : '—'}</span>
+              <a class="acc-link" href={u(`apparaty/${d.slug}/`)}>Об аппарате {d.name}</a>
+            </div>
+          ); })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num={devs.length > 1 ? '05' : '04'} label="Как проходит">Как проходит <span class="acc-it">визит</span></SectionHead>
+      <ol class="acc-steps">
+        <li><h3 class="acc-h4">Консультация</h3><p class="acc-muted">Врач-косметолог уточняет задачу, показания и противопоказания и подбирает протокол.</p></li>
+        <li><h3 class="acc-h4">Подготовка</h3><p class="acc-muted">[уточнить у врача]</p></li>
+        <li><h3 class="acc-h4">Процедура</h3><p class="acc-muted">{durationRange(p) ? `В записи — ${durationRange(p)}. ` : ''}Детали протокола — [уточнить у врача].</p></li>
+        <li><h3 class="acc-h4">После процедуры</h3><p class="acc-muted">Рекомендации по уходу дает врач. Восстановление: {p.recovery === 'TODO' ? '[уточнить у врача]' : p.recovery}.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap acc-2col">
+      <div>
+        <h2 class="acc-h3">Показания</h2>
+        {devTexts.length ? (
+          <>
+            <ul class="acc-bullets" style="margin-top:16px">{[...new Set(devTexts.flatMap(d => d.text.indications))].map(i => <li>{i}</li>)}</ul>
+            <p class="acc-note">По описанию {devTexts.length > 1 ? 'аппаратов' : 'аппарата'} {devTexts.map(d => d.name).join(', ')}. Черновик — текст проверяет врач.</p>
+          </>
+        ) : <p class="acc-muted" style="margin-top:16px">[текст готовит врач]</p>}
+      </div>
+      <div>
+        <h2 class="acc-h3">Противопоказания</h2>
+        <p style="margin-top:16px;font-size:15px;line-height:1.6">Имеются противопоказания. Необходима консультация специалиста. Полный перечень врач уточняет на консультации.</p>
+        <p class="acc-muted" style="margin-top:12px">[перечень противопоказаний готовит врач]</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap">
+      <SectionHead num={devs.length > 1 ? '06' : '05'} label="Врачи">Врачи <span class="acc-it">косметологи</span></SectionHead>
+      <div class="acc-doc" data-todo="doctors">
+        <div class="acc-doc__ph acc-ph"></div>
+        <div><p class="acc-h4">Врачи, которые проводят процедуру</p><p class="acc-muted" style="margin-top:6px">Имена, специализация и салоны приёма появятся после получения данных. Текст страницы проверил: [врач — уточняется].</p></div>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} num={devs.length > 1 ? '07' : '06'} title="Частые вопросы" />
+
+  {related.length > 0 && (
+    <section class="acc-sec">
+      <div class="acc-wrap">
+        <SectionHead num={devs.length > 1 ? '08' : '07'} label="Похожие">Похожие и <span class="acc-it">комбинации</span>
+          <CarouselNav slot="aside" for="acc-rel" total={related.length} />
+        </SectionHead>
+        <Carousel id="acc-rel" media={false} label="Похожие процедуры">{related.map(r => <ProcedureCard p={r} />)}</Carousel>
+      </div>
+    </section>
+  )}
+
+  <StickyBook name={p.name} price={from} prices={prices} procedure={p.slug} consult={p.consultation_first} unit={priceUnit(p.slug)} />
+</Base>

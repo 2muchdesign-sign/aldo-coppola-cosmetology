@@ -1,0 +1,3110 @@
+# Связка: ID услуги YClients -> процедура, аппарат, зоны, объём.
+# Черновик сгенерирован scripts/bootstrap-mapping.py, дальше правится вручную.
+# name — только для чтения человеком (берётся из прайса при сборке).
+# gender: men | women — для фильтра эпиляции и мужских позиций.
+# exclude — позиции из смешанных категорий («ДЛЯ МУЖЧИН», «Комплексы»), которые не косметология.
+services:
+- id: 18302137
+  name: Дополнительная доза SPRS-терапии (1 х 60 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 60 мл
+- id: 18322146
+  name: Дополнительная доза SPRS-терапии (1 х 80 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 80 мл
+- id: 18322161
+  name: Криохранение (10 лет)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18322165
+  name: Криохранение (3 года)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18322179
+  name: Криохранение (5 лет)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18322182
+  name: Паспорт кожи (диагностика SPRS-терапия)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18322192
+  name: Первичный комплекс SPRS-терапии (1 х 120 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 120 мл
+- id: 18322199
+  name: Первичный комплекс SPRS-терапии (2 х 60 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 60 мл
+- id: 18322212
+  name: Повторная SPRS-терапии (1 х 120 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 120 мл
+- id: 18322221
+  name: Повторная SPRS-терапии (2 х 60 млн. клеток)
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: 60 мл
+- id: 18322225
+  name: Создание банка собственных фибробластов кожи
+  procedure: sprs-terapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18322252
+  name: 111SKIN HOLIDAY FACE (с микротоками)
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18322275
+  name: 111SKIN I AM BOSS (с массажем криоэлементами)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+- id: 17154389
+  name: 111SKIN MASK SHOT
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18322280
+  name: 111SKIN PEEL & GLOW (с барофорезом)
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18989930
+  name: Face fitness
+  procedure: face-fitness
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18322291
+  name: Sodashi RELAX TIME (с массажем кристаллами розового кварца)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+- id: 18990051
+  name: Массаж лица 20 мин
+  procedure: face-fitness
+  device: null
+  zones:
+  - lico
+  volume: 20 минут
+- id: 17727074
+  name: BBL Forever Clear Лечение акне (лицо)
+  procedure: lechenie-akne
+  device: bbl
+  zones:
+  - lico
+  volume: null
+- id: 17727073
+  name: BBL Forever young Фототерапия (лицо + шея)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 17727070
+  name: BBL Forever young Фототерапия (лицо)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - lico
+  volume: null
+- id: 17727072
+  name: BBL Forever young Фототерапия (шея + декольте)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727081
+  name: BBL HERO (декольте)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - dekolte
+  volume: null
+- id: 17727082
+  name: BBL HERO (шея + декольте)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727080
+  name: BBL Skin Tyte Инфракрасный термолифтинг (лицо + шея)
+  procedure: infrakrasnyy-termolifting
+  device: bbl
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 17727078
+  name: BBL Skin Tyte Инфракрасный термолифтинг (лицо)
+  procedure: infrakrasnyy-termolifting
+  device: bbl
+  zones:
+  - lico
+  volume: null
+- id: 17727079
+  name: BBL Skin Tyte Инфракрасный термолифтинг (шея)
+  procedure: infrakrasnyy-termolifting
+  device: bbl
+  zones:
+  - sheya
+  volume: null
+- id: 17727077
+  name: BBL Фототерапия (лицо + шея + декольте)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727076
+  name: BBL Фототерапия (лицо + шея)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 17727075
+  name: BBL Фототерапия (лицо)
+  procedure: fotoomolozhenie
+  device: bbl
+  zones:
+  - lico
+  volume: null
+- id: 18322320
+  name: Biogenie - Detox микротоковая терапия (лицо + шея)
+  procedure: mikrotoki-i-miostimulyaciya
+  device: biogenie
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322328
+  name: Biogenie - Premier микротоковая терапия (лицо + шея + декольте) с альгинатной маской
+  procedure: mikrotoki-i-miostimulyaciya
+  device: biogenie
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18990018
+  name: Biogenie-Lifting
+  procedure: mikrotoki-i-miostimulyaciya
+  device: biogenie
+  zones: null
+  volume: null
+- id: 18322345
+  name: ENDYMED (лицо + шея + декольте)
+  procedure: rf-lifting
+  device: endymed
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322353
+  name: ENDYMED (лицо + шея)
+  procedure: rf-lifting
+  device: endymed
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322356
+  name: ENDYMED (лицо)
+  procedure: rf-lifting
+  device: endymed
+  zones:
+  - lico
+  volume: null
+- id: 18322366
+  name: ENDYMED (микроигольчатое ремоделирование лица + шеи + декольте)
+  procedure: mikroigolchatyy-rf-lifting
+  device: endymed
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322374
+  name: ENDYMED (микроигольчатое ремоделирование лица + шеи)
+  procedure: mikroigolchatyy-rf-lifting
+  device: endymed
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322383
+  name: ENDYMED (микроигольчатое ремоделирование лица)
+  procedure: mikroigolchatyy-rf-lifting
+  device: endymed
+  zones:
+  - lico
+  volume: null
+- id: 18322424
+  name: Endospheres Therapy компрессионная микровибрация (лицо)
+  procedure: vakuumnyy-massazh-lica
+  device: endospheres
+  zones:
+  - lico
+  volume: null
+- id: 17727060
+  name: Fotona 2D омоложение (лицо / шея / декольте )
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727062
+  name: Fotona 3D лазерное омоложение (лицо + шея + декольте)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727061
+  name: Fotona 3D лазерное омоложение (лицо)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  volume: null
+- id: 17727063
+  name: Fotona 4D многоуровневое лазерное омоложение (лицо)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  volume: null
+- id: 17727067
+  name: Fotona Smooth eye лазерная блефаропластика глаз
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - glaza
+  volume: null
+- id: 17727068
+  name: Fotona Smooth омоложение (лицо + шея + декольте)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727064
+  name: Fotona Лазерное неодимовое омоложение лица Verso / Frac3 / Piano
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  volume: null
+- id: 17727065
+  name: Fotona Лазерное неодимовое омоложение лица, шеи, декольте Verso / Frac3 / Piano
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727069
+  name: Fotona Полировка (лицо + шея + декольте)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17727066
+  name: Fotona Сверхглубокое омоложение Piano лица (XLP ND:YAG)
+  procedure: lazernoe-omolozhenie
+  device: fotona
+  zones:
+  - lico
+  volume: null
+- id: 18322431
+  name: Heleo-4 фотодинамическая терапия (лицо + шея + декольте)
+  procedure: fotodinamicheskaya-terapiya
+  device: heleo-4
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322433
+  name: Heleo-4 фотодинамическая терапия (лицо)
+  procedure: fotodinamicheskaya-terapiya
+  device: heleo-4
+  zones:
+  - lico
+  volume: null
+- id: 18322446
+  name: HydraFacial вакуумный гидропилинг, комплексное очищение кожи (лицо + шея)
+  procedure: apparatnoe-ochishchenie
+  device: hydrafacial
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322439
+  name: HydraFacial вакуумный гидропилинг, омоложение (лицо + шея)
+  procedure: apparatnoe-ochishchenie
+  device: hydrafacial
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 26788812
+  name: ICoone Механовакуумный массаж (лицо + шея + декольте) 35 минут
+  procedure: vakuumnyy-massazh-lica
+  device: icoone
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: 35 минут
+- id: 26788712
+  name: ICoone Механовакуумный массаж (лицо + шея) 25 минут
+  procedure: vakuumnyy-massazh-lica
+  device: icoone
+  zones:
+  - lico
+  - sheya
+  volume: 25 минут
+- id: 17643911
+  name: InMode Forma Термолифтинг и ремоделирование лица 1 зона (лицо / шея / декольте)
+  procedure: rf-lifting
+  device: inmode-forma
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: 1 зон
+- id: 17643912
+  name: InMode Forma Термолифтинг и ремоделирование лица, шеи
+  procedure: rf-lifting
+  device: inmode-forma
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 17643913
+  name: InMode Forma Термолифтинг и ремоделирование лица, шеи, декольте
+  procedure: rf-lifting
+  device: inmode-forma
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17643907
+  name: InMode Lumecca Фотоомоложение декольте
+  procedure: fotoomolozhenie
+  device: inmode-lumecca
+  zones:
+  - dekolte
+  volume: null
+- id: 17643905
+  name: InMode Lumecca Фотоомоложение лица
+  procedure: fotoomolozhenie
+  device: inmode-lumecca
+  zones:
+  - lico
+  volume: null
+- id: 17643906
+  name: InMode Lumecca Фотоомоложение шеи
+  procedure: fotoomolozhenie
+  device: inmode-lumecca
+  zones:
+  - sheya
+  volume: null
+- id: 17643908
+  name: InMode Morpheus 8 фракционное радиочастотное омоложение 1 зона
+  procedure: mikroigolchatyy-rf-lifting
+  device: inmode-morpheus8
+  zones: null
+  volume: 1 зон
+- id: 17643909
+  name: InMode Morpheus 8 фракционное радиочастотное омоложение 2 зоны
+  procedure: mikroigolchatyy-rf-lifting
+  device: inmode-morpheus8
+  zones: null
+  volume: 2 зон
+- id: 17643910
+  name: InMode Morpheus 8 фракционное радиочастотное омоложение 3 зоны
+  procedure: mikroigolchatyy-rf-lifting
+  device: inmode-morpheus8
+  zones: null
+  volume: 3 зон
+- id: 17643486
+  name: Innofill RF липосакция нижней части лица / второго подбородка
+  procedure: rf-liposakciya-podborodka
+  device: innofill
+  zones:
+  - lico
+  - oval
+  volume: null
+- id: 18322451
+  name: Liftera-A (глаза)
+  procedure: smas-lifting-hifu
+  device: liftera-a
+  zones:
+  - glaza
+  volume: null
+- id: 18322455
+  name: Liftera-A (декольте)
+  procedure: smas-lifting-hifu
+  device: liftera-a
+  zones:
+  - dekolte
+  volume: null
+- id: 18322458
+  name: Liftera-A (лицо)
+  procedure: smas-lifting-hifu
+  device: liftera-a
+  zones:
+  - lico
+  volume: null
+- id: 18322460
+  name: Liftera-A (шея)
+  procedure: smas-lifting-hifu
+  device: liftera-a
+  zones:
+  - sheya
+  volume: null
+- id: 18322486
+  name: Maximus RF-лифтинг (лицо + шея + декольте)
+  procedure: rf-lifting
+  device: maximus
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322489
+  name: Maximus RF-лифтинг (лицо + шея)
+  procedure: rf-lifting
+  device: maximus
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322497
+  name: Maximus RF-лифтинг (лицо)
+  procedure: rf-lifting
+  device: maximus
+  zones:
+  - lico
+  volume: null
+- id: 29614041
+  name: NeoGen 1000 импульсов
+  procedure: plazmennoe-omolozhenie
+  device: neogen
+  zones: null
+  volume: 1000 импульсов
+- id: 29614050
+  name: NeoGen 2000 импульсов
+  procedure: plazmennoe-omolozhenie
+  device: neogen
+  zones: null
+  volume: 2000 импульсов
+- id: 29613981
+  name: NeoGen 600 импульсов
+  procedure: plazmennoe-omolozhenie
+  device: neogen
+  zones: null
+  volume: 600 импульсов
+- id: 18322500
+  name: Scarlet RF микроигольчатое ремоделирование (лицо + шея + декольте)
+  procedure: mikroigolchatyy-rf-lifting
+  device: scarlet-rf
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322506
+  name: Scarlet RF микроигольчатое ремоделирование (лицо / шея)
+  procedure: mikroigolchatyy-rf-lifting
+  device: scarlet-rf
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322507
+  name: So Up интенсивное увлажнение (лицо)
+  procedure: rf-lifting
+  device: so-up
+  zones:
+  - lico
+  volume: null
+- id: 18322508
+  name: So Up омоложение (декольте / лицо 1 зона)
+  procedure: rf-lifting
+  device: so-up
+  zones:
+  - lico
+  - dekolte
+  volume: 1 зон
+- id: 18322511
+  name: So Up омоложение (лицо + шея)
+  procedure: rf-lifting
+  device: so-up
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18322513
+  name: Ultraformer МРТ "Выход в свет" (лицо, шея, декольте)
+  procedure: smas-lifting-hifu
+  device: ultraformer
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18322517
+  name: Ultraformer МРТ 1000 линий
+  procedure: smas-lifting-hifu
+  device: ultraformer
+  zones: null
+  volume: 1000 линий
+- id: 18322515
+  name: Ultraformer МРТ 500 линий
+  procedure: smas-lifting-hifu
+  device: ultraformer
+  zones: null
+  volume: 500 линий
+- id: 18322521
+  name: Vip Line изометрическое моделирование ISOGEI (лицо)
+  procedure: mikrotoki-i-miostimulyaciya
+  device: vip-line
+  zones:
+  - lico
+  volume: null
+- id: 18322527
+  name: Vip Line микротоковая терапия MICROGEI (лицо)
+  procedure: mikrotoki-i-miostimulyaciya
+  device: vip-line
+  zones:
+  - lico
+  volume: null
+- id: 26784576
+  name: Volnewmer Монополярный RF лифтинг 100 линий
+  procedure: rf-lifting
+  device: volnewmer
+  zones: null
+  volume: 100 линий
+- id: 26784606
+  name: Volnewmer Монополярный RF лифтинг 1000 линий
+  procedure: rf-lifting
+  device: volnewmer
+  zones: null
+  volume: 1000 линий
+- id: 26784596
+  name: Volnewmer Монополярный RF лифтинг 500 линий
+  procedure: rf-lifting
+  device: volnewmer
+  zones: null
+  volume: 500 линий
+- id: 18322539
+  name: Dysport Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+- id: 18322543
+  name: Dysport Лечение гипергидроза препаратом, внутримышечное введение лекарственных препаратов, 300 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 300 ед.
+- id: 18322551
+  name: Dysport Лечение гипергидроза препаратом, внутримышечное введение лекарственных препаратов, 500 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 500 ед.
+- id: 18322556
+  name: Xeomin / Миотокс / Релатокс внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+- id: 18322557
+  name: Миотокс Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+- id: 18322564
+  name: Миотокс Лечение гипергидроза, внутримышечное введение лекарственных препаратов, 100 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 100 ед.
+- id: 18322600
+  name: Active Age (улучшение работы мозга)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322747
+  name: Full Detox (освобождение от токсинов)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322752
+  name: Health Care (улучшение работы внутренних органов)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322760
+  name: Immuno-Boost (укрепление иммунитета)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322768
+  name: Long Life (укрепление и омоложение организма)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322772
+  name: Vitamin Mix (снятие синдрома хронической усталости)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322775
+  name: Система капельниц
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+- id: 18322783
+  name: Депиляция бикини
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+- id: 18322788
+  name: Депиляция бикини глубокое
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+- id: 18322794
+  name: Депиляция над губой / подбородок / подмышечная впадина
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - guby
+  - oval
+  - podmyshki
+  volume: null
+- id: 18322797
+  name: Депиляция ног до колена / выше колена
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - nogi
+  volume: null
+- id: 18322799
+  name: Депиляция рук до локтя / выше локтя
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - ruki
+  volume: null
+- id: 17158256
+  name: 111SKIN Уход восстанавливающий Y-Theorem для всех типов кожи
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158257
+  name: 111SKIN Уход омолаживающий Black Diamond
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158244
+  name: 111Skin Holiday Face (25 минут)
+  procedure: mikrotoki-i-miostimulyaciya
+  device: null
+  zones:
+  - lico
+  volume: 25 минут
+  gender: men
+- id: 17158258
+  name: Active Age (улучшение работы мозга)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158262
+  name: Body Fitness Massage Aldo Coppola (Sodashi)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: null
+  gender: men
+- id: 17158263
+  name: Botox Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+  gender: men
+- id: 17158264
+  name: Botox Лечение гипергидроза препаратом, внутримышечное введение лекарственных препаратов, 100 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 100 ед.
+  gender: men
+- id: 17158267
+  name: DEKA (интимная глубокая. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - boka
+  - bikini
+  volume: null
+  gender: men
+- id: 17158268
+  name: DEKA (интимная классическая. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - bikini
+  volume: null
+  gender: men
+- id: 17158269
+  name: DEKA (оба бедра. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - bedra
+  volume: null
+  gender: men
+- id: 17158270
+  name: DEKA (обе ноги до колена. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - nogi
+  volume: null
+  gender: men
+- id: 17158271
+  name: DEKA (обе ноги полностью. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - nogi
+  volume: null
+  gender: men
+- id: 17158272
+  name: DEKA (обе руки до локтя. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - ruki
+  volume: null
+  gender: men
+- id: 17158273
+  name: DEKA (обе руки полностью. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - ruki
+  volume: null
+  gender: men
+- id: 17158265
+  name: DEKA (спина / грудь / живот. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - zhivot
+  - spina
+  volume: null
+  gender: men
+- id: 17158275
+  name: DEKA (ягодицы. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - yagodicy
+  volume: null
+  gender: men
+- id: 17158276
+  name: Dysport Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+  gender: men
+- id: 17158277
+  name: Dysport Лечение гипергидроза препаратом, внутримышечное введение лекарственных препаратов, 300 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 300 ед.
+  gender: men
+- id: 17158278
+  name: Dysport Лечение гипергидроза препаратом, внутримышечное введение лекарственных препаратов, 500 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 500 ед.
+  gender: men
+- id: 17158279
+  name: Face Fitness Massage Aldo Coppola (лицо, 40 минут)
+  procedure: face-fitness
+  device: null
+  zones:
+  - lico
+  volume: 40 минут
+  gender: men
+- id: 17158281
+  name: Face Fitness Strong (лицо, 20 минут)
+  procedure: face-fitness
+  device: null
+  zones:
+  - lico
+  volume: 20 минут
+  gender: men
+- id: 17158282
+  name: Full Detox (освобождение от токсинов)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158283
+  name: Health Care (улучшение работы внутренних органов)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158284
+  name: Immuno-Boost (укрепление иммунитета)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158285
+  name: Long Life (укрепление и омоложение организма)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158287
+  name: Obagi zo экспресс-уход выравнивающий
+  procedure: muzhskie-uhody
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158288
+  name: PRXt33 дермостимулятор (2,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 2,0 мл
+  gender: men
+- id: 17158289
+  name: PRXt33 дермостимулятор (4,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 4,0 мл
+  gender: men
+- id: 17158291
+  name: QMS массаж (30 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 30 минут
+  gender: men
+- id: 17158292
+  name: QMS массаж (60 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 60 минут
+  gender: men
+- id: 17158293
+  name: SEEV Anti-aging уход Botoseev
+  procedure: muzhskie-uhody
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158294
+  name: Sodashi Relax time (30 минут)
+  procedure: uhody-sodashi
+  device: null
+  zones: null
+  volume: 30 минут
+  gender: men
+- id: 17158295
+  name: Sodashi Глубоко увлажняющий и тонизирующий уход с маской и морскими минералами
+  procedure: uhody-sodashi
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158297
+  name: Sodashi Экспресс-уход Юность глаз
+  procedure: uhody-sodashi
+  device: null
+  zones:
+  - glaza
+  volume: null
+  gender: men
+- id: 17158296
+  name: Sodashi Экспресс-уход для лица Stop&Relax
+  procedure: uhody-sodashi
+  device: null
+  zones:
+  - lico
+  volume: null
+  gender: men
+- id: 17723181
+  name: Soprano (интимная глубокая. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - boka
+  - bikini
+  volume: null
+  gender: men
+- id: 17723180
+  name: Soprano (интимная классическая. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bikini
+  volume: null
+  gender: men
+- id: 17723179
+  name: Soprano (оба бедра. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bedra
+  volume: null
+  gender: men
+- id: 17723175
+  name: Soprano (обе ноги до колена. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - nogi
+  volume: null
+  gender: men
+- id: 17723176
+  name: Soprano (обе ноги полностью. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - nogi
+  volume: null
+  gender: men
+- id: 17723173
+  name: Soprano (обе руки до локтя. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - ruki
+  volume: null
+  gender: men
+- id: 17723174
+  name: Soprano (обе руки полностью. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - ruki
+  volume: null
+  gender: men
+- id: 17723177
+  name: Soprano (спина / грудь / живот. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - zhivot
+  - spina
+  volume: null
+  gender: men
+- id: 17723178
+  name: Soprano (ягодицы. для мужчин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - yagodicy
+  volume: null
+  gender: men
+- id: 17158301
+  name: Viscoderm Skinko E Мезотерапия
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158302
+  name: Viscoderm Skinko Мезотерапия
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158303
+  name: Vitamin Mix (снятие синдрома хронической усталости)
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158304
+  name: Xeomin Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+  gender: men
+- id: 17158306
+  name: Барбер уход за лицом
+  procedure: muzhskie-uhody
+  device: null
+  zones:
+  - lico
+  volume: null
+  gender: men
+- id: 17158308
+  name: Восковая депиляция грудь / спина
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - spina
+  volume: null
+  gender: men
+- id: 17723183
+  name: Восковая депиляция грудь / спина
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - spina
+  volume: null
+  gender: men
+- id: 17723185
+  name: Восковая депиляция интимная глубокая. для мужчин
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - boka
+  - bikini
+  volume: null
+  gender: men
+- id: 17723184
+  name: Восковая депиляция интимная классическая. для мужчин
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+  gender: men
+- id: 17158309
+  name: Восковая депиляция мужская бикини
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+  gender: men
+- id: 17158310
+  name: Восковая депиляция мужская бикини глубокое
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+  gender: men
+- id: 17158311
+  name: Восковая депиляция подмышечной впадины / нос / уши / подбородок
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - oval
+  - podmyshki
+  volume: null
+  gender: men
+- id: 17723182
+  name: Восковая депиляция подмышечной впадины / нос / уши / подбородок
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - oval
+  - podmyshki
+  volume: null
+  gender: men
+- id: 17158313
+  name: Глубокий силовой массаж
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158319
+  name: Массаж для лица и тела «Full Body and Face» 120 мин
+  procedure: massazh
+  device: null
+  zones:
+  - lico
+  - telo
+  volume: 120 минут
+  gender: men
+- id: 17158321
+  name: Миотокс Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+  gender: men
+- id: 17158322
+  name: Миотокс Лечение гипергидроза, внутримышечное введение лекарственных препаратов, 100 ед.
+  procedure: lechenie-gipergidroza
+  device: null
+  zones: null
+  volume: 100 ед.
+  gender: men
+- id: 17158328
+  name: Общий массаж тела (30 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 30 минут
+  gender: men
+- id: 17158329
+  name: Общий массаж тела (60 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 60 минут
+  gender: men
+- id: 17158330
+  name: Общий массаж тела (90 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 90 минут
+  gender: men
+- id: 17158338
+  name: Релатокс Внутримышечное введение лекарственных препаратов, 1 ед.
+  procedure: botulinoterapiya
+  device: null
+  zones: null
+  volume: 1 ед.
+  gender: men
+- id: 17158339
+  name: Система капельниц
+  procedure: kapelnicy
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158345
+  name: Уход Aldo Coppola
+  procedure: avtorskiy-uhod
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17158349
+  name: Экзосомальная терапия ASCEplus DERMA SIGNAL KIT SRLV
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+  gender: men
+- id: 17154375
+  name: 111Skin Маска биоцеллюлозная для проблемной кожи
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154377
+  name: 111Skin Маска для лифтинга кожи лица
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17346374
+  name: 111Skin Маска для лифтинга кожи лица Black Diamond
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154378
+  name: 111Skin Маска для лифтинга кожи лица, шеи и области декольте
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 17346373
+  name: 111Skin Маска для лица Rose Gold / Для проблемной кожи / Cryo
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154374
+  name: 111Skin Маска для лица Розовое Золото
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154373
+  name: 111Skin Маска для лица биоцеллюлозная
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154372
+  name: 111Skin Маска для шеи и области декольте с эффектом лифтинга
+  procedure: maski
+  device: null
+  zones:
+  - sheya
+  - dekolte
+  volume: null
+- id: 17154376
+  name: 111Skin Маска противоотечная для лица Cryo
+  procedure: maski
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154371
+  name: 111Skin Маска-патчи Cryo
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154370
+  name: 111Skin Маска-патчи для глаз Celestial Black Diamond Eye Mask
+  procedure: maski
+  device: null
+  zones:
+  - glaza
+  volume: null
+- id: 17154369
+  name: 111Skin Маска-патчи с эффектом сияния Rose Gold
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154368
+  name: 111Skin Мезо маска-патчи
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17346372
+  name: 111Skin маска-патчи Meso / Rose Gold / Cryo / Black Diamond
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 18323604
+  name: AestheFill Self-лифтинг препаратом, 1 флакон
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 флакон
+- id: 17154511
+  name: AestheFill Self-лифтинг препаратом, 4 флакона
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 4 флакон
+- id: 17723075
+  name: AestheFill, 1 флакон
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 флакон
+- id: 18335939
+  name: Belotero Intens
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: null
+- id: 18335953
+  name: Belotero Lips Contour, 0,6 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones:
+  - guby
+  volume: 0,6 мл
+- id: 18335956
+  name: Belotero Lips Shape, 0,6 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones:
+  - guby
+  volume: 0,6 мл
+- id: 17154382
+  name: CELLCOSMET Крем-маска анти-стресс
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154381
+  name: CELLCOSMET альгинатная маска
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17346376
+  name: Cellcosmet Альгинатная маска
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17346377
+  name: Cellcosmet Крем-маска анти-стресс
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17346378
+  name: Cosmepro гелевая карбоксимаска для лица
+  procedure: karboksiterapiya
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154383
+  name: Cosmero Coo Force CO2 Карбокситерапия
+  procedure: karboksiterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 17346375
+  name: Jan Marini Маска С ретинолом 1% / Ультра увлажняющая и успокаивающая
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154379
+  name: Jan Marini Маска с ретинолом 1%
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 17154380
+  name: Jan Marini Маска ультра увлажняющая и успокаивающая
+  procedure: maski
+  device: null
+  zones: null
+  volume: null
+- id: 18335961
+  name: Juvederm Ultra 2, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18335962
+  name: Juvederm Ultra 3, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18335968
+  name: Juvederm Ultra 4, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18335970
+  name: Juvederm Ultra Smile, 0,55 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones:
+  - guby
+  volume: 0,55 мл
+- id: 18335976
+  name: Juvederm Volbella, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 17154520
+  name: Juvederm Volift Retouch, 0,55 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 0,55 мл
+- id: 17154521
+  name: Juvederm Volift, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336000
+  name: Juvederm Voluma, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336008
+  name: Juvederm Volux, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336011
+  name: Neauvia Intense Flux / LV / Rheology / Intense (1 мл)
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 17154525
+  name: Neauvia Intense LV, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 17154526
+  name: Neauvia Intense Rheology, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 17154527
+  name: Neauvia Organic Intense, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336017
+  name: Neauvia Stimulate, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336024
+  name: NucleoForm Rich, 2 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336029
+  name: NucleoForm, 2 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 17154531
+  name: Perline, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336035
+  name: Powerfill, 1 шприц
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 шприц
+- id: 18336040
+  name: Powerfill, 2 шприца
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 2 шприц
+- id: 18336070
+  name: Radiesse, 1,5 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1,5 мл
+- id: 18336073
+  name: Radiesse, 3 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 3 мл
+- id: 18336079
+  name: Restylane Vital, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336085
+  name: Restylane lift, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336089
+  name: Restylane, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336102
+  name: Sofiderm derm plus 20 мл, 1 шприц
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 20 мл
+- id: 18336104
+  name: Sofiderm subskin 20 мл, 1 шприц
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 20 мл
+- id: 18336202
+  name: Stylage L, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336206
+  name: Stylage Lips Lidocaine, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones:
+  - guby
+  volume: 1 мл
+- id: 18336211
+  name: Stylage M Lidocaine, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336235
+  name: Stylage M, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336238
+  name: Stylage S, 0,8 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 0,8 мл
+- id: 18336246
+  name: Stylage XL без лидокаина, 1 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 17154549
+  name: Teosyal Redensity, 3 мл
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: 3 мл
+- id: 18336250
+  name: Сферогель Light
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: null
+- id: 18336254
+  name: Сферогель Long Advanced
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: null
+- id: 18336258
+  name: Сферогель Lоng Fine
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: null
+- id: 18336260
+  name: Сферогель Medium
+  procedure: konturnaya-plastika
+  device: null
+  zones: null
+  volume: null
+- id: 18338290
+  name: DEKA (бикини глубокое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 18338292
+  name: DEKA (бикини классическое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 18338296
+  name: DEKA (верхняя губа)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - lico
+  - guby
+  volume: null
+- id: 18338298
+  name: DEKA (лицо)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - lico
+  volume: null
+- id: 18338300
+  name: DEKA (оба бедра. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - bedra
+  volume: null
+  gender: women
+- id: 18338306
+  name: DEKA (обе ноги до колена. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 18338312
+  name: DEKA (обе ноги полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 18338319
+  name: DEKA (обе руки до локтей. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 18338322
+  name: DEKA (обе руки полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 18338326
+  name: DEKA (подмышечные впадины / белая линия живота)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - zhivot
+  - podmyshki
+  volume: null
+- id: 18338329
+  name: DEKA (щёки)
+  procedure: lazernaya-epilyaciya
+  device: deka
+  zones:
+  - lico
+  volume: null
+- id: 17643566
+  name: Light Sheer Duet (бикини глубокое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 17643565
+  name: Light Sheer Duet (бикини классическое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 17643556
+  name: Light Sheer Duet (верхняя губа)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - lico
+  - guby
+  volume: null
+- id: 17643558
+  name: Light Sheer Duet (лицо)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - lico
+  volume: null
+- id: 17643564
+  name: Light Sheer Duet (оба бедра. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - bedra
+  volume: null
+  gender: women
+- id: 17643562
+  name: Light Sheer Duet (обе ноги до колена. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 17643563
+  name: Light Sheer Duet (обе ноги полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 17643560
+  name: Light Sheer Duet (обе руки до локтей. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 17643561
+  name: Light Sheer Duet (обе руки полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 17643559
+  name: Light Sheer Duet (подмышечные впадины / белая линия живота )
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - zhivot
+  - podmyshki
+  volume: null
+- id: 17643557
+  name: Light Sheer Duet (щёки)
+  procedure: lazernaya-epilyaciya
+  device: lightsheer-duet
+  zones:
+  - lico
+  volume: null
+- id: 17154454
+  name: Soprano (бикини глубокое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 17154453
+  name: Soprano (бикини классическое. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 18337630
+  name: Soprano (верхняя губа)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - lico
+  - guby
+  volume: null
+- id: 18338335
+  name: Soprano (интимная глубокая. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - boka
+  - bikini
+  volume: null
+  gender: women
+- id: 18338337
+  name: Soprano (интимная классическая. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bikini
+  volume: null
+  gender: women
+- id: 18337633
+  name: Soprano (лицо)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - lico
+  volume: null
+- id: 18337636
+  name: Soprano (оба бедра. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - bedra
+  volume: null
+  gender: women
+- id: 18337640
+  name: Soprano (обе ноги до колена. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 18337642
+  name: Soprano (обе ноги полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - nogi
+  volume: null
+  gender: women
+- id: 18337643
+  name: Soprano (обе руки до локтей. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 18337645
+  name: Soprano (обе руки полностью. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - ruki
+  volume: null
+  gender: women
+- id: 18337647
+  name: Soprano (подмышечные впадины / белая линия живота
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - zhivot
+  - podmyshki
+  volume: null
+- id: 18338365
+  name: Soprano (спина. для женщин)
+  procedure: lazernaya-epilyaciya
+  device: soprano
+  zones:
+  - spina
+  volume: null
+  gender: women
+- id: 18249491
+  name: Депиляция бикини
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+- id: 18249493
+  name: Депиляция бикини глубокое
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - bikini
+  volume: null
+- id: 18249485
+  name: Депиляция над губой / подбородок / подмышечной впадины
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - guby
+  - oval
+  - podmyshki
+  volume: null
+- id: 18249489
+  name: Депиляция ног до колена / выше колена
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - nogi
+  volume: null
+- id: 18249487
+  name: Депиляция рук до локтя / выше локтя
+  procedure: voskovaya-depilyaciya
+  device: null
+  zones:
+  - ruki
+  volume: null
+- id: 18337652
+  name: Липолитик Aqualyx тело, 8 мл
+  procedure: lipolitiki
+  device: null
+  zones:
+  - telo
+  volume: 8 мл
+- id: 17154591
+  name: Липолитик Dermastabilon 1 ампула / 5 мл
+  procedure: lipolitiki
+  device: null
+  zones: null
+  volume: 5 мл
+- id: 17154592
+  name: Липолитик Silorg 0,5 1 шприц, 5 мл
+  procedure: lipolitiki
+  device: null
+  zones: null
+  volume: 5 мл
+- id: 18337665
+  name: MedicalSeev обертывание бандажное
+  procedure: obertyvaniya
+  device: null
+  zones: null
+  volume: null
+- id: 18337666
+  name: QMS активное обновление кожи
+  procedure: obertyvaniya
+  device: null
+  zones: null
+  volume: null
+- id: 17154397
+  name: QMS массаж (30 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 30 минут
+- id: 18337667
+  name: QMS массаж (60 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 60 минут
+- id: 17154399
+  name: QMS массаж (90 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 90 минут
+- id: 18337669
+  name: QMS обертывание- Антицеллюлитное
+  procedure: obertyvaniya
+  device: null
+  zones: null
+  volume: null
+- id: 18337673
+  name: Sodashi Body Fitness Massage Aldo Coppola
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: null
+- id: 17154401
+  name: Sodashi массаж на масле дерева Уд (45 мин)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 45 минут
+- id: 18337680
+  name: Sodashi массаж на масле дерева Уд (60 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 60 минут
+- id: 18337681
+  name: Sodashi уход для тела полирующий
+  procedure: obertyvaniya
+  device: null
+  zones:
+  - telo
+  volume: null
+- id: 18337687
+  name: Sodashi экспресс-пилинг тела (20 минут)
+  procedure: obertyvaniya
+  device: null
+  zones:
+  - telo
+  volume: 20 минут
+- id: 18337692
+  name: Thalion обертывание минеральное- Антистресс
+  procedure: obertyvaniya
+  device: null
+  zones: null
+  volume: null
+- id: 18337694
+  name: Thalion обертывание- Антицеллюлитное
+  procedure: obertyvaniya
+  device: null
+  zones: null
+  volume: null
+- id: 18337703
+  name: Thalion обертывание- Расслабляющий уход для спины
+  procedure: obertyvaniya
+  device: null
+  zones:
+  - spina
+  volume: null
+- id: 17154396
+  name: Антицеллюлитный моделирующий массаж
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+- id: 17154395
+  name: Глубокий силовой массаж
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+- id: 18337708
+  name: Глубокий силовой массаж / антицеллюлитный моделирующий массаж
+  procedure: massazh
+  device: null
+  zones: null
+  volume: null
+- id: 18337711
+  name: Массаж для лица и тела «Full Body and Face» (120 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - lico
+  - telo
+  volume: 120 минут
+- id: 17154392
+  name: Общий массаж тела (30 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 30 минут
+- id: 18337720
+  name: Общий массаж тела (60 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 60 минут
+- id: 17154394
+  name: Общий массаж тела (90 минут)
+  procedure: massazh
+  device: null
+  zones:
+  - telo
+  volume: 90 минут
+- id: 17727147
+  name: Хаммам мыльный массаж (45 минут)
+  procedure: massazh
+  device: null
+  zones: null
+  volume: 45 минут
+- id: 18336320
+  name: Belotero Balanse, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336325
+  name: Belotero Hydro, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336327
+  name: Belotero Soft, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336333
+  name: Belotero Volume, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336339
+  name: Juvederm Volite, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336342
+  name: Linerase, 100 мг
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336351
+  name: Meso-Wharton Р199 / Meso-Xanthin F199 / MesoEye
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones:
+  - glaza
+  volume: null
+- id: 17154470
+  name: Meso-Xanthin F199, 1,5 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1,5 мл
+- id: 17154471
+  name: MesoEye C71, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones:
+  - glaza
+  volume: 1 мл
+- id: 18336378
+  name: Mesosculpt,1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336410
+  name: NCTF 135 HA, 3 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 3 мл
+- id: 17154474
+  name: NCTF 135+, 3 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 3 мл
+- id: 18336425
+  name: Neauvia Hydro Deluxe, 2,5 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2,5 мл
+- id: 18336428
+  name: Nithya
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336437
+  name: Novacutan SBio / YBio, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336441
+  name: Plinest Fast / Plinest, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336449
+  name: Profhilo Body Kit
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones:
+  - telo
+  volume: null
+- id: 18336453
+  name: Profhilo, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336455
+  name: Revi Eye, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones:
+  - glaza
+  volume: 1 мл
+- id: 18336463
+  name: Revi Silk 1,2%, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336474
+  name: Revi Silk 1,2%, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336483
+  name: Revi Strong 1,5%, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336501
+  name: Revi Strong 1,5%, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336507
+  name: Revi Style 1%, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336523
+  name: Revi Style 1%, 2 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 2 мл
+- id: 18336528
+  name: Stylage Hydro, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336550
+  name: Stylage HydroMax, 1 мл
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: 1 мл
+- id: 18336555
+  name: Viscoderm 0,8%
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336560
+  name: Viscoderm 0,8% + 1,6% + 2,0%
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336584
+  name: Viscoderm 1,6%
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336587
+  name: Viscoderm 2,0%
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336601
+  name: Viscoderm Skinko
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18336605
+  name: Viscoderm Skinko E
+  procedure: biorevitalizaciya-i-mezoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 17727160
+  name: CoolSculpting криолиполиз, аппликация Advantage
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17727161
+  name: CoolSculpting криолиполиз, аппликация Advantage Petite
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17727162
+  name: CoolSculpting криолиполиз, аппликация Advantage Plus
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17154429
+  name: CoolSculpting, аппликация Advantage
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17154430
+  name: CoolSculpting, аппликация Advantage Petite
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17154431
+  name: CoolSculpting, аппликация Advantage Plus
+  procedure: kriolipoliz
+  device: coolsculpting
+  zones: null
+  volume: null
+- id: 17643547
+  name: ENDYMED Микроигольчатое ремоделир. области живота
+  procedure: rf-lifting-tela
+  device: endymed
+  zones:
+  - zhivot
+  volume: null
+- id: 17717372
+  name: ENDYMED Микроигольчатое ремоделирование (живот)
+  procedure: rf-lifting-tela
+  device: endymed
+  zones:
+  - zhivot
+  volume: null
+- id: 18337733
+  name: ENDYMED Тело (30 минут)
+  procedure: rf-lifting-tela
+  device: endymed
+  zones:
+  - telo
+  volume: 30 минут
+- id: 18337740
+  name: ENDYMED Тело (60 минут)
+  procedure: rf-lifting-tela
+  device: endymed
+  zones:
+  - telo
+  volume: 60 минут
+- id: 18337744
+  name: ENDYMED Тело 1 зона
+  procedure: rf-lifting-tela
+  device: endymed
+  zones:
+  - telo
+  volume: 1 зон
+- id: 18337755
+  name: Endospheres Therapy (30 минут)
+  procedure: vakuumnyy-massazh-tela
+  device: endospheres
+  zones: null
+  volume: 30 минут
+- id: 18337750
+  name: Endospheres Therapy (75 минут)
+  procedure: vakuumnyy-massazh-tela
+  device: endospheres
+  zones: null
+  volume: 75 минут
+- id: 26789072
+  name: ICoone Механовакуумный массаж тело (60 минут)
+  procedure: vakuumnyy-massazh-tela
+  device: icoone
+  zones:
+  - telo
+  volume: 60 минут
+- id: 26789088
+  name: ICoone Механовакуумный массаж тело (90 минут)
+  procedure: vakuumnyy-massazh-tela
+  device: icoone
+  zones:
+  - telo
+  volume: 90 минут
+- id: 17643552
+  name: Innofill RF липосакция одной зоны тела
+  procedure: rf-lifting-tela
+  device: innofill
+  zones:
+  - telo
+  volume: null
+- id: 17643554
+  name: Innofill коррекция рубцовой ткани 5 -10 см
+  procedure: korrekciya-rubcov
+  device: innofill
+  zones: null
+  volume: null
+- id: 17643553
+  name: Innofill коррекция рубцовой ткани до 2 см
+  procedure: korrekciya-rubcov
+  device: innofill
+  zones: null
+  volume: null
+- id: 17727168
+  name: Mantis магнитотерапия и дерматония (25 минут)
+  procedure: magnitoterapiya
+  device: mantis
+  zones: null
+  volume: 25 минут
+- id: 17727169
+  name: Mantis магнитотерапия и дерматония (40 минут)
+  procedure: magnitoterapiya
+  device: mantis
+  zones: null
+  volume: 40 минут
+- id: 18337774
+  name: Maximus радиочастотный лифтинг (голени / 1/2 спины)
+  procedure: rf-lifting-tela
+  device: maximus
+  zones:
+  - nogi
+  - spina
+  volume: null
+- id: 18337780
+  name: Maximus радиочастотный лифтинг (задняя поверхность бедра / живот / руки)
+  procedure: rf-lifting-tela
+  device: maximus
+  zones:
+  - zhivot
+  - bedra
+  - ruki
+  volume: null
+- id: 18337796
+  name: Maximus радиочастотный лифтинг (ягодицы / передняя поверхность бедра)
+  procedure: rf-lifting-tela
+  device: maximus
+  zones:
+  - bedra
+  - yagodicy
+  volume: null
+- id: 18337826
+  name: Scarlet RF Микроигольчатое ремоделирование 5000 импульсов до 3-х зон
+  procedure: rf-lifting-tela
+  device: scarlet-rf
+  zones: null
+  volume: 5000 импульсов
+- id: 18337833
+  name: Scarlet RF Микроигольчатое ремоделирование тела 20х20 см
+  procedure: rf-lifting-tela
+  device: scarlet-rf
+  zones:
+  - telo
+  volume: null
+- id: 17643550
+  name: So Up (RF + УЗ) коррекция фигуры (20 минут)
+  procedure: rf-lifting-tela
+  device: so-up
+  zones: null
+  volume: 20 минут
+- id: 17643551
+  name: So Up (RF + УЗ) коррекция фигуры (40 минут)
+  procedure: rf-lifting-tela
+  device: so-up
+  zones: null
+  volume: 40 минут
+- id: 17643548
+  name: So Up (RF) коррекция фигуры (20 минут)
+  procedure: rf-lifting-tela
+  device: so-up
+  zones: null
+  volume: 20 минут
+- id: 17643549
+  name: So Up (RF) коррекция фигуры (40 минут)
+  procedure: rf-lifting-tela
+  device: so-up
+  zones: null
+  volume: 40 минут
+- id: 18337866
+  name: Ulfit ультразвуковой липолиз 1000 линий
+  procedure: hifu-tela
+  device: ulfit
+  zones: null
+  volume: 1000 линий
+- id: 18337880
+  name: Ulfit ультразвуковой липолиз 1500 линий
+  procedure: hifu-tela
+  device: ulfit
+  zones: null
+  volume: 1500 линий
+- id: 18337890
+  name: Ulfit ультразвуковой липолиз 500 линий
+  procedure: hifu-tela
+  device: ulfit
+  zones: null
+  volume: 500 линий
+- id: 18337928
+  name: Ultraformer ультразвуковой smas-лифтинг (бока, 300 линий)
+  procedure: hifu-tela
+  device: ultraformer
+  zones:
+  - boka
+  volume: 300 линий
+- id: 18337931
+  name: Ultraformer ультразвуковой smas-лифтинг (галифе, 600 линий)
+  procedure: hifu-tela
+  device: ultraformer
+  zones:
+  - bedra
+  volume: 600 линий
+- id: 18337914
+  name: Ultraformer ультразвуковой smas-лифтинг (живот, 1500 линий)
+  procedure: hifu-tela
+  device: ultraformer
+  zones:
+  - zhivot
+  volume: 1500 линий
+- id: 18337939
+  name: Vip Line Transion Стройное тело
+  procedure: miostimulyaciya-tela
+  device: vip-line
+  zones:
+  - telo
+  volume: null
+- id: 18337945
+  name: Vip Line Изометрическое моделирование ISOGEI (бедра / живот)
+  procedure: miostimulyaciya-tela
+  device: vip-line
+  zones:
+  - zhivot
+  - bedra
+  volume: null
+- id: 18337949
+  name: Vip Line Изометрическое моделирование ISOGEI (грудь / спина)
+  procedure: miostimulyaciya-tela
+  device: vip-line
+  zones:
+  - spina
+  volume: null
+- id: 18337955
+  name: Vip Line Изометрическое моделирование ISOGEI (руки)
+  procedure: miostimulyaciya-tela
+  device: vip-line
+  zones:
+  - ruki
+  volume: null
+- id: 18337959
+  name: Vip Line Изометрическое моделирование ISOGEI (ягодицы)
+  procedure: miostimulyaciya-tela
+  device: vip-line
+  zones:
+  - yagodicy
+  volume: null
+- id: 18337961
+  name: Прессотерапия Bollani New Dinamica (30 минут)
+  procedure: pressoterapiya
+  device: bollani-new-dinamica
+  zones: null
+  volume: 30 минут
+- id: 17154565
+  name: 3D-Нити (26х38), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154566
+  name: 3D-Нити (26х60), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154567
+  name: 3D-Нити (26х90), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154568
+  name: 3D-Нити (29х38), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154571
+  name: 3D-Нити cog (23x70), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154572
+  name: 3D-Нити screw (26х38), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154569
+  name: 3D-Нити twins (26х50), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 17154570
+  name: 3D-Нити twins (26х60), 10 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 10 шт.
+- id: 18337990
+  name: Нити Aptos Excellence Visage
+  procedure: nitevoy-lifting
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18337995
+  name: Нити Aptos Excellence Visage HA
+  procedure: nitevoy-lifting
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338004
+  name: Нити Aptos Excellence Visage soft
+  procedure: nitevoy-lifting
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 17154573
+  name: Нити EB Excellence Body
+  procedure: nitevoy-lifting
+  device: null
+  zones:
+  - telo
+  volume: null
+- id: 17154586
+  name: Нити Intrarich
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154574
+  name: Нити LLN2G Light Lift Needle 2G
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154575
+  name: Нити LLN2GS Light Lift Needle 2G Soft
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154576
+  name: Нити LLS Light Lift Spring
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154577
+  name: Нити LLT2G Light Lift Thread 2G
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154578
+  name: Нити LLT2GS Light Lift Thread 2G Soft
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154587
+  name: Нити Lead Fine Lift, 2 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 2 шт.
+- id: 17154588
+  name: Нити Lead Fine Lift, 4 шт.
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: 4 шт.
+- id: 17154579
+  name: Нити NS4 Nano Spring 4
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154580
+  name: Нити NS7 Nano Spring 7
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154581
+  name: Нити NV4 Nano Vitis 4
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 17154582
+  name: Нити NV7 Nano Vitis 7
+  procedure: nitevoy-lifting
+  device: null
+  zones: null
+  volume: null
+- id: 18338015
+  name: Regenlab ACR Extra 2 Аутологичное клеточное омоложение, набор пробирок
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18338020
+  name: Regenlab ATS Аутологичное клеточное омоложение, 1 пробирка
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: 1 пробирка
+- id: 18338021
+  name: Regenlab BCT Аутологичное клеточное омоложение, 1 пробирка
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: 1 пробирка
+- id: 18338025
+  name: Regenlab Cellular Matrix Аутологичное клеточное омоложение, 1 пробирка
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: 1 пробирка
+- id: 18338032
+  name: Аутологичное клеточное омоложение (набор Regen ACR Plus)
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 17154508
+  name: Реабилитация плазмотерапией
+  procedure: plazmoterapiya
+  device: null
+  zones: null
+  volume: null
+- id: 18338047
+  name: 111SKIN Безоперационный лифтинг Celestial Black Diamond Non-Surgical Lift Facial
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338051
+  name: 111SKIN Микротоки + криотерапия Holiday Face
+  procedure: mikrotoki-i-miostimulyaciya
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338058
+  name: 111SKIN Регенерация и увлажнение The Signature Harley Street Facial
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338060
+  name: 111SKIN Синяние розовое золото Rose Gold Radiance Facial
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338065
+  name: 111SKIN Уход Восстановление и сияние
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338069
+  name: 111SKIN Уход восстанавливающий Y-Theorem для всех типов кожи
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338075
+  name: 111SKIN Уход омолаживающий Black Diamond
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338093
+  name: 111SKIN Чистота и баланс The Anti Blemish Biocellulose Facial
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338101
+  name: 111SKIN Энергия и тонус De-Puffing Energy Facial with Cryo Globes
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338100
+  name: 111SKIN Энергия и тонус De-Puffing Energy Facial with Cryo Globes
+  procedure: uhody-111skin
+  device: null
+  zones: null
+  volume: null
+- id: 18338106
+  name: Anti-age программа Cellcosmet
+  procedure: uhody-cellcosmet
+  device: null
+  zones: null
+  volume: null
+- id: 18338108
+  name: Anti-stress программа Cellcosmet
+  procedure: uhody-cellcosmet
+  device: null
+  zones: null
+  volume: null
+- id: 18338113
+  name: Jan Marini Уход за кожей лица с усиленным ретинолом
+  procedure: uhody-jan-marini
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338121
+  name: Jan Marini Энзимный уход за кожей лица
+  procedure: uhody-jan-marini
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338124
+  name: QMS Драгоценный коллагеновый уход
+  procedure: uhody-qms
+  device: null
+  zones: null
+  volume: null
+- id: 18338128
+  name: QMS Уход восстановление кожи
+  procedure: uhody-qms
+  device: null
+  zones: null
+  volume: null
+- id: 18338131
+  name: QMS Уход преображение и омоложение
+  procedure: uhody-qms
+  device: null
+  zones: null
+  volume: null
+- id: 18338137
+  name: Sodashi Глубоко увлажняющий и тонизирующий уход с маской и морскими минералами
+  procedure: uhody-sodashi
+  device: null
+  zones: null
+  volume: null
+- id: 18338158
+  name: Sodashi Экспресс-уход Юность глаз
+  procedure: uhody-sodashi
+  device: null
+  zones:
+  - glaza
+  volume: null
+- id: 18338168
+  name: Sodashi Экспресс-уход для лица Stop&Relax
+  procedure: uhody-sodashi
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338170
+  name: Пилинг BioRePeel Терапия (лицо + шея + декольте)
+  procedure: pilingi
+  device: null
+  zones:
+  - lico
+  - sheya
+  - dekolte
+  volume: null
+- id: 18338187
+  name: Пилинг BioRePeel Терапия (лицо + шея)
+  procedure: pilingi
+  device: null
+  zones:
+  - lico
+  - sheya
+  volume: null
+- id: 18338212
+  name: Пилинг BioRePeel Терапия (лицо)
+  procedure: pilingi
+  device: null
+  zones:
+  - lico
+  volume: null
+- id: 18338239
+  name: Пилинг PRXt33 дермостимулятор (1,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 1,0 мл
+- id: 18338251
+  name: Пилинг PRXt33 дермостимулятор (2,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 2,0 мл
+- id: 18338258
+  name: Пилинг PRXt33 дермостимулятор (3,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 3,0 мл
+- id: 18338277
+  name: Пилинг PRXt33 дермостимулятор (4,0 мл)
+  procedure: pilingi
+  device: null
+  zones: null
+  volume: 4,0 мл
+- id: 18338283
+  name: Уход для лица Aldo Coppola, авторская программа
+  procedure: avtorskiy-uhod
+  device: null
+  zones:
+  - lico
+  volume: null
+exclude:
+- id: 17158260
+  name: AmCREW Камуфляж бороды и усов
+  reason: не косметология
+- id: 17158261
+  name: AmCREW Камуфляж седины
+  reason: не косметология
+- id: 17158298
+  name: Time to Grow 30/50% Пилинг трихологический
+  reason: не косметология
+- id: 17158300
+  name: Touch of grey. Тонирование для мужчин на короткие волосы
+  reason: не косметология
+- id: 17158305
+  name: Ампула Hair Mineral Relax
+  reason: не косметология
+- id: 17158307
+  name: Бритье головы
+  reason: не косметология
+- id: 31412175
+  name: Камуфляж седины
+  reason: не косметология
+- id: 17158315
+  name: Коррекция формы бровей
+  reason: не косметология
+- id: 17158317
+  name: Массаж головы 15мин.
+  reason: не косметология
+- id: 17158318
+  name: Массаж головы 5мин.
+  reason: не косметология
+- id: 17158320
+  name: Массаж рук
+  reason: не косметология
+- id: 17158323
+  name: Моделирование бороды
+  reason: не косметология
+- id: 17158324
+  name: Мужской маникюр
+  reason: не косметология
+- id: 17158325
+  name: Мужской педикюр
+  reason: не косметология
+- id: 17158326
+  name: Мытье Mediterranean Complex/Shatush Dermocar
+  reason: не косметология
+- id: 17158327
+  name: Мытье-уход с комплексом эфирных масел/Natura Magica
+  reason: не косметология
+- id: 17158331
+  name: Освежающий уход для рук / ног
+  reason: не косметология
+- id: 17158333
+  name: Подологический педикюр
+  reason: не косметология
+- id: 17158335
+  name: Премиальное бритье SOLOMON*S
+  reason: не косметология
+- id: 17158336
+  name: Премиальное моделирование бороды SOLOMON*S
+  reason: не косметология
+- id: 17158337
+  name: Процедура Металл-детокс
+  reason: не косметология
+- id: 17158340
+  name: Спа-мытье БАЗОВЫЙ
+  reason: не косметология
+- id: 17158341
+  name: Стрижка бороды и усов
+  reason: не косметология
+- id: 17158342
+  name: Стрижка мужская
+  reason: не косметология
+- id: 17158343
+  name: Стрижка усов
+  reason: не косметология
+- id: 17158344
+  name: Трихологическая диагностика 60 мин.
+  reason: не косметология
+- id: 18620565
+  name: Окрашивание + укладка
+  reason: не косметология
+- id: 18566970
+  name: Стрижка + маникюр + педикюр
+  reason: не косметология
+- id: 18624095
+  name: Стрижка женская с укладкой+маникюр+педикюр
+  reason: не косметология
+- id: 18622768
+  name: Стрижка мужская+маникюр+педикюр
+  reason: не косметология
+# Ручное скрытие отдельных предложений (услуга × салон) до подтверждения заказчиком.
+# Решение заказчика 11.11.2026: ничего не скрывать, цены — как в прайсе (Thalion «для спины» в Юнимолле 1 510 ₽ — уточнить позже).
+hide_offers: []
+services_manual:
+# Добавлены по решению заказчика 11.11.2026 («ничего не удалять, всё ставить») — разметку уточнить с врачом.
+- {id: 17154498, procedure: biorevitalizaciya-i-mezoterapiya, device: null, zones: null, volume: null, note: "Введение лонгидазы — уточнить"}
+- {id: 17154499, procedure: biorevitalizaciya-i-mezoterapiya, device: null, zones: null, volume: 1 амп., note: "Дипроспан — уточнить"}
+- {id: 17154500, procedure: biorevitalizaciya-i-mezoterapiya, device: null, zones: null, volume: 15 мг, note: "Лонгидаза — уточнить"}
+- {id: 17158286, procedure: biorevitalizaciya-i-mezoterapiya, device: null, zones: [kozha-golovy], volume: 5 мл, gender: men}
+- {id: 17158290, procedure: muzhskie-uhody, device: null, zones: null, volume: null, gender: men, note: "Protection & Therapy — уточнить, что это"}

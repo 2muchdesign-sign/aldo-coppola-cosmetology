@@ -1,0 +1,13 @@
+---
+// Паспорт процедуры: сетка ячеек с моно-подписями на светло-сером, как медицинский бланк. Пустое — [уточнить у врача].
+const { rows = [] } = Astro.props;
+const val = v => (v == null || v === '' || v === 'TODO' ? '[уточнить у врача]' : v);
+---
+<dl class="acc-pass">
+  {rows.map(([k, v, scale]) => (
+    <div>
+      <dt class="acc-mono">{k}</dt>
+      <dd>{scale != null ? <span class="acc-scale" aria-label={`${scale} из 5`}><b>{'●'.repeat(scale)}</b>{'○'.repeat(5 - scale)}</span> : <span class={val(v).startsWith('[') ? 'acc-muted' : ''}>{val(v)}</span>}</dd>
+    </div>
+  ))}
+</dl>

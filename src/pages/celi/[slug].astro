@@ -1,0 +1,94 @@
+---
+// 7.3. Цель. H1 — результат; SEO-title — с клиническим термином.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import SalonDots from '../../components/SalonDots.astro';
+import Short from '../../components/Short.astro';
+import Faq from '../../components/Faq.astro';
+import { GOALS, GOAL_GROUPS, DEVICE, METHOD_LABEL, ZONE, SALON, rub, u, durationRange, procedurePrices, builtAt } from '../../lib/data.js';
+import { procsOfGoal, goalShort, goalFaq, faqLD, site, listAnd } from '../../lib/pages.js';
+
+export function getStaticPaths() { return GOALS.map(g => ({ params: { slug: g.slug }, props: { g } })); }
+const { g } = Astro.props;
+const group = GOAL_GROUPS.find(x => x.slug === g.group);
+const procs = procsOfGoal(g);
+const faq = goalFaq(g);
+const from = Math.min(...procs.flatMap(p => Object.values(procedurePrices(p.slug))));
+const siblings = GOALS.filter(x => x.group === g.group && x.slug !== g.slug);
+const words = g.name.split(' ');
+const titleTerms = g.terms.slice(0, 2);
+const title = `${g.name}${titleTerms.length ? `: ${titleTerms.join(', ')}` : ''} — косметология Aldo Coppola`;
+const url = site() + `celi/${g.slug}/`;
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'MedicalWebPage', '@id': url + '#page', url, name: g.name, inLanguage: 'ru',
+    about: { '@type': 'Thing', name: g.name, alternateName: g.terms }, dateModified: builtAt },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: `Методы: ${g.name}`,
+    itemListElement: procs.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: site() + `procedury/${p.slug}/`, name: p.name })) },
+  faqLD(faq),
+];
+---
+<Base title={title} description={`${g.name}: ${g.terms.join(', ')}. Методы косметологии Aldo Coppola — ${procs.map(p => p.name).join(', ')}. Цены от ${rub(from).replace(/ /g, ' ')}.`} current="celi" jsonld={jsonld} breadcrumbs={[['Цели', 'celi/'], [g.name, `celi/${g.slug}/`]]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Цели', 'celi/'], [g.name]]} />
+      <span class="acc-mono">{group?.name}{g.terms.length ? ` · ${g.terms.join(' · ')}` : ''}</span>
+      <h1 class="acc-h1">{words.length > 1 ? <>{words.slice(0, -1).join(' ')} <span class="acc-it acc-it--red">{words.at(-1)}</span></> : <span class="acc-it acc-it--red">{g.name}</span>}</h1>
+      <div class="acc-phero__cta" data-acc-hero-cta>
+        <button type="button" class="acc-btn acc-btn--primary acc-btn--lg" data-book data-consult="1" data-name={`Консультация: ${g.name}`}>Консультация косметолога</button>
+        <a class="acc-btn acc-btn--secondary acc-btn--lg" href={u('podbor/')}>Подбор процедуры</a>
+      </div>
+    </header>
+    <Short text={goalShort(g)} reviewer={g.reviewer} />
+  </div>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="01" label="Методы">Какие методы <span class="acc-it">подходят</span></SectionHead>
+      <div class="acc-table-wrap acc-pm">
+        <table class="acc-table acc-table--methods">
+          <caption class="acc-mono">Варианты для обсуждения с врачом, не диагноз</caption>
+          <thead><tr><th scope="col">Процедура</th><th scope="col">Как работает</th><th scope="col">Время, мин</th><th scope="col">Восстановление</th><th scope="col" class="acc-num">Цена от, ₽</th><th scope="col">Где</th></tr></thead>
+          <tbody>
+            {procs.map(p => (
+              <tr data-prices={JSON.stringify(procedurePrices(p.slug))}>
+                <th scope="row"><a class="acc-link" href={u(`procedury/${p.slug}/`)}>{p.name}</a></th>
+                <td>{METHOD_LABEL[p.method]}{p.devices.length ? <><br /><span class="acc-mono">{p.devices.map(d => DEVICE[d]?.name).join(' · ')}</span></> : ''}</td>
+                <td class="acc-mono acc-mono--ink">{durationRange(p)?.replace(' мин', '') || '—'}</td>
+                <td class="acc-muted">{p.recovery === 'TODO' ? '[уточнить у врача]' : p.recovery}</td>
+                <td class="acc-num" data-price>от {rub(p.price_from)}</td>
+                <td><SalonDots salons={p.salons} size="sm" /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap acc-2col">
+      <div>
+        <h2 class="acc-h3">Без запугивания: о чём эта цель</h2>
+        <p class="acc-muted" style="margin-top:16px">[текст готовит врач: что происходит с кожей, почему, и как к этому подходят в косметологии]</p>
+        {g.zones?.length > 0 && <div class="acc-chips" style="margin-top:20px">{g.zones.map(z => ZONE[z] && <a class="acc-chip" href={u(`zony/${z}/`)}>{ZONE[z].name}</a>)}</div>}
+      </div>
+      <div>
+        <h2 class="acc-h3">Комбинации, которые советуют врачи</h2>
+        <p class="acc-muted" style="margin-top:16px">[комбинации процедур утверждает врач]</p>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={faq} num="02" />
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <div class="acc-fork">
+        <div><span class="acc-mono acc-mono--red">Подбор</span><h2 class="acc-h3">Не знаете, <span class="acc-it">с чего начать?</span></h2><p class="acc-muted">Четыре вопроса — и 2–3 варианта для обсуждения с врачом.</p><a class="acc-btn acc-btn--secondary" href={u('podbor/')}>Начать подбор</a></div>
+        <div><span class="acc-mono">Консультация</span><h2 class="acc-h3">Решение — <span class="acc-it">вместе с врачом</span></h2><p class="acc-muted">Врач-косметолог осмотрит кожу и составит план процедур.</p><button type="button" class="acc-btn acc-btn--primary" data-book data-consult="1" data-name="Консультация косметолога">Записаться на консультацию</button></div>
+      </div>
+      {siblings.length > 0 && <div style="margin-top:48px"><span class="acc-mono">Ещё в группе «{group?.name}»</span><div class="acc-chips" style="margin-top:14px">{siblings.map(x => <a class="acc-chip" href={u(`celi/${x.slug}/`)}>{x.name}</a>)}</div></div>}
+    </div>
+  </section>
+</Base>

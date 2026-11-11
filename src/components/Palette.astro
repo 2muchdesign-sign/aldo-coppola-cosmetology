@@ -1,0 +1,32 @@
+---
+// Поиск-палитра (заполняется скриптом). Открывается по «/», ⌘K / Ctrl+K и кнопкам поиска.
+import { SALONS } from '../lib/data.js';
+---
+<div class="acc-pal" data-acc-pal hidden>
+  <div class="acc-pal__bg" data-acc-pal-close></div>
+  <div class="acc-pal__box" role="dialog" aria-modal="true" aria-label="Поиск по косметологии">
+    <label class="acc-pal__in">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <span class="acc-sr">Поиск</span>
+      <input type="search" autocomplete="off" spellcheck="false" placeholder="Процедура, цель, аппарат или салон" role="combobox" aria-expanded="true" aria-controls="acc-pal-list" aria-autocomplete="list" data-acc-pal-input />
+      <span class="acc-mono acc-pal__hint" data-acc-pal-recog></span>
+      <span class="acc-kbd">Esc</span>
+      <button type="button" class="acc-pal__x" data-acc-pal-close aria-label="Закрыть поиск">✕</button>
+    </label>
+    <div class="acc-pal__salons" role="group" aria-label="Салон">
+      <span class="acc-mono" style="margin-right:6px">Салон</span>
+      <button type="button" class="acc-chip" data-pal-salon="" aria-pressed="true">Все</button>
+      {SALONS.filter(s => s.has_cosmetology).map(s => <button type="button" class="acc-chip" data-pal-salon={s.slug} aria-pressed="false">{s.name}</button>)}
+    </div>
+    <div class="acc-pal__body">
+      <div class="acc-pal__list" id="acc-pal-list" role="listbox" aria-label="Результаты" data-acc-pal-list></div>
+      <aside class="acc-pal__pre" data-acc-pal-pre aria-live="polite"></aside>
+    </div>
+    <div class="acc-pal__foot">
+      <span class="acc-mono">↑↓ выбрать</span><span class="acc-mono">Enter открыть</span><span class="acc-mono">Esc закрыть</span>
+      <span class="acc-sp"></span>
+      <a class="acc-mono acc-pal__ask" href="#" data-acc-ask>Не нашли? <span class="acc-mono--red">Спросить косметолога в WhatsApp</span></a>
+    </div>
+    <p class="acc-sr" aria-live="polite" data-acc-pal-count></p>
+  </div>
+</div>

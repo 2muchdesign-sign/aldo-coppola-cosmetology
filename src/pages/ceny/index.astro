@@ -1,0 +1,41 @@
+---
+// 7.6. Прайс: вкладки по направлениям, «от» у заголовков, переключатель салона, поиск по странице, «Записаться» в строке.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PriceMatrix from '../../components/PriceMatrix.astro';
+import { DIRECTIONS, PROCEDURES, COSMO_SALONS, rub, u, builtAt, fmtDate, fromPrice } from "../../lib/data.js";
+import { serviceRows, priceSpan, site } from '../../lib/pages.js';
+const dirs = DIRECTIONS.map(d => ({ ...d, procs: PROCEDURES.filter(p => p.direction === d.slug) })).filter(d => d.procs.length);
+const ld = [{ '@context': 'https://schema.org', '@type': 'OfferCatalog', name: 'Цены на косметологию Aldo Coppola', url: site() + 'ceny/',
+  itemListElement: dirs.map(d => ({ '@type': 'OfferCatalog', name: d.name, itemListElement: d.procs.map(p => ({ '@type': 'Offer', itemOffered: { '@type': 'MedicalProcedure', name: p.name, url: site() + `procedury/${p.slug}/` }, price: p.price_from, priceCurrency: 'RUB' })) })) }];
+---
+<Base title="Цены на косметологию в Москве — прайс Aldo Coppola" description={`Прайс косметологии Aldo Coppola по салонам: ${PROCEDURES.length} процедур, цены обновлены ${fmtDate(builtAt)}.`} current="ceny" jsonld={ld} breadcrumbs={[['Цены', 'ceny/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Цены']]} />
+      <h1 class="acc-h1">Цены на <span class="acc-it acc-it--red">косметологию</span></h1>
+      <p class="acc-lead">Цены из прайсов салонов, обновлены <time datetime={builtAt}>{fmtDate(builtAt)}</time>. Итоговая стоимость определяется после консультации и может отличаться в салонах сети.</p>
+      <label class="acc-pfind"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="acc-sr">Поиск по прайсу</span><input type="search" placeholder="Найти в прайсе: Ultraformer, губы, 1 мл…" data-acc-pfind="#acc-price" /></label>
+      <div class="acc-chips" data-acc-salonchips>
+        <span class="acc-mono" style="align-self:center;margin-right:6px">Салон</span>
+        <button type="button" class="acc-chip" data-salon="" aria-pressed="true">Все</button>
+        {COSMO_SALONS.map(s => <button type="button" class="acc-chip" data-salon={s.slug} aria-pressed="false">{s.name}</button>)}
+      </div>
+    </header>
+    <nav class="acc-tabs" aria-label="Направления">{dirs.map(d => <a class="acc-chip" href={`#${d.slug}`}>{d.short} <span class="acc-chip__n">от {rub(fromPrice(d.procs))}</span></a>)}</nav>
+    <div id="acc-price">
+      {dirs.map(d => (
+        <section class="acc-price-dir" id={d.slug} aria-labelledby={`h-${d.slug}`}>
+          <h2 class="acc-h2" id={`h-${d.slug}`}><span>{d.name}</span><span class="acc-mono">от {rub(fromPrice(d.procs))}</span></h2>
+          {d.procs.map(p => { const rows = serviceRows(s => s.procedure === p.slug); const [lo] = priceSpan(rows); return (
+            <div class="acc-price-proc" id={`p-${p.slug}`}>
+              <h3 class="acc-h4"><a href={u(`procedury/${p.slug}/`)}>{p.name}</a><span class="acc-mono acc-mono--ink">от {rub(lo)}</span></h3>
+              <PriceMatrix rows={rows} procedure={p.slug} consult={p.consultation_first} />
+            </div>
+          ); })}
+        </section>
+      ))}
+    </div>
+    <p class="acc-note" style="margin:48px 0 96px">Цены не являются публичной офертой; итоговая стоимость — после консультации. Имеются противопоказания, необходима консультация специалиста. Машиночитаемый прайс — <a class="acc-link" href={u('ceny.json')}>ceny.json</a>.</p>
+  </div>
+</Base>

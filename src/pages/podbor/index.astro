@@ -1,0 +1,42 @@
+---
+// Мастер подбора (ТЗ, раздел 6): 4 шага, прогресс, назад без потери ответов. Правила — data/podbor.yaml.
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { C, PROCEDURES, GOALS, SALONS, DEVICE, METHOD_LABEL, procedurePrices, procedureLine, u } from '../../lib/data.js';
+const PB = C.podbor;
+const data = {
+  max: PB.max_results || 3,
+  areas: PB.areas, prefs: PB.prefs,
+  goals: GOALS.map(g => ({ slug: g.slug, name: g.name, terms: g.terms, procedures: g.procedures })),
+  procedures: PROCEDURES.map(p => ({ slug: p.slug, name: p.name, direction: p.direction, method: METHOD_LABEL[p.method], line: procedureLine(p),
+    prices: procedurePrices(p.slug), consult: p.consultation_first, url: u(`procedury/${p.slug}/`) })),
+  salons: SALONS.map(s => ({ slug: s.slug, name: s.name, address: s.address, cosmo: s.has_cosmetology })),
+};
+const G = Object.fromEntries(GOALS.map(g => [g.slug, g]));
+---
+<Base title="Подбор процедуры косметологии — 4 вопроса | Aldo Coppola" description="Мастер подбора косметологии Aldo Coppola: зона, желаемый результат, что важно и где удобно — 2–3 варианта для обсуждения с врачом." current="podbor" breadcrumbs={[['Подбор', 'podbor/']]}>
+  <div class="acc-wrap">
+    <header class="acc-phead">
+      <Breadcrumbs items={[['Подбор']]} />
+      <h1 class="acc-h1">Подбор <span class="acc-it acc-it--red">процедуры</span></h1>
+      <p class="acc-lead">Четыре вопроса — и 2–3 варианта для обсуждения с врачом. Это не диагноз; контакты не спрашиваем.</p>
+    </header>
+    <section class="acc-wiz" data-acc-podbor aria-live="polite" style="margin-bottom:96px">
+      <div class="acc-wiz__prog" aria-hidden="true"><i class="acc-is-on"></i><i></i><i></i><i></i></div>
+      <div class="acc-wiz__meta"><span class="acc-mono acc-mono--ink" data-pb-n>Шаг 1 из 4 · Зона</span><span class="acc-mono">1 минута</span></div>
+      <div data-pb-stage>
+        <div data-pb-fallback class="acc-wiz__step">
+          <h2 class="acc-h2">Что хотите <span class="acc-it">улучшить?</span></h2>
+          {PB.areas.map(a => (
+            <div><span class="acc-mono">{a.name}</span>
+              <div class="acc-chips" style="margin-top:10px">{a.goals.filter(g => G[g]).map(g => <a class="acc-chip" href={u(`celi/${g}/`)}>{G[g].name}</a>)}</div>
+            </div>
+          ))}
+          <a class="acc-btn acc-btn--primary" href={u('konsultaciya/')} style="align-self:flex-start">Консультация врача</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script type="application/json" id="acc-podbor-data" set:html={JSON.stringify(data)} />
+  <script>import '../../scripts/podbor.js';</script>
+</Base>

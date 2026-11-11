@@ -1,0 +1,88 @@
+---
+// Схема зон лица и тела (ТЗ 6, 8): тонкая линейная схема, точки-зоны с моно-подписями, активная — красная с ореолом,
+// справа — процедуры зоны (название · аппараты · точки салонов · цена). Нажатие на точку открывает /zony/<slug>/.
+// На телефоне — чипы зон. Списки процедур — в HTML (видны без JS).
+import SalonDots from './SalonDots.astro';
+import { ZONES, PROCEDURES, DEVICE, METHOD_LABEL, rub, u } from '../lib/data.js';
+import { plural } from "../lib/pages.js";
+const { face: faceDefault = 'oval', body: bodyDefault = 'zhivot', start = 'face' } = Astro.props;
+const zones = ZONES.filter(z => z.xy && PROCEDURES.some(p => p.zones.includes(z.slug)));
+const procsOf = z => PROCEDURES.filter(p => p.zones.includes(z)).sort((a, b) => (a.direction === 'inekcii') - (b.direction === 'inekcii') || a.price_from - b.price_from);
+const num = (z, i) => String(i + 1).padStart(2, '0');
+const face = zones.filter(z => z.body === 'face'), body = zones.filter(z => z.body === 'body');
+const active = { face: faceDefault, body: bodyDefault };
+---
+<div class="acc-zm" data-acc-zm data-mode={start}>
+  <div class="acc-zm__switch" role="tablist" aria-label="Схема">
+    <button type="button" role="tab" data-zm-mode="face" aria-selected={String(start === 'face')}>Лицо</button>
+    <button type="button" role="tab" data-zm-mode="body" aria-selected={String(start === 'body')}>Тело</button>
+  </div>
+  <div class="acc-zm__grid">
+    <div class="acc-zm__map">
+      <svg class="acc-zm__svg" data-zm-svg="face" viewBox="0 0 400 540" role="group" aria-label="Схема зон лица" hidden={start !== 'face'}>
+        <g class="acc-zm__lines" aria-hidden="true">
+          <ellipse cx="200" cy="200" rx="120" ry="160" />
+          <path d="M140 345 C150 385 156 415 150 455 M260 345 C250 385 244 415 250 455" />
+          <path d="M150 455 C110 470 60 478 18 500 M250 455 C290 470 340 478 382 500" />
+          <path class="acc-zm__soft" d="M140 175 q25 -14 50 0 M210 175 q25 -14 50 0" />
+          <path class="acc-zm__soft" d="M200 190 v60 q-10 10 0 14" />
+          <path class="acc-zm__soft" d="M168 300 q32 16 64 0" />
+          <line class="acc-zm__dash" x1="40" y1="110" x2="360" y2="110" />
+          <line class="acc-zm__dash" x1="40" y1="345" x2="360" y2="345" />
+        </g>
+        {face.map((z, i) => (
+          <a href={u(`zony/${z.slug}/`)} class={`acc-zm__pt${z.slug === active.face ? ' acc-is-on' : ''}`} data-zm-zone={z.slug} aria-label={`${z.name}: процедуры`}>
+            <circle class="acc-zm__halo" cx={z.xy[0]} cy={z.xy[1]} r="15" />
+            <circle class="acc-zm__dot" cx={z.xy[0]} cy={z.xy[1]} r="7" />
+            <circle class="acc-zm__hit" cx={z.xy[0]} cy={z.xy[1]} r="22" />
+            <text x={z.side === 'l' ? z.xy[0] - 14 : z.xy[0] + 14} y={z.xy[1] + 4} text-anchor={z.side === 'l' ? 'end' : 'start'}>{num(z, i)} {z.label.toUpperCase()}</text>
+          </a>
+        ))}
+      </svg>
+      <svg class="acc-zm__svg" data-zm-svg="body" viewBox="0 0 320 600" role="group" aria-label="Схема зон тела" hidden={start !== 'body'}>
+        <g class="acc-zm__lines" aria-hidden="true">
+          <circle cx="160" cy="52" r="30" />
+          <path d="M148 82 v16 M172 82 v16" />
+          <path d="M148 98 C120 104 100 110 92 124 C84 150 78 200 66 260 C60 290 56 310 58 330 M172 98 C200 104 220 110 228 124 C236 150 242 200 254 260 C260 290 264 310 262 330" />
+          <path d="M108 140 C110 200 114 240 112 280 C108 310 108 330 116 352 M212 140 C210 200 206 240 208 280 C212 310 212 330 204 352" />
+          <path d="M116 352 C118 410 124 470 128 560 M204 352 C202 410 196 470 192 560 M160 362 C158 420 156 480 150 560 M160 362 C162 420 164 480 170 560" />
+          <path class="acc-zm__soft" d="M116 352 C140 366 180 366 204 352" />
+          <line class="acc-zm__dash" x1="30" y1="230" x2="290" y2="230" />
+          <line class="acc-zm__dash" x1="30" y1="362" x2="290" y2="362" />
+        </g>
+        {body.map((z, i) => (
+          <a href={u(`zony/${z.slug}/`)} class={`acc-zm__pt${z.slug === active.body ? ' acc-is-on' : ''}`} data-zm-zone={z.slug} aria-label={`${z.name}: процедуры`}>
+            <circle class="acc-zm__halo" cx={z.xy[0]} cy={z.xy[1]} r="14" />
+            <circle class="acc-zm__dot" cx={z.xy[0]} cy={z.xy[1]} r="6.5" />
+            <circle class="acc-zm__hit" cx={z.xy[0]} cy={z.xy[1]} r="20" />
+            <text x={z.side === 'l' ? z.xy[0] - 13 : z.xy[0] + 13} y={z.xy[1] + 4} text-anchor={z.side === 'l' ? 'end' : 'start'}>{num(z, i)} {z.label.toUpperCase()}</text>
+          </a>
+        ))}
+      </svg>
+    </div>
+    <div class="acc-zm__panels">
+      {[...face.map((z, i) => [z, i]), ...body.map((z, i) => [z, i])].map(([z, i]) => { const list = procsOf(z.slug); return (
+        <section class="acc-zm__panel" data-zm-panel={z.slug} data-zm-body={z.body} hidden={z.slug !== active[start]} aria-labelledby={`zm-${z.slug}`}>
+          <span class="acc-mono acc-mono--red">{num(z, i)} · {z.name}</span>
+          <h3 class="acc-h3" id={`zm-${z.slug}`}>{z.name}: {list.length} {plural(list.length, "процедура", "процедуры", "процедур")}</h3>
+          <div class="acc-rows">
+            {list.slice(0, 6).map(p => (
+              <a class="acc-row" href={u(`procedury/${p.slug}/`)} data-prices={JSON.stringify(Object.fromEntries(p.salons.map(s => [s, p.price_from])))}>
+                <span><span class="acc-row__n">{p.name}</span><br /><span class="acc-mono">{p.devices.map(d => DEVICE[d]?.name).join(' · ') || METHOD_LABEL[p.method]}</span></span>
+                <SalonDots salons={p.salons} size="sm" />
+                <span class="acc-row__p">от {rub(p.price_from)}</span>
+              </a>
+            ))}
+          </div>
+          <a class="acc-link" href={u(`zony/${z.slug}/`)} style="margin-top:20px">Все процедуры: {z.name.toLowerCase()}</a>
+        </section>
+      ); })}
+    </div>
+  </div>
+  <div class="acc-zm__chips">
+    <span class="acc-mono">Лицо</span>
+    <div class="acc-chips">{face.map(z => <a class="acc-chip" href={u(`zony/${z.slug}/`)}>{z.name} <span class="acc-chip__n">{procsOf(z.slug).length}</span></a>)}</div>
+    <span class="acc-mono" style="margin-top:16px">Тело</span>
+    <div class="acc-chips">{body.map(z => <a class="acc-chip" href={u(`zony/${z.slug}/`)}>{z.name} <span class="acc-chip__n">{procsOf(z.slug).length}</span></a>)}</div>
+  </div>
+</div>

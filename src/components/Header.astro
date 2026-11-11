@@ -1,0 +1,50 @@
+---
+import { u, SALONS } from '../lib/data.js';
+const { current = '' } = Astro.props;
+const NAV = [['celi', 'Цели'], ['procedury', 'Процедуры'], ['apparaty', 'Аппараты'], ['salony', 'Салоны'], ['ceny', 'Цены'], ['podbor', 'Подбор']];
+const ICON_SEARCH = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+---
+<header class="acc-hdr" data-acc-hdr>
+  <div class="acc-wrap acc-hdr__row">
+    <a class="acc-logo" href={u('')} aria-label="Косметология Aldo Coppola — главная">
+      <img src={u('media/brand/logo-256.png')} alt="" width="40" height="40" />
+      <span class="acc-logo__t"><span class="acc-logo__w">ALDO COPPOLA</span><span class="acc-logo__s">Косметология</span></span>
+    </a>
+    <button type="button" class="acc-hsearch" data-acc-search aria-label="Поиск по косметологии">
+      <Fragment set:html={ICON_SEARCH} /><span>Процедура, цель, аппарат или салон</span><span class="acc-kbd" data-acc-kbd>⌘K</span>
+    </button>
+    <div class="acc-salonsel" data-acc-salonsel>
+      <button type="button" class="acc-salonsel__btn" aria-haspopup="menu" aria-expanded="false"><span class="acc-dot" aria-hidden="true"></span><span data-acc-salonname>Все салоны</span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-salonsel__menu" role="menu" hidden>
+        <button type="button" class="acc-salonsel__opt" role="menuitemradio" data-salon="" aria-checked="true">Все салоны</button>
+        {SALONS.map(s => <button type="button" class="acc-salonsel__opt" role="menuitemradio" data-salon={s.slug} aria-checked="false">{s.name}{!s.has_cosmetology && <small>без косметологии</small>}</button>)}
+      </div>
+    </div>
+    <button type="button" class="acc-btn acc-btn--primary acc-hdr__book" data-book>Записаться</button>
+    <button type="button" class="acc-hicon acc-hicon--first" data-acc-search aria-label="Поиск"><Fragment set:html={ICON_SEARCH.replace('20', '22').replace('20', '22')} /></button>
+    <button type="button" class="acc-hicon" data-acc-menu aria-label="Меню" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+  </div>
+  <nav class="acc-wrap acc-hnav" aria-label="Разделы">
+    {NAV.map(([s, t]) => <a href={u(s + '/')} aria-current={current === s ? 'page' : undefined}>{t}</a>)}
+    <span class="acc-hnav__sp"></span>
+    <a href={u('konsultaciya/')} class="acc-link--red" style="color:var(--acc-red)">Консультация врача →</a>
+  </nav>
+</header>
+
+<div class="acc-drawer" data-acc-drawer hidden role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="acc-drawer__top">
+    <a class="acc-logo" href={u('')}><span class="acc-logo__t"><span class="acc-logo__w">ALDO COPPOLA</span><span class="acc-logo__s">Косметология</span></span></a>
+    <button type="button" class="acc-hicon" style="display:inline-flex" data-acc-menu-close aria-label="Закрыть меню">✕</button>
+  </div>
+  <nav aria-label="Разделы">
+    {NAV.map(([s, t], i) => <a href={u(s + '/')}>{t}<span class="acc-mono">{String(i + 1).padStart(2, '0')}</span></a>)}
+    <a href={u('konsultaciya/')} style="color:var(--acc-red)">Консультация врача<span class="acc-mono acc-mono--red">→</span></a>
+  </nav>
+  <div class="acc-drawer__salon">
+    <span class="acc-mono">Ваш салон — цены и наличие</span>
+    <div class="acc-chips" data-acc-salonchips>
+      <button type="button" class="acc-chip" data-salon="" aria-pressed="true">Все</button>
+      {SALONS.filter(s => s.has_cosmetology).map(s => <button type="button" class="acc-chip" data-salon={s.slug} aria-pressed="false">{s.name}</button>)}
+    </div>
+  </div>
+</div>

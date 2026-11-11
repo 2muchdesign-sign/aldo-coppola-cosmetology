@@ -1,0 +1,123 @@
+---
+// Этап 2: тестовая страница дизайн-основы — токены, шапка, поиск, карточка, карусели.
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ProcedureCard from '../../components/ProcedureCard.astro';
+import Carousel from '../../components/Carousel.astro';
+import CarouselNav from '../../components/CarouselNav.astro';
+import SalonDots from '../../components/SalonDots.astro';
+import Passport from '../../components/Passport.astro';
+import { PROCEDURE, SALONS, C, rub, durationRange, DEVICE, service } from '../../lib/data.js';
+import { MEDIA, HINTS } from '../../lib/media.js';
+
+const popular = ['apparatnoe-ochishchenie', 'smas-lifting-hifu', 'mikroigolchatyy-rf-lifting', 'lazernaya-epilyaciya', 'fotoomolozhenie', 'kriolipoliz', 'botulinoterapiya', 'mikrotoki-i-miostimulyaciya'].map(s => PROCEDURE[s]).filter(Boolean);
+const hifu = PROCEDURE['smas-lifting-hifu'];
+const hifuRows = C.offers.filter(o => !o.hidden && service(o.service).procedure === 'smas-lifting-hifu')
+  .map(o => ({ ...o, s: service(o.service) })).sort((a, b) => a.s.name.localeCompare(b.s.name) || SALONS.findIndex(x => x.slug === a.salon) - SALONS.findIndex(x => x.slug === b.salon));
+const SW = [['--acc-white', '#FFFFFF', 'Фон, воздух · 60%'], ['--acc-mist', '#F4F4F5', 'Поверхности, паспорт · 24%'], ['--acc-graphite', '#2E2E30', 'Текст, линии · 10%'], ['--acc-grey', '#77777C', 'Подписи, данные · 4%'], ['--acc-red', '#C8102E', 'Только метка · 2%']];
+const salonMedia = [...MEDIA['salon-zhukovka'], ...MEDIA['tour-zhukovka'], ...HINTS.procedure('Кабинет косметологии', '').slice(1)];
+---
+<Base title="Дизайн-основа — косметология Aldo Coppola" description="Тестовая страница дизайн-системы" noindex>
+  <section class="acc-wrap acc-sec">
+    <span class="acc-mono">Этап 2 · дизайн-основа · служебная страница</span>
+    <h1 class="acc-h1" style="margin-top:24px">Клиническая точность. <span class="acc-it acc-it--red">Итальянский</span> стиль.</h1>
+    <p class="acc-lead" style="margin-top:28px">Токены, шапка с поиском-палитрой и сквозным выбором салона, карточка процедуры, карусели и паспорт. Выберите салон в шапке — цены и точки на карточках переключатся. Поиск — «/» или ⌘K.</p>
+  </section>
+
+  <section class="acc-wrap acc-sec acc-sec--tight">
+    <SectionHead num="01" label="Цвет и шрифт">Только цвета <span class="acc-it">бренда</span></SectionHead>
+    <div class="acc-grid">
+      {SW.map(([t, hex, use]) => (
+        <div style="grid-column:span 12;display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;border-bottom:1px solid var(--acc-line);padding:12px 0" class="acc-reveal">
+          <span style={`height:56px;background:${hex};border:1px solid var(--acc-line)`}></span>
+          <span><b style="font-weight:500">{hex}</b><br /><span class="acc-mono">{t}</span></span>
+          <span class="acc-muted" style="font-size:14px">{use}</span>
+        </div>
+      ))}
+    </div>
+    <div class="acc-grid" style="margin-top:56px">
+      <div style="grid-column:span 4;min-width:0"><span class="acc-mono">Onest 300 · заголовки</span><p class="acc-h2" style="margin-top:12px">Чёткий овал</p></div>
+      <div style="grid-column:span 4;min-width:0"><span class="acc-mono">IBM Plex Mono · данные</span><p class="acc-mono acc-mono--ink" style="margin-top:20px;font-size:13px">HIFU · 1000 линий · 03 / 12</p></div>
+      <div style="grid-column:span 4;min-width:0"><span class="acc-mono">Cormorant Italic · одно слово</span><p class="acc-h2" style="margin-top:12px">SMAS-лифтинг <span class="acc-it acc-it--red">HIFU</span></p></div>
+    </div>
+  </section>
+
+  <section class="acc-wrap acc-sec acc-sec--tight">
+    <SectionHead num="02" label="Элементы">Кнопки, чипы, <span class="acc-it">точки</span></SectionHead>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+      <button type="button" class="acc-btn acc-btn--primary" data-book>Записаться</button>
+      <a class="acc-btn acc-btn--secondary" href="#">Консультация</a>
+      <a class="acc-link" href="#">Все процедуры</a>
+      <button type="button" class="acc-btn acc-btn--dark" data-acc-search data-q="брыли">Найти «брыли»</button>
+    </div>
+    <div class="acc-chips" style="margin-top:28px">
+      <button type="button" class="acc-chip" aria-pressed="true">Жуковка</button>
+      <button type="button" class="acc-chip" aria-pressed="false">HIFU <span class="acc-chip__n">2</span></button>
+      <button type="button" class="acc-chip" aria-pressed="false">Лазер <span class="acc-chip__n">4</span></button>
+      <button type="button" class="acc-chip acc-chip--dim" aria-pressed="false" title="BBL — только в Жуковке">Свет IPL <span class="acc-chip__n">0</span></button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:48px;margin-top:40px;align-items:flex-end">
+      <div><span class="acc-mono">SMAS-лифтинг HIFU · с подписями</span><div style="margin-top:12px"><SalonDots salons={hifu.salons} labels /></div></div>
+      <div><span class="acc-mono">Приезжает по графику</span><div style="margin-top:12px"><SalonDots salons={['zhukovka', 'barvikha']} travels /></div></div>
+      <div><span class="acc-mono">InMode Morpheus8 · без подписей</span><div style="margin-top:12px"><SalonDots salons={['veb-rf']} /></div></div>
+    </div>
+  </section>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="03" label="Процедуры">Выбирают <span class="acc-it">чаще всего</span>
+        <CarouselNav slot="aside" for="acc-pop" total={popular.length} />
+      </SectionHead>
+      <Carousel id="acc-pop" media={false} label="Популярные процедуры">
+        {popular.map(p => <ProcedureCard p={p} />)}
+      </Carousel>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--mist">
+    <div class="acc-wrap">
+      <SectionHead num="04" label="Паспорт">Паспорт <span class="acc-it">процедуры</span></SectionHead>
+      <Passport rows={[
+        ['Метод', 'Сфокусированный ультразвук (HIFU)'],
+        ['Аппараты', hifu.devices.map(d => DEVICE[d].name).join(' · ')],
+        ['Время в записи', durationRange(hifu)],
+        ['Курс', hifu.course],
+        ['Восстановление', hifu.recovery],
+        ['Ощущения', hifu.sensations],
+      ]} />
+      <p class="acc-mono" style="margin-top:16px">Пустые значения — [уточнить у врача]: тексты процедуры заполняет врач (TODO)</p>
+    </div>
+  </section>
+
+  <section class="acc-sec">
+    <div class="acc-wrap">
+      <SectionHead num="05" label="Медиа">Карусель-<span class="acc-it">плёнка</span>
+        <CarouselNav slot="aside" for="acc-media" total={salonMedia.length} />
+      </SectionHead>
+      <Carousel id="acc-media" items={salonMedia} ratio="16 / 9" label="Салон в Жуковке" />
+      <p class="acc-mono" style="margin-top:16px">Фото и видеотур салона в Жуковке — материалы заказчика; серые кадры — заглушки с подсказкой съёмки</p>
+    </div>
+  </section>
+
+  <section class="acc-sec acc-sec--tight">
+    <div class="acc-wrap">
+      <SectionHead num="06" label="Цены" id="ceny">Сколько стоит <span class="acc-it">SMAS-лифтинг</span> в Москве</SectionHead>
+      <div class="acc-table-wrap">
+        <table class="acc-table" data-acc-salonfilter>
+          <caption class="acc-mono">Цены из прайсов YClients на {new Date(C.built_at).toLocaleDateString('ru-RU')} · выбор салона в шапке фильтрует строки</caption>
+          <thead><tr><th scope="col">Услуга</th><th scope="col">Объём</th><th scope="col">Салон</th><th scope="col" class="acc-num">Цена, ₽</th><th scope="col"><span class="acc-sr">Запись</span></th></tr></thead>
+          <tbody>
+            {hifuRows.map(r => (
+              <tr data-row-salon={r.salon}>
+                <td>{r.s.name}</td><td class="acc-mono acc-mono--ink">{r.s.volume || '—'}</td><td>{SALONS.find(s => s.slug === r.salon).name}</td>
+                <td class="acc-num">{rub(r.price)}</td>
+                <td class="acc-num"><button type="button" class="acc-btn acc-btn--secondary" style="min-height:40px;padding:0 14px;font-size:14px" data-book data-procedure="smas-lifting-hifu" data-salon={r.salon} data-service={r.service} data-consult="1" data-name={r.s.name}>Записаться</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="acc-muted" style="font-size:13px;margin-top:16px">Итоговая стоимость определяется после консультации и может отличаться в салонах сети. Не является публичной офертой.</p>
+    </div>
+  </section>
+</Base>

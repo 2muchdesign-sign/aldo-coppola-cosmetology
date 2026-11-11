@@ -1,0 +1,22 @@
+---
+// Индикатор салонов: 7 точек в постоянном порядке. on — есть, travel — приезжает по графику, off — нет.
+import { salonDots } from '../lib/data.js';
+const { salons = [], travels = false, labels = false, size = 'md' } = Astro.props;
+const dots = salonDots(salons, travels);
+const title = dots.filter(d => d.state !== 'off').map(d => d.name).join(', ');
+---
+{labels ? (
+  <ul class="acc-dots acc-dots--labels" aria-label={`Где есть: ${title || 'нет'}`}>
+    {dots.map(d => (
+      <li class="acc-dotl" data-salon-dot={d.slug}>
+        <span class={`acc-dot acc-dot--${d.state}`} aria-hidden="true"></span>
+        <span class="acc-mono" aria-hidden="true">{d.short}</span>
+        <span class="acc-sr">{d.name}: {d.state === 'on' ? 'есть' : d.state === 'travel' ? 'по графику' : 'нет'}</span>
+      </li>
+    ))}
+  </ul>
+) : (
+  <span class={`acc-dots${size === 'sm' ? ' acc-dots--sm' : ''}`} role="img" aria-label={`Где есть: ${title || 'нет'}`}>
+    {dots.map(d => <span class={`acc-dot acc-dot--${d.state}`} data-salon-dot={d.slug}></span>)}
+  </span>
+)}

@@ -1,0 +1,33 @@
+---
+// Таблица цен: строки — услуги прайса (зона / объём), колонки — салоны. Настоящая HTML-таблица (ТЗ 10.2).
+// Выбранный салон подсвечивается колонкой, кнопка «Записаться» в строке записывает в него.
+import { SALONS, rub, METHOD_LABEL, DEVICE } from '../lib/data.js';
+const { rows = [], procedure, consult = false, caption, showDevice = false, showProc = false, procName } = Astro.props;
+const cols = SALONS.filter(s => rows.some(r => r.prices[s.slug] != null));
+const many = cols.length > 1;
+---
+<div class="acc-table-wrap acc-pm" data-acc-pm>
+  <table class="acc-table acc-table--pm">
+    {caption && <caption class="acc-mono">{caption}</caption>}
+    <thead>
+      <tr>
+        <th scope="col">Услуга{showDevice ? ' / аппарат' : ''}</th>
+        <th scope="col" class="acc-pm__x">Объём</th>
+        <th scope="col" class="acc-num acc-pm__x">Время, мин</th>
+        {cols.map(s => <th scope="col" class="acc-num" data-col={s.slug}>{s.name}, ₽</th>)}
+        <th scope="col"><span class="acc-sr">Запись</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map(r => (
+        <tr data-prices={JSON.stringify(r.prices)}>
+          <th scope="row">{r.name}{r.gender === 'men' && <span class="acc-mono"> · для мужчин</span>}</th>
+          <td class="acc-mono acc-mono--ink acc-pm__x">{r.volume || "—"}</td>
+          <td class="acc-num acc-pm__x">{r.duration || "—"}</td>
+          {cols.map(s => <td class="acc-num" data-col={s.slug}>{r.prices[s.slug] != null ? rub(r.prices[s.slug]) : <span class="acc-muted" aria-label="нет в салоне">—</span>}{r.priceTo[s.slug] && <span class="acc-mono acc-pm__to"><br />до {rub(r.priceTo[s.slug])}</span>}</td>)}
+          <td class="acc-num"><button type="button" class="acc-btn acc-btn--secondary acc-pm__book" data-book data-procedure={r.procedure || procedure} data-service={r.id} data-name={r.name} data-consult={consult ? '1' : undefined} aria-label={`${consult ? 'Консультация' : 'Записаться'}: ${r.name}`}><span class="acc-pm__bl">{consult ? 'Консультация' : 'Записаться'}</span><span class="acc-pm__bs" aria-hidden="true">→</span></button></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
