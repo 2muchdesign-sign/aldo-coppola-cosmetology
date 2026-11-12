@@ -713,3 +713,6 @@
 .acc-media picture, .acc-slide picture { display: block; width: 100%; height: 100%; }
 .acc-media picture img, .acc-slide picture img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--acc-ease); }
 .acc-card:hover .acc-card__media picture img, .acc-salon:hover .acc-media picture img { transform: scale(1.03); }
+/* салоны на главной — лента с листанием */
+.acc-car--salons .acc-car__track > * { flex-basis: min(420px, 85%); }
+.acc-car--salons .acc-salon .acc-media { aspect-ratio: 4 / 3; }

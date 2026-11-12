@@ -2,12 +2,12 @@
 // Карусель-плёнка: scroll-snap, счётчик «03 / 12» и линия прогресса; клик по медиа — лайтбокс.
 // Слайды рендерятся на сервере (видны без JS); скрипт добавляет навигацию.
 import Picture from './Picture.astro';
-const { items = [], ratio = '4 / 5', label = 'Галерея', media = true, per, id, sizes = '(max-width: 899px) 100vw, 60vw', eagerFirst = false } = Astro.props;
+const { items = [], ratio = '4 / 5', label = 'Галерея', media = true, per, id, sizes = '(max-width: 899px) 100vw, 60vw', eagerFirst = false, cls = '' } = Astro.props;
 const n = items.length;
 const pad = i => String(i).padStart(2, '0');
 const lb = it => JSON.stringify(it.video ? { video: it.video, poster: it.poster, alt: it.alt, caption: it.caption } : { src: it.full || it.src, alt: it.alt, caption: it.caption });
 ---
-<div id={id} class={`acc-car${media ? ' acc-car--media' : ''}`} data-acc-car data-ratio={ratio} style={per ? `--per:${per}` : undefined} role="region" aria-roledescription="карусель" aria-label={label}>
+<div id={id} class={`acc-car${media ? ' acc-car--media' : ''}${cls ? ' ' + cls : ''}`} data-acc-car data-ratio={ratio} style={per ? `--per:${per}` : undefined} role="region" aria-roledescription="карусель" aria-label={label}>
   <div class="acc-car__track" tabindex="0">
     {media ? items.map((it, i) => (
       it.src ? <figure class="acc-slide" style={`--acc-ratio:${ratio}`} data-i={i} data-lb={lb(it)}><Picture item={it} sizes={sizes} eager={eagerFirst && i === 0} />{it.caption && <figcaption class="acc-slide__cap"><span class="acc-mono">{it.caption}</span><span class="acc-mono">{pad(i + 1)} / {pad(n)}</span></figcaption>}</figure>

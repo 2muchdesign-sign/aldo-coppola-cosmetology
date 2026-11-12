@@ -25,7 +25,6 @@ const faceZones = ZONES.filter(z => z.body === 'face' && PROCEDURES.some(p => p.
 const bodyZones = ZONES.filter(z => z.body === 'body' && PROCEDURES.some(p => p.zones.includes(z.slug)));
 const hifu = PROCEDURE['smas-lifting-hifu'], hydra = PROCEDURE['apparatnoe-ochishchenie'];
 const faq = [
-  ['Где сделать косметологию Aldo Coppola в Москве?', `В ${nCenters} центрах косметологии: ${listAnd(COSMO_SALONS.map(s => `${s.name} (${s.address})`))}. В салоне Лотте Отель косметологии нет.`],
   ['Сколько стоит SMAS-лифтинг HIFU?', `От ${rub(hifu.price_from)} — на аппаратах Ultraformer и Liftera-A, в зависимости от зоны, объёма и салона. Все цены — на странице процедуры.`],
   ['Сколько стоит HydraFacial?', `От ${rub(hydra.price_from)} — во всех ${nCenters} центрах косметологии.`],
   ['Какие аппараты есть в салонах?', `${devs.length} аппаратов, среди них ${listAnd(['Ultraformer', 'InMode Morpheus8', 'Fotona', 'BBL', 'HydraFacial', 'CoolSculpting'])}. Список и цены — в разделе «Аппараты».`],
@@ -84,7 +83,6 @@ const faq = [
           </article>
         ); })}
       </div>
-      <p class="acc-muted" style="font-size:14px;margin-top:24px;max-width:820px">Мы говорим о цели, а не о «проблеме»: косметология — это и коррекция, и эстетическое совершенствование. Привычные слова («брыли», «пигментация», «постакне») поиск понимает и ведёт к нужной цели.</p>
     </div>
   </section>
 
@@ -119,8 +117,8 @@ const faq = [
 
   <section class="acc-sec">
     <div class="acc-wrap">
-      <SectionHead num="05" label="Салоны">{nCenters === 6 ? 'Шесть' : nCenters} центров <span class="acc-it">косметологии</span></SectionHead>
-      <SalonCards />
+      <SectionHead num="05" label="Салоны">{nCenters === 6 ? 'Шесть' : nCenters} центров <span class="acc-it">косметологии</span><CarouselNav slot="aside" for="acc-salons-car" total={nCenters} /></SectionHead>
+      <SalonCards carousel />
     </div>
   </section>
 

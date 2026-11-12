@@ -1,24 +1,41 @@
 ---
-// Салоны крупными фото; по клику на «Видеотур» — видео в лайтбоксе
+// Салоны крупными фото; по клику на «Видеотур» — видео в лайтбоксе.
+// carousel — лента с листанием вправо (главная), иначе сетка (страница «Салоны»).
 import Media from './Media.astro';
-import { SALONS, SALON, u } from '../lib/data.js';
+import Carousel from './Carousel.astro';
+import { SALON, u } from '../lib/data.js';
 import { MEDIA, salonCover } from '../lib/media.js';
 import { procsOfSalon } from '../lib/pages.js';
+const { carousel = false, id = 'acc-salons-car' } = Astro.props;
 const CLUSTER = { zhukovka: 'Рублёвка', barvikha: 'Рублёвка', unimall: 'Новорижское', 'veb-rf': 'Центр', 'vremena-goda': 'Кутузовский', boscovesna: 'Центр', lotte: 'Центр' };
 const order = ['zhukovka', 'barvikha', 'unimall', 'veb-rf', 'vremena-goda', 'boscovesna'];
-const lotte = SALON.lotte;
+const salons = order.map(sl => SALON[sl]);
 ---
-<div class="acc-salons">
-  {order.map(sl => SALON[sl]).map(s => { const tour = MEDIA[`tour-${s.slug}`]?.[0]; const ph = salonCover(s.slug); return (
-    <article class="acc-salon">
-      <Media item={ph} sizes="(max-width: 899px) 100vw, 33vw" />
-      <div class="acc-salon__h"><h3 class="acc-salon__n"><a href={u(`salony/${s.slug}/`)}>{s.name}</a></h3><span class="acc-mono">{CLUSTER[s.slug]}</span></div>
-      <span class="acc-salon__a">{s.address}</span>
-      <span class="acc-mono">{procsOfSalon(s.slug).length} процедур · {s.phone}</span>
-      {tour && <button type="button" class="acc-link acc-salon__tour" data-acc-tour={JSON.stringify({ ...tour, caption: `Видеотур: ${s.name}` })}>Видеотур</button>}
-    </article>
-  ); })}
-</div>
+{carousel ? (
+  <Carousel id={id} media={false} label="Салоны с косметологией" cls="acc-car--salons">
+    {salons.map(s => { const tour = MEDIA[`tour-${s.slug}`]?.[0]; return (
+      <article class="acc-salon">
+        <Media item={salonCover(s.slug)} sizes="(max-width: 899px) 85vw, 420px" />
+        <div class="acc-salon__h"><h3 class="acc-salon__n"><a href={u(`salony/${s.slug}/`)}>{s.name}</a></h3><span class="acc-mono">{CLUSTER[s.slug]}</span></div>
+        <span class="acc-salon__a">{s.address}</span>
+        <span class="acc-mono">{procsOfSalon(s.slug).length} процедур · {s.phone}</span>
+        {tour && <button type="button" class="acc-link acc-salon__tour" data-acc-tour={JSON.stringify({ ...tour, caption: `Видеотур: ${s.name}` })}>Видеотур</button>}
+      </article>
+    ); })}
+  </Carousel>
+) : (
+  <div class="acc-salons">
+    {salons.map(s => { const tour = MEDIA[`tour-${s.slug}`]?.[0]; return (
+      <article class="acc-salon">
+        <Media item={salonCover(s.slug)} sizes="(max-width: 899px) 100vw, 33vw" />
+        <div class="acc-salon__h"><h3 class="acc-salon__n"><a href={u(`salony/${s.slug}/`)}>{s.name}</a></h3><span class="acc-mono">{CLUSTER[s.slug]}</span></div>
+        <span class="acc-salon__a">{s.address}</span>
+        <span class="acc-mono">{procsOfSalon(s.slug).length} процедур · {s.phone}</span>
+        {tour && <button type="button" class="acc-link acc-salon__tour" data-acc-tour={JSON.stringify({ ...tour, caption: `Видеотур: ${s.name}` })}>Видеотур</button>}
+      </article>
+    ); })}
+  </div>
+)}
 <div style="display:flex;align-items:center;gap:12px;padding:18px 0;border-top:1px solid var(--acc-line);margin-top:32px">
   <span class="acc-dot" aria-hidden="true"></span>
   <span class="acc-muted" style="font-size:15px">Лотте Отель — <a class="acc-link" href={u('salony/lotte/')}>салон без косметологии</a>. Ближайший центр: БЦ ВЭБ РФ, Новинский бульвар.</span>
