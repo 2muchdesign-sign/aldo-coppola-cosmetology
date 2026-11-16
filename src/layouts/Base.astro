@@ -32,7 +32,7 @@ const WEBSITE = {
 };
 const crumbs = breadcrumbs.length ? [{
   '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-  itemListElement: [['Косметология', ''], ...breadcrumbs].map(([n, p], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: site + p })),
+  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Aldo Coppola', item: CONFIG.mainSite }, ...[['Косметология', ''], ...breadcrumbs].map(([n, p], i) => ({ '@type': 'ListItem', position: i + 2, name: n, item: site + p }))],
 }] : [];
 const LD = [ORG, WEBSITE, ...crumbs, ...jsonld];
 ---

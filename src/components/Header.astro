@@ -1,5 +1,6 @@
 ---
 import { u, SALONS } from '../lib/data.js';
+import { CONFIG } from '../config.js';
 const { current = '' } = Astro.props;
 const NAV = [['celi', 'Цели'], ['procedury', 'Процедуры'], ['apparaty', 'Аппараты'], ['salony', 'Салоны'], ['ceny', 'Цены'], ['podbor', 'Подбор']];
 const ICON_SEARCH = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
@@ -25,6 +26,7 @@ const ICON_SEARCH = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"
     <button type="button" class="acc-hicon" data-acc-menu aria-label="Меню" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
   </div>
   <nav class="acc-wrap acc-hnav" aria-label="Разделы">
+    <a href={CONFIG.mainSite} class="acc-hnav__home">← Aldo Coppola</a>
     {NAV.map(([s, t]) => <a href={u(s + '/')} aria-current={current === s ? 'page' : undefined}>{t}</a>)}
     <span class="acc-hnav__sp"></span>
     <a href={u('konsultaciya/')} class="acc-link--red" style="color:var(--acc-red)">Консультация врача →</a>
@@ -40,6 +42,11 @@ const ICON_SEARCH = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"
     {NAV.map(([s, t], i) => <a href={u(s + '/')}>{t}<span class="acc-mono">{String(i + 1).padStart(2, '0')}</span></a>)}
     <a href={u('konsultaciya/')} style="color:var(--acc-red)">Консультация врача<span class="acc-mono acc-mono--red">→</span></a>
   </nav>
+  <div class="acc-drawer__main">
+    <span class="acc-mono">Сайт Aldo Coppola</span>
+    <a href={CONFIG.mainSite} class="acc-drawer__back">← На главную Aldo Coppola</a>
+    <div class="acc-drawer__links"><a href={CONFIG.mainSite + 'o-brende/'}>История бренда</a><a href={CONFIG.mainSite + 'journal/'}>Статьи</a><a href={CONFIG.mainSite + 'akademiya/'}>Академия</a><a href="https://2muchdesign-sign.github.io/HRcareers/">Карьера</a></div>
+  </div>
   <div class="acc-drawer__salon">
     <span class="acc-mono">Ваш салон — цены и наличие</span>
     <div class="acc-chips" data-acc-salonchips>

@@ -8,5 +8,6 @@ export const CONFIG = {
   license: null,               // TODO: реквизиты медицинской лицензии
   legalEntity: null,           // TODO: юрлицо
   blog: 'https://aldocoppola.ru/', // блог — заглушка ссылок до получения статей
-  brandSince: 1996,            // с 1996 года в России (брендбук)
+  brandSince: 1996,
+  mainSite: 'https://2muchdesign-sign.github.io/aldo-coppola-home/', // главный сайт Aldo Coppola; в продакшене — 'https://aldocoppola.ru/'            // с 1996 года в России (брендбук)
 };

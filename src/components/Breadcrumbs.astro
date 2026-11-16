@@ -1,9 +1,11 @@
 ---
 import { u } from '../lib/data.js';
+import { CONFIG } from '../config.js';
 const { items = [] } = Astro.props; // [[name, path]] — последний без ссылки
 ---
 <nav class="acc-crumbs" aria-label="Хлебные крошки">
   <ol>
+    <li><a href={CONFIG.mainSite}>Aldo Coppola</a></li>
     <li><a href={u('')}>Косметология</a></li>
     {items.map(([n, p], i) => <li>{i < items.length - 1 ? <a href={u(p)}>{n}</a> : <span aria-current="page">{n}</span>}</li>)}
   </ol>
